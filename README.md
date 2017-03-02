@@ -11,6 +11,7 @@ The course has two parts:
 - [week03 online pdf](/lecture/week03-Mergesort.pdf)
 - [week04 online pdf](/lecture/week04-PriorityQueues.pdf)
 - [week05 online pdf](/lecture/week05-BalancedSearchTrees.pdf)
+- [week05 online pdf](/lecture/week05-GeometricSearch.pdf)
 - [week06 online pdf](/lecture/week06-HashTables.pdf)
 
 ## Reference
