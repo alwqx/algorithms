@@ -8,8 +8,21 @@ def lis(s):
     :rtype: string subsequence
 
     >>> lis("abc")
+    3
     >>> lis("aabcd")
+    4
     """
+
+    ret = 0
+    dp = [0] * len(s)
+
+    for i in range(len(s)):
+        dp[i] = 1
+        for j in range(i):
+            if ord(s[j]) < ord(s[i]) and dp[i] < dp[j] + 1:
+                dp[i] = dp[j] + 1
+                ret = max(ret, dp[i])
+    return ret
 
 def licint(l):
     """
@@ -32,5 +45,5 @@ def licint(l):
                 ret = max(ret, dp[i])
     return ret
 
-lis("abc")
-lis("azbcd")
+#lis("abc")
+#lis("azbcd")

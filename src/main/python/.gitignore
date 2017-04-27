@@ -1,0 +1,7 @@
+__pycache__/*
+.cache/*
+*.pyc
+basic/.cache/*
+search/.cache/*
+sort/.cache/*
+sort/__pycahce__/*
