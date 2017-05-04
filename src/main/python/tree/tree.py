@@ -39,6 +39,20 @@ def test_node_bt():
     assert t.get_right_child().get_root() == 3
 
 
-class ListBinaryTree:
-    def __init__(self):
-        print("to be impleted")
+def preorder(tree):
+    if tree:
+        print(tree.get_root())
+        preorder(tree.get_left_child())
+        preorder(tree.get_right_child())
+
+def midorder(tree):
+    if tree:
+        midorder(tree.get_left_child())
+        print(tree.get_root())
+        midorder(tree.get_right_child())
+
+def postorder(tree):
+    if tree:
+        postorder(tree.get_left_child())
+        postorder(tree.get_right_child())
+        print(tree.get_root())
