@@ -28,3 +28,5 @@ A record of learning subject Algorithms by Princeton University.
 - [algs4 source code and api](http://algs4.cs.princeton.edu/code/index.php)
 - [Algs in C](https://github.com/TheAlgorithms/C)
 - [Algs in Python](https://github.com/keon/algorithms)
+- [visualgo](https://visualgo.net/zh)
+- [algorithm-visualizer](https://algorithm-visualizer.org/)
