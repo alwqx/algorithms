@@ -4,3 +4,4 @@ assignments
 .idea
 leetcode/python/__pycache__/*
 leetcode/python/.cache/*
+/bin/
