@@ -1,12 +1,14 @@
-package xyz.adolphlwq.algs4;
+package ds;
 
 public class ResizingArrayStackOfString {
     private String[] s;
     private int N;
+    private int length;
 
     public ResizingArrayStackOfString() {
         s = new String[1];
         N = 0;
+        length = 6;
     }
 
     public boolean isEmpty() {
@@ -14,15 +16,8 @@ public class ResizingArrayStackOfString {
     }
 
     public void push(String item) {
-        if (N == s.lentgh) resize(s.length * 2)
+        if (N == s.length) resize(s.length * 2);
         s[N++] = item;
-    }
-
-    public String pop() {
-        item = s[N];
-        s[N] = null;
-        N--;
-        return item;
     }
     
     public String pop() {
@@ -34,7 +29,7 @@ public class ResizingArrayStackOfString {
     }
 
     private void resize(int capacity) {
-        String[] copy = new String(capacity);
+        String[] copy = new String[capacity];
         for (int i=0;i<s.length;i++){
             copy[i] = s[i];
         }

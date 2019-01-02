@@ -1,10 +1,10 @@
-package xyz.adolphlwq.algs4;
+package ds;
 
 public class FixedCapacityStackOfStrings {
     private int N;
     private String[] s;
 
-    public FixedCapacityOfStrings(int capacity) {
+    public FixedCapacityStackOfStrings(int capacity) {
         s = new String[capacity];
         N = 0;
     }
@@ -19,9 +19,9 @@ public class FixedCapacityStackOfStrings {
     }
 
     public String pop() {
-        item = s[N];
+        String item = s[N];
         s[N] = null;
         N--;
-        return item
+        return item;
     }
 }

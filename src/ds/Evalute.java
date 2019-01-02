@@ -1,7 +1,7 @@
-package xyz.adolphlwq.algs4;
+package ds;
 
+import utils.*;
 import java.util.Stack;
-import edu.princeton.cs.algs4.*;
 
 public class Evalute {
     public static void main(String[] args){

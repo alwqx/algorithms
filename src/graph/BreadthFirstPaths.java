@@ -1,4 +1,4 @@
-// package main.java.xyz.adolphlwq.algs4.graph;
+package graph;
 
 import java.util.NoSuchElementException;
 import edu.princeton.cs.algs4.*;

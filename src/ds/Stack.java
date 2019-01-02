@@ -1,5 +1,6 @@
-package xyz.adolphlwq.algs4;
+package ds;
 
+import utils.*;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -59,10 +60,10 @@ public class Stack<Item> implements Iterable<Item> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Item item:this) { //this is import in this.
-            s.append(item);
-            s.append(' ');
+            sb.append(item);
+            sb.append(' ');
         }
-        return s.toString();
+        return sb.toString();
     }
 
     /*
