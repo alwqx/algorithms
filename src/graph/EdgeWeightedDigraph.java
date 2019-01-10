@@ -1,6 +1,10 @@
 package graph;
 
-import edu.princeton.cs.algs4.*;
+import utils.In;
+import utils.StdOut;
+import utils.Bag;
+import utils.StdRandom;
+import ds.Stack;
 
 public class EdgeWeightedDigraph{
     private static final String NEWLINE = System.getProperty("line.separator");

@@ -1,6 +1,8 @@
-// package main.java.xyz.adolphlwq.algs4.graph;
+package graph;
 
-import edu.princeton.cs.algs4.*;
+import utils.In;
+import utils.StdOut;
+import ds.Stack;
 
 public class DepthFirstPaths {
     private boolean[] marked;

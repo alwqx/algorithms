@@ -1,7 +1,5 @@
 package graph;
 
-import edu.princeton.cs.algs4.*;
-
 public class Edge implements Comparable<Edge>{
     private final int v;
     private final int w;
