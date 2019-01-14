@@ -5,3 +5,5 @@ assignments
 leetcode/python/__pycache__/*
 leetcode/python/.cache/*
 /bin/
+a.out
+*.gch
