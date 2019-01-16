@@ -45,7 +45,7 @@ int array_stack_pop(ArrayStack *s) {
     s->array[s->size-1] = -1;
     s->size--;
 
-    if(s->size>0 && s->size < s->cap/4)
+    if(s->size>0 && s->size == s->cap/4)
         array_stack_resize(s, s->cap/2);
 
     return ret;
