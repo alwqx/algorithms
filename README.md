@@ -15,22 +15,18 @@ This repo is edited by Eclipse. File structures are as follows:
 └── test_data
 ```
 
-### Java
-1. compile, use src/utils/Bag.java for example.
-```java
-javac -classpath src src/utils/Bag.java
-```
-2. execute or test
-
-```java
-java -classpath src utils.Bag
-```
-
-### Python
-TODOs
-
-### Golang
-TODOs
+## Implements
+| Algorithms      |  C | Java  | Python | Golang |
+| :--------: | :--------:| :------: | :------: | :------: |
+|   Array  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
+| Link List  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Stack  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Queue  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Tree   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Graph  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Search | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Sort   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Compression  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 
 ## Algorithms & Data Structures
 - data structure

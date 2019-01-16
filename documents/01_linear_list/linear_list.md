@@ -21,3 +21,4 @@ L=(a0, a1, ..., an-1)
 - display
 - min
 - max
+- find
