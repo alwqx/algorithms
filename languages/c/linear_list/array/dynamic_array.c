@@ -8,7 +8,8 @@ DSqList * get_dynamic_array(int cap) {
     sp->data = (int *) malloc(sizeof(int) * cap);
     sp->length = 0;
     sp->cap = cap;
-    for(int i=0; i<MAXSIZE; i++){
+    int i;
+    for(i=0; i<MAXSIZE; i++){
         sp->data[i] = -1;
     }
     
@@ -18,8 +19,8 @@ DSqList * get_dynamic_array(int cap) {
 int darray_insert(DSqList *L, int pos, int e) {
     if(pos<0 || pos> L->cap)
         return -1;
-
-    for(int j=L->length;j>pos;j--)
+    int j;
+    for(j=L->length;j>pos;j--)
         L->data[j] = L->data[j-1];
 
     L->data[pos] = e;
@@ -32,7 +33,8 @@ int darray_remove(DSqList *L, int pos){
     if(pos<0 || pos>L->length)
         return -1;
 
-    for(int j=pos; j<L->length; j++)
+    int j;
+    for(j=pos; j<L->length; j++)
         L->data[j] = L->data[j+1];
     L->length--;
 
@@ -48,8 +50,8 @@ int darray_update(DSqList *L, int pos, int e) {
 }
 
 int darray_min(DSqList *L){
-    int e = L->data[0];
-    for(int i=0; i<L->length; i++)
+    int i, e = L->data[0];
+    for(i=0; i<L->length; i++)
         if(e>L->data[i])
             e = L->data[i];
 
@@ -57,8 +59,8 @@ int darray_min(DSqList *L){
 }
 
 int darray_max(DSqList *L) {
-    int e = L->data[0];
-    for(int i=0; i<L->length; i++)
+    int i, e = L->data[0];
+    for(i=0; i<L->length; i++)
         if(e<L->data[i])
             e = L->data[i];
 
@@ -67,7 +69,8 @@ int darray_max(DSqList *L) {
 
 void darray_display(DSqList *L){
     printf("%s", "static array:");
-    for(int i=0; i<L->length; i++)
+    int i;
+    for(i=0; i<L->length; i++)
         printf(" %d", L->data[i]);
     printf("\n");
 }

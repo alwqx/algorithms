@@ -26,7 +26,8 @@ LNode *list_find_index(LinkList *L, int pos) {
         return NULL;
         
     LNode *s = L->first;
-    for(int i=0;i<pos;i++)
+    int i;
+    for(i=0;i<pos;i++)
         s = s->next;
     
     return s;
@@ -89,7 +90,8 @@ int list_remove_value(LinkList *L, int e) {
 void list_display(LinkList *L) {
     printf("%s", "list is:");
     LNode *cur = L->first;
-    for(int i=0; i<L->size; i++){
+    int i;
+    for(i=0; i<L->size; i++){
         printf(" %d", cur->data);
         cur = cur->next;
     }
@@ -101,7 +103,8 @@ int list_update(LinkList *L, int pos, int e) {
         return -1;
 
     LNode *s = L->first;
-    for(int i=0; i<pos; i++)
+    int i;
+    for(i=0; i<pos; i++)
         s = s->next;
     s->data = e;
 

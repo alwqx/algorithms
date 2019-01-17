@@ -6,7 +6,8 @@
 SqList * get_static_array() {
     SqList *sp = (SqList *) malloc(sizeof(SqList));
     sp->length = 0;
-    for(int i=0; i<MAXSIZE; i++){
+    int i;
+    for(i=0; i<MAXSIZE; i++){
         sp->data[i] = -1;
     }
     
@@ -17,7 +18,8 @@ int array_insert(SqList *L, int pos, int e) {
     if(pos<0 || pos> L->length)
         return -1;
 
-    for(int j=L->length;j>pos;j--)
+    int j;
+    for(j=L->length;j>pos;j--)
         L->data[j] = L->data[j-1];
 
     L->data[pos] = e;
@@ -30,7 +32,8 @@ int array_remove(SqList *L, int pos){
     if(pos<0 || pos>L->length)
         return -1;
 
-    for(int j=pos; j<L->length; j++)
+    int j;
+    for(j=pos; j<L->length; j++)
         L->data[j] = L->data[j+1];
     L->length--;
 
@@ -46,8 +49,8 @@ int array_update(SqList *L, int pos, int e) {
 }
 
 int array_min(SqList *L){
-    int e = L->data[0];
-    for(int i=0; i<L->length; i++)
+    int i, e = L->data[0];
+    for(i=0; i<L->length; i++)
         if(e>L->data[i])
             e = L->data[i];
 
@@ -55,8 +58,8 @@ int array_min(SqList *L){
 }
 
 int array_max(SqList *L) {
-    int e = L->data[0];
-    for(int i=0; i<L->length; i++)
+    int i, e = L->data[0];
+    for(i=0; i<L->length; i++)
         if(e<L->data[i])
             e = L->data[i];
 
@@ -65,7 +68,8 @@ int array_max(SqList *L) {
 
 void array_display(SqList *L){
     printf("%s", "static array:");
-    for(int i=0; i<L->length; i++)
+    int i;
+    for(i=0; i<L->length; i++)
         printf(" %d", L->data[i]);
     printf("\n");
 }

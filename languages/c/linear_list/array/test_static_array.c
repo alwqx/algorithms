@@ -3,7 +3,7 @@
 
 #include "array.h"
 
-void test_static_array(){
+int test_static_array(){
     SqList *sp = get_static_array();
 
     // test array_insert
@@ -72,8 +72,10 @@ void test_static_array(){
         exit(-1);
     }
     printf("%s\n", "test min and max success");
+
+    return 0;
 }
 
 int main(int argc, char *argv[]){
-    test_static_array();
+    return test_static_array();
 }
