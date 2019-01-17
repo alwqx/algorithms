@@ -1,4 +1,6 @@
 # Algorithms
+[![Build Status](https://travis-ci.org/adolphlwq/algorithms.svg?branch=master)](https://travis-ci.org/adolphlwq/algorithms)
+
 A record of learning subject Algorithms by Princeton University. And implement algorithms by other languages(Golang,Python).
 
 ## Overview

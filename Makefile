@@ -18,3 +18,5 @@ test-stack: compile-stack compile-linked-stack compile-array-stack
 	java -classpath src stack.ResizingArrayStack < test_data/tobe.txt
 	rm src/stack/*.class
 	echo "test stack success"
+
+test: test-stack

@@ -20,8 +20,9 @@ void array_stack_resize(ArrayStack *s, int cap) {
         printf("error, new cap should more than size of stack\n");
         exit(-1);
     }
-    int * new_array = (int *) malloc(sizeof(int) * cap);
-    for(int i=0; i<s->size; i++)
+    int *new_array = (int *) malloc(sizeof(int) * cap);
+    int i;
+    for(i=0; i<s->size; i++)
         new_array[i] = s->array[i];
 
     s->array = new_array;

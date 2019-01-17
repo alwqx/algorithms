@@ -1,0 +1,20 @@
+matrix:
+  include:
+    - language: java
+      jdk:
+        - oraclejdk8
+        - oraclejdk9
+        - openjdk8
+        - openjdk9
+      script:
+        - make test
+  
+  include:
+    - language: c
+      compiler:
+        - gcc
+        - clang
+      before_script:
+        - cd languages/c
+      script:
+        - make test

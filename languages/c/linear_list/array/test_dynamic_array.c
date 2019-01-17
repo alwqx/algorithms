@@ -3,7 +3,7 @@
 
 #include "array.h"
 
-void test_dynamic_array(){
+int test_dynamic_array(){
     DSqList *sp = get_dynamic_array(50);
 
     // test darray_insert
@@ -72,8 +72,10 @@ void test_dynamic_array(){
         exit(-1);
     }
     printf("%s\n", "test min and max success");
+
+    return 0;
 }
 
 int main(int argc, char *argv[]){
-    test_dynamic_array();
+    return test_dynamic_array();
 }
