@@ -10,4 +10,7 @@ test:
 	echo "test stack"
 	cd $(CUR_DIR)/stack && make test
 
+	echo "test queue"
+	cd $(CUR_DIR)/queue && make test
+
 	echo "test success"
