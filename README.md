@@ -23,7 +23,7 @@ This repo is edited by Eclipse. File structures are as follows:
 |   Array  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
 | Link List  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
 |   Stack  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
-|   Queue  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Queue  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
 |   Tree   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 |   Graph  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 |   Search | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
