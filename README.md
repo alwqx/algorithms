@@ -6,12 +6,18 @@ A record of learning subject Algorithms by Princeton University. And implement a
 ## Overview
 This repo is edited by Eclipse. File structures are as follows:
 ```shell
+tree -L 1
+.
+├── assets
+├── bin
 ├── courses
 ├── Dockerfile
+├── documents
 ├── languages
 ├── lecture
 ├── leetcode
 ├── LICENSE
+├── Makefile
 ├── README.md
 ├── src
 └── test_data
@@ -26,7 +32,7 @@ This repo is edited by Eclipse. File structures are as follows:
 |   Queue  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
 |   Tree   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 |   Graph  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
-|   Search | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Search | :black_square_button: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
 |   Sort   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 |   Compression  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 

@@ -37,6 +37,7 @@ public class Queue<Item> implements Iterable<Item> {
 
     public boolean isEmpty() {
         return size == 0;
+        // return first == null;
     }
 
     public int size() {
@@ -101,7 +102,7 @@ public class Queue<Item> implements Iterable<Item> {
             current = first;
         }
 
-        public boolean hasNext() {return current == null;}
+        public boolean hasNext() {return current != null;}
         public void remove() {throw new UnsupportedOperationException();}
 
         public Item next() {
