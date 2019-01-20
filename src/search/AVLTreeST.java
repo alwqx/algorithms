@@ -1,21 +1,50 @@
-// refer https://github.com/kevin-wayne/algs4/blob/master/src/main/java/edu/princeton/cs/algs4/AVLTreeST.java
+/******************************************************************************
+ *  Compilation:  javac AVLTreeST.java
+ *  Execution:    java AVLTreeST < input.txt
+ *  Dependencies: StdIn.java StdOut.java  
+ *  Data files:   https://algs4.cs.princeton.edu/33balanced/tinyST.txt  
+ *    
+ *  A symbol table implemented using an AVL tree.
+ *
+ *  % more tinyST.txt
+ *  S E A R C H E X A M P L E
+ *  
+ *  % java AVLTreeST < tinyST.txt
+ *  A 8
+ *  C 4
+ *  E 12
+ *  H 5
+ *  L 11
+ *  M 9
+ *  P 10
+ *  R 3
+ *  S 0
+ *  X 7
+ *
+ ******************************************************************************/
+
+package search;
+
 import java.util.NoSuchElementException;
-import edu.princeton.cs.algs4.*;
+
+import queue.Queue;
+import utils.StdIn;
+import utils.StdOut;
 
 public class AVLTreeST<Key extends Comparable<Key>, Value> {
     private Node root;
 
-    private class Node{
+    private class Node {
+        private int size;
+        private int height;
         private final Key key;
         private Value value;
-        private int height;
-        private int size;
         private Node left;
         private Node right;
 
-        public Node(Key key, Value value, int height, int size) {
+        public Node(Key key, Value val, int height, int size) {
             this.key = key;
-            this.value = value;
+            this.value = val;
             this.height = height;
             this.size = size;
         }
@@ -32,7 +61,8 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
     }
 
     private int size(Node x) {
-        return x==null?0:x.size;
+        if(x == null) return 0;
+        return x.size;
     }
 
     public int height() {
@@ -40,21 +70,22 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
     }
 
     private int height(Node x) {
-        return x==null?-1:x.height;
+        if(x==null) return -1;
+        return x.height;
     }
 
     public Value get(Key key) {
-        if (key == null) throw new IllegalArgumentException("Argiment to get() is null");
+        if(key == null) throw new IllegalArgumentException("argument to get() is null");
         Node x = get(root, key);
-        if (x == null) return null;
+        if(x == null) return null;
         return x.value;
     }
 
     private Node get(Node x, Key key) {
-        if (x == null) return null;
+        if(x == null) return null;
         int cmp = key.compareTo(x.key);
-        if (cmp < 0) return get(x.left, key);
-        else if (cmp > 0) return get(x.right, key);
+        if(cmp<0) return get(x.left, key);
+        else if(cmp>0) return get(x.right, key);
         else return x;
     }
 
@@ -62,44 +93,45 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
         return get(key) != null;
     }
 
-    public void put(Key key, Value value) {
-        if (key == null) throw new IllegalArgumentException("first argument to put is null");
-        if (value == null) {
+    public void put(Key key, Value val) {
+        if (key == null) throw new IllegalArgumentException("first argument to put() is null");
+        if (val == null) {
             delete(key);
             return;
         }
-        root = put(root, key, value);
+
+        root = put(root, key, val);
         assert check();
     }
 
-    //put()进行递归调用，需要仔细阅读这个函数，对各种情况的处理，以及判断条件后size/height的更新
-    private Node put(Node x, Key key, Value value) {
-        if (x == null) return new Node(key, value, 0, 1);
+    private Node put(Node x, Key key, Value val) {
+        if(x == null) return new Node(key, val, 0, 1);
         int cmp = key.compareTo(x.key);
-        if (cmp < 0) x.left = put(x.left, key, value);//这里的递归需要仔细思考
-        else if(cmp > 0) x.right = put(x.right, key, value);
+
+        if(cmp < 0) x.left = put(x.left, key, val);
+        else if(cmp > 0) x.right = put(x.right, key, val);
         else {
-            x.value = value;
-            return x;//这里和上面的递归呼应，算是最基本的情况，所有递归到了最初的情形。
+            x.value = val;
+            return x;
         }
-        x.size = size(x.left) + size(x.right) + 1;
-        x.height = Math.max(height(x.left), height(x.right)) + 1; //这里为什么不直接 x.size+=1 x.height+=1?
-        return balance(x); //make tree to AVL
+
+        x.size = 1 + size(x.left) + size(x.right);
+        x.height = 1 + Math.max(height(x.left), height(x.right));
+
+        return balance(x);
     }
 
-    private Node balance(Node x){
-        if (balanceFactor(x) < -1) { //左子树低，需要对x进行左旋转
-            if (balanceFactor(x.right) > 0) {//如果右子树比左子树高，这是“右左插入”，先右旋转，再左旋转
+    private Node balance(Node x) {
+        if(balanceFactor(x) < -1) {
+            if(balanceFactor(x.right) > 0)
                 x.right = rotateRight(x.right);
-            }
             x = rotateLeft(x);
-        }
-        else if (balanceFactor(x) > 1) {
-            if (balanceFactor(x.left) < 0) {
+        }else if(balanceFactor(x) > 1) {
+            if(balanceFactor(x.left) < 0)
                 x.left = rotateLeft(x.left);
-            }
             x = rotateRight(x);
         }
+
         return x;
     }
 
@@ -107,31 +139,19 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
         return height(x.left) - height(x.right);
     }
 
-    /* 对https://github.com/kevin-wayne/algs4/blob/master/src/main/java/edu/princeton/cs/algs4/AVLTreeST.java#L288-L296
-    代码的分析
-    private Node rotateRight(Node x) {
-        //传出参数x是对象引用的一个副本，对x的修改会影响到原来的对象。
-        Node y = x.left;
-        x.left = y.right;
-        y.right = x;
-        y.size = x.size; //更新了y的size，直接把x的size赋值给y，没有调用方法来计算。
-        x.size = 1 + size(x.left) + size(x.right);//此时x已经不是root节点了，原来的size已经给了新的root y，可以放心地更新作为右子树的x的size。
-        x.height = 1 + Math.max(height(x.left), height(x.right));//重新计算x的height
-        y.height = 1 + Math.max(height(y.left), height(y.right));//重新计算y的height
-        return y;//返回y，y是指向原对象的引用，原对象已经被更新。
-    }*/
     private Node rotateRight(Node x) {
         Node y = x.left;
         x.left = y.right;
         y.right = x;
         y.size = x.size;
         x.size = 1 + size(x.left) + size(x.right);
-        x.height = 1 + Math.max(height(x.left), height(x.right));
-        y.height = 1 + Math.max(height(y.left), height(y.right));
+        x.height = 1 + height(x.left) + height(x.right);
+        y.height = 1 + height(y.left) + height(y.right);
+
         return y;
     }
 
-    public Node rotateLeft(Node x) {
+    private Node rotateLeft(Node x) {
         Node y = x.right;
         x.right = y.left;
         y.left = x;
@@ -139,50 +159,50 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
         x.size = 1 + size(x.left) + size(x.right);
         x.height = 1 + Math.max(height(x.left), height(x.right));
         y.height = 1 + Math.max(height(y.left), height(y.right));
+
         return y;
     }
 
     public void delete(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to delete() is null");
-        if (!contains(key)) return;
+        if(!contains(key)) return;
+
         root = delete(root, key);
         assert check();
     }
 
     private Node delete(Node x, Key key) {
         int cmp = key.compareTo(x.key);
-        if (cmp < 0) {
-            x.left = delete(x.left, key);
-        }else if (cmp > 0) {
-            x.right = delete(x.right, key);
-        }else {
-            if (x.left == null) {
-                return x.right;
-            }else if (x.right == null) {
-                return x.left;
-            }else {
+        if(cmp < 0) x.left = delete(x.left, key);
+        else if(cmp > 0) x.right = delete(x.right, key);
+        else{
+            if(x.left == null) return x.right;
+            else if(x.right == null) return x.left;
+            else{
                 Node y = x;
                 x = min(y.right);
                 x.right = deleteMin(y.right);
                 x.left = y.left;
             }
         }
+
         x.size = 1 + size(x.left) + size(x.right);
-        x.height = 1 + Math.max(height(x.right), height(x.left));
+        x.height = 1 + Math.max(height(x.left), height(x.right));
         return balance(x);
     }
 
     public void deleteMin() {
-        if (isEmpty()) throw new NoSuchElementException("called deleteMin() with symbol table");
+        if (isEmpty()) throw new NoSuchElementException("called deleteMin() with empty symbol table");
         root = deleteMin(root);
         assert check();
     }
 
     private Node deleteMin(Node x) {
-        if (x.left == null) return x.right;
-        x.left = deleteMin(x.left);//递归调用，这里用到AVLTree的一个性质：左节点比右节点小。
+        if(x.left == null) return x.right;
+        x.left = deleteMin(x.left);
         x.size = 1 + size(x.left) + size(x.right);
-        x.height = 1 + Math.max(height(x.right), height(x.left));
+        x.height = 1 + Math.max(height(x.left), height(x.right));
+        
         return balance(x);
     }
 
@@ -195,9 +215,9 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
     private Node deleteMax(Node x) {
         if (x.right == null) return x.left;
         x.right = deleteMax(x.right);
-        x.left = deleteMin(x.left);//递归调用，这里用到AVLTree的一个性质：左节点比右节点小。
         x.size = 1 + size(x.left) + size(x.right);
-        x.height = 1 + Math.max(height(x.right), height(x.left));
+        x.height = 1 + Math.max(height(x.left), height(x.right));
+
         return balance(x);
     }
 
@@ -221,81 +241,94 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
         return max(x.right);
     }
 
-    //返回<= key的最大的key
-    //都是从root节点开始找
+    // Returns the largest key in the symbol table less than or equal to key
     public Key floor(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to floor() is null");
         if (isEmpty()) throw new NoSuchElementException("called floor() with empty symbol table");
+
         Node x = floor(root, key);
-        return (x==null)?null:x.key;
+        if(x==null) return null;
+        else return x.key;
     }
 
+    // Returns the node in the subtree with the largest key less than or equal
+    // to the given key
     private Node floor(Node x, Key key) {
-        if (x == null) return null;
+        if(x == null) return null;
         int cmp = key.compareTo(x.key);
-        if (cmp == 0) return x;
-        if (cmp < 0) return floor(x.left, key);
+        if(cmp == 0) return x;
+        if(cmp < 0) return floor(x.left, key);
+
         Node y = floor(x.right, key);
-        return (y==null)?x:y;
+        if(y != null) return y;
+        return x;
     }
 
-    //返回>= key的最小key
+    // Returns the smallest key in the symbol table greater than or equal to key
     public Key ceiling(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to ceiling() is null");
         if (isEmpty()) throw new NoSuchElementException("called ceiling() with empty symbol table");
         Node x = ceiling(root, key);
-        return (x==null)?null:x.key;
+        if (x == null) return null;
+        else return x.key;
     }
 
+    // Returns the node in the subtree with the smallest key greater than or
+    // equal to the given key
     private Node ceiling(Node x, Key key) {
         if (x == null) return null;
         int cmp = key.compareTo(x.key);
         if (cmp == 0) return x;
         if (cmp > 0) return ceiling(x.right, key);
         Node y = ceiling(x.left, key);
-        return (y==null)?x:y;
+        if (y != null) return y;
+        else return x;
     }
 
-    //返回第k个最小的值，下标从0开始。
+    // Returns the kth smallest key in the symbol table
     public Key select(int k) {
-        if (k<0 || k>=size()) throw new IllegalArgumentException("k is not in 0-"+(size()-1));
+        if (k < 0 || k >= size()) throw new IllegalArgumentException("k is not in range 0-" + (size() - 1));
         Node x = select(root, k);
         return x.key;
     }
 
-    private Node select(Node x, int key) {
-        if (x==null) return null;
+    // Returns the node with key the kth smallest key in the subtree
+    private Node select(Node x, int k) {
+        if (x == null) return null;
         int t = size(x.left);
-        if (t > key) return select(x.left, key);
-        else if (t < key) return select(x.right, key-t-1);//-1是因为去掉子树的根节点
+        if (t > k) return select(x.left, k);
+        else if (t < k) return select(x.right, k - t - 1);
         else return x;
     }
 
-    //
+    // Returns the number of keys in the symbol table strictly less than key
     public int rank(Key key) {
-        if (key==null) throw new IllegalArgumentException("argument to rank() is null");
+        if (key == null) throw new IllegalArgumentException("argument to rank() is null");
         return rank(key, root);
     }
 
+    // Returns the number of keys in the subtree less than key
     private int rank(Key key, Node x) {
-        if (x==null) return 0;
+        if (x == null) return 0;
         int cmp = key.compareTo(x.key);
-        if (cmp<0) return rank(key, x.left);
-        else if(cmp>0) return 1+size(x.left)+rank(key, x.right);//+1是根节点。
+        if (cmp < 0) return rank(key, x.left);
+        else if (cmp > 0) return 1 + size(x.left) + rank(key, x.right);
         else return size(x.left);
     }
 
+    // Returns all keys in the symbol table
     public Iterable<Key> keys() {
         return keysInOrder();
     }
 
+    // Returns all keys in the symbol table following an in-order traversal
     public Iterable<Key> keysInOrder() {
         Queue<Key> queue = new Queue<Key>();
         keysInOrder(root, queue);
         return queue;
     }
 
-    //基本是递归操作，逆向代码和符号表调用已经弄清楚。
+    // Adds the keys in the subtree to queue following an in-order traversal
     private void keysInOrder(Node x, Queue<Key> queue) {
         if (x == null) return;
         keysInOrder(x.left, queue);
@@ -303,53 +336,113 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
         keysInOrder(x.right, queue);
     }
 
+    // Returns all keys in the symbol table following a level-order traversal
     public Iterable<Key> keysLevelOrder() {
         Queue<Key> queue = new Queue<Key>();
-        if(!isEmpty()) {
+        if (!isEmpty()) {
             Queue<Node> queue2 = new Queue<Node>();
             queue2.enqueue(root);
-            while(!queue2.isEmpty()) {
+            while (!queue2.isEmpty()) {
                 Node x = queue2.dequeue();
                 queue.enqueue(x.key);
-                if (x.left != null) queue2.enqueue(x.left);
-                if (x.right != null) queue2.enqueue(x.right);
+                if (x.left != null) {
+                    queue2.enqueue(x.left);
+                }
+                if (x.right != null) {
+                    queue2.enqueue(x.right);
+                }
             }
         }
         return queue;
     }
 
-    public boolean isAVL() {
-        return isAVL(root);
+    // Returns all keys in the symbol table in the given range
+    public Iterable<Key> keys(Key low, Key high) {
+        if (low == null) throw new IllegalArgumentException("first argument to keys() is null");
+        if (high == null) throw new IllegalArgumentException("second argument to keys() is null");
+        Queue<Key> queue = new Queue<Key>();
+        keys(root, queue, low, high);
+        return queue;
     }
 
-    private boolean isAVL(Node x) {
-        if (x==null) return true;
-        int bf = balanceFactor(x);
-        if(bf>1||bf<-1) return false;
-        return isAVL(x.left) && isAVL(x.right);
+    // Adds the keys between {@code lo} and {@code hi} in the subtree
+    private void keys(Node x, Queue<Key> queue, Key low, Key high) {
+        if (x == null) return;
+        int cmplo = low.compareTo(x.key);
+        int cmphi = high.compareTo(x.key);
+        if (cmplo < 0) keys(x.left, queue, low, high);
+        if (cmplo <= 0 && cmphi >= 0) queue.enqueue(x.key);
+        if (cmphi > 0) keys(x.right, queue, low, high);
     }
 
-    public boolean isBST() {
-        return isBST(root, null, null);
+    // Returns the number of keys in the symbol table in the given range
+    public int size(Key lo, Key hi) {
+        if (lo == null) throw new IllegalArgumentException("first argument to size() is null");
+        if (hi == null) throw new IllegalArgumentException("second argument to size() is null");
+        if (lo.compareTo(hi) > 0) return 0;
+        if (contains(hi)) return rank(hi) - rank(lo) + 1;
+        else return rank(hi) - rank(lo);
     }
 
-    private boolean isBST(Node x, Key min, Key max) {
-        if (x==null) return true;
-        if (min!=null&&x.key.compareTo(min)<=0) return false;
-        if (max!=null&&x.key.compareTo(max)>=0) return false;
-        return isBST(x.left, min, x.key) && isBST(x.right, x.key, max);
-    }
-
+    // Checks if the AVL tree invariants are fine
     private boolean check() {
         if (!isBST()) StdOut.println("Symmetric order not consistent");
         if (!isAVL()) StdOut.println("AVL property not consistent");
-        // if (!isSizeConsistent()) StdOut.println("Subtree counts not consistent");
-        // if (!isRankConsistent()) StdOut.println("Ranks not consistent");
-        // return isBST() && isAVL() && isSizeConsistent() && isRankConsistent();
-        return isBST() && isAVL();
+        if (!isSizeConsistent()) StdOut.println("Subtree counts not consistent");
+        if (!isRankConsistent()) StdOut.println("Ranks not consistent");
+        return isBST() && isAVL() && isSizeConsistent() && isRankConsistent();
     }
 
-     public static void main(String[] args) {
+    // Checks if AVL property is consistent
+    private boolean isAVL() {
+        return isAVL(root);
+    }
+
+    // Checks if AVL property is consistent in the subtree
+    private boolean isAVL(Node x) {
+        if (x == null) return true;
+        int bf = balanceFactor(x);
+        if (bf > 1 || bf < -1) return false;
+        return isAVL(x.left) && isAVL(x.right);
+    }
+
+    // Checks if the symmetric order is consistent
+    private boolean isBST() {
+        return isBST(root, null, null);
+    }
+
+    // Checks if the tree rooted at x is a BST with all keys strictly between
+    // min and max (if min or max is null, treat as empty constraint) Credit:
+    // Bob Dondero's elegant solution
+    private boolean isBST(Node x, Key min, Key max) {
+        if (x == null) return true;
+        if (min != null && x.key.compareTo(min) <= 0) return false;
+        if (max != null && x.key.compareTo(max) >= 0) return false;
+        return isBST(x.left, min, x.key) && isBST(x.right, x.key, max);
+    }
+
+    // Checks if size is consistent
+    private boolean isSizeConsistent() {
+        return isSizeConsistent(root);
+    }
+
+    // Checks if the size of the subtree is consistent
+    private boolean isSizeConsistent(Node x) {
+        if (x == null) return true;
+        if (x.size != size(x.left) + size(x.right) + 1) return false;
+        return isSizeConsistent(x.left) && isSizeConsistent(x.right);
+    }
+
+    // Checks if rank is consistent
+    private boolean isRankConsistent() {
+        for (int i = 0; i < size(); i++)
+            if (i != rank(select(i))) return false;
+        for (Key key : keys())
+            if (key.compareTo(select(rank(key))) != 0) return false;
+        return true;
+    }
+
+    public static void main(String[] args) {
         AVLTreeST<String, Integer> st = new AVLTreeST<String, Integer>();
         for (int i = 0; !StdIn.isEmpty(); i++) {
             String key = StdIn.readString();
@@ -357,6 +450,5 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
         }
         for (String s : st.keys())
             StdOut.println(s + " " + st.get(s));
-        StdOut.println();
     }
 }
