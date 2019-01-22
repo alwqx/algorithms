@@ -13,4 +13,7 @@ test:
 	echo "test queue"
 	cd $(CUR_DIR)/queue && make test
 
+	echo "test search"
+	cd $(CUR_DIR)/search && make test
+
 	echo "test success"
