@@ -34,6 +34,7 @@ tree -L 1
 |   Graph  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 |   Search | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
 |   Sort   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Hash  | :black_square_button: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
 |   Compression  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 
 ## Algorithms & Data Structures

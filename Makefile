@@ -63,4 +63,19 @@ test-all-st: compile-st compile-sst compile-bsst compile-avltst
 	rm -rf src/search/*.class
 	rm -rf src/queue/*.class
 
+compile-lphash:
+	javac -classpath src src/hash/LinearProbingHashST.java
+test-lphash:
+	java -classpath src hash.LinearProbingHashST < test_data/tinyST.txt
+compile-schash:
+	javac -classpath src src/hash/SeparateChainingHashST.java
+test-schash:
+	java -classpath src hash.SeparateChainingHashST < test_data/tinyST.txt
+test-all-hash: compile-schash compile-lphash
+	make test-schash
+	make test-lphash
+	rm -rf src/queue/*.class
+	rm -rf src/utils/*.class
+	rm -rf src/search/*.class
+
 test: test-all-stack test-all-queue
