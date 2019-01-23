@@ -7,3 +7,4 @@ leetcode/python/.cache/*
 /bin/
 a.out
 *.gch
+.vscode/
