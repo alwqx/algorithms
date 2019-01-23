@@ -16,4 +16,7 @@ test:
 	echo "test search"
 	cd $(CUR_DIR)/search && make test
 
+	echo "test hash"
+	cd $(CUR_DIR)/hash && make test
+
 	echo "test success"
