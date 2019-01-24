@@ -39,7 +39,7 @@ package graph;
 import utils.Bag;
 import utils.In;
 import utils.StdOut;
-import ds.Stack;
+import stack.Stack;
 import java.util.NoSuchElementException;
 
 public class Graph {
@@ -62,18 +62,20 @@ public class Graph {
     public Graph(In in) {
         try{
             this.V = in.readInt();
-            this.E = in.readInt();
             if (V < 0) throw new IllegalArgumentException("Number of vertices must be nonnegative");
-            if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
-
             adj = (Bag<Integer>[]) new Bag[V];
             for (int v=0; v<V; v++) {
                 adj[v] = new Bag<Integer>();
             }
 
+            int E = in.readInt();
+            if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
+            // E = 0;
             for (int i=0; i<E; i++) {
                 int v = in.readInt();
                 int w = in.readInt();
+                validateVertex(v);
+                validateVertex(w);
                 addEdge(v, w);
             }
         } catch (NoSuchElementException e) {
@@ -113,6 +115,7 @@ public class Graph {
     public void addEdge(int v, int w) {
         validateVertex(v);
         validateVertex(w);
+        E++;
         adj[v].add(w);
         adj[w].add(v);
     }

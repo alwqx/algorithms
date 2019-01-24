@@ -77,5 +77,41 @@ test-all-hash: compile-schash compile-lphash
 	rm -rf src/queue/*.class
 	rm -rf src/utils/*.class
 	rm -rf src/search/*.class
+	rm -rf src/hash/*.class
 
-test: test-all-stack test-all-queue
+compile-dg:
+	javac -classpath src src/graph/Graph.java
+test-dg:
+	java -classpath src graph.Graph test_data/tinyG.txt
+compile-dgdfs:
+	javac -classpath src src/graph/DepthFirstSearch.java
+test-dgdfs:
+	java -classpath src graph.DepthFirstSearch test_data/tinyG.txt 3
+	java -classpath src graph.DepthFirstSearch test_data/tinyG.txt 0
+compile-dgdfp:
+	javac -classpath src src/graph/DepthFirstPaths.java
+test-dgdfp:
+	java -classpath src graph.DepthFirstPaths test_data/tinyG.txt 3
+	java -classpath src graph.DepthFirstPaths test_data/tinyG.txt 0
+compile-dgbfp:
+	javac -classpath src src/graph/BreadthFirstPaths.java
+test-dgbfp:
+	java -classpath src graph.BreadthFirstPaths test_data/mediumG.txt 3
+	java -classpath src graph.BreadthFirstPaths test_data/tinyG.txt 0
+compile-cc:
+	javac -classpath src src/graph/CC.java
+test-cc:
+	java -classpath src graph.CC test_data/mediumG.txt
+	java -classpath src graph.CC test_data/tinyG.txt
+
+test-all-dg: compile-dg compile-dgdfs compile-dgdfp compile-cc
+	make test-dg
+	make test-dgdfs
+	make test-dgdfp
+	make test-cc
+	rm -rf src/utils/*.class
+	rm -rf src/queue/*.class
+	rm -rf src/stack/*.class
+	rm -rf src/graph/*.class
+
+test: test-all-stack test-all-queue test-all-hash test-all-dg
