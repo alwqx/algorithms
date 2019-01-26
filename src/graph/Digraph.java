@@ -29,12 +29,14 @@
 
 package graph;
 
-import utils.*;
-import ds.Stack;
+import utils.In;
+import utils.StdOut;
+import utils.Bag;
+import stack.Stack;
 
 import java.util.NoSuchElementException;
 
-public class Digraph{
+public class Digraph {
     private static final String NEWLINE = System.getProperty("line.separator");
 
     private final int V;
@@ -43,6 +45,7 @@ public class Digraph{
     private final Bag<Integer>[] adj;
 
     public Digraph(int V) {
+        if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
         this.V = V;
         this.E = 0;
         this.indegree = new int[V];
@@ -155,17 +158,6 @@ public class Digraph{
 
     public static void main(String[] args) {
         In in = new In(args[0]);
-        // int v = in.readInt();
-        // int e = in.readInt();
-        // StdOut.printf("V is %d\n", v);
-        // StdOut.printf("E is %d\n", e);
-
-        // for (int i=0; i<e; i++) {
-        //     int vv = in.readInt();
-        //     int ww = in.readInt();
-        //     StdOut.printf("%d -> %d: \n", vv, ww);
-        // }
-
         Digraph G = new Digraph(in);
         StdOut.println(G);
     }

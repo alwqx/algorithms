@@ -33,30 +33,11 @@
 
 package graph;
 
-import ds.Queue;
-import ds.Stack;
+import queue.Queue;
+import stack.Stack;
 import utils.StdOut;
 import utils.In;
 
-/**
- *  The {@code DepthFirstOrder} class represents a data type for 
- *  determining depth-first search ordering of the vertices in a digraph
- *  or edge-weighted digraph, including preorder, postorder, and reverse postorder.
- *  <p>
- *  This implementation uses depth-first search.
- *  The constructor takes time proportional to <em>V</em> + <em>E</em>
- *  (in the worst case),
- *  where <em>V</em> is the number of vertices and <em>E</em> is the number of edges.
- *  Afterwards, the <em>preorder</em>, <em>postorder</em>, and <em>reverse postorder</em>
- *  operation takes take time proportional to <em>V</em>.
- *  <p>
- *  For additional documentation,
- *  see <a href="https://algs4.cs.princeton.edu/42digraph">Section 4.2</a> of
- *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- *
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
- */
 public class DepthFirstOrder {
     private boolean[] marked;          // marked[v] = has v been marked in dfs?
     private int[] pre;                 // pre[v]    = preorder  number of v
@@ -66,10 +47,6 @@ public class DepthFirstOrder {
     private int preCounter;            // counter or preorder numbering
     private int postCounter;           // counter for postorder numbering
 
-    /**
-     * Determines a depth-first order for the digraph {@code G}.
-     * @param G the digraph
-     */
     public DepthFirstOrder(Digraph G) {
         pre    = new int[G.V()];
         post   = new int[G.V()];
@@ -82,10 +59,6 @@ public class DepthFirstOrder {
         assert check();
     }
 
-    /**
-     * Determines a depth-first order for the edge-weighted digraph {@code G}.
-     * @param G the edge-weighted digraph
-     */
     public DepthFirstOrder(EdgeWeightedDigraph G) {
         pre    = new int[G.V()];
         post   = new int[G.V()];
@@ -125,48 +98,28 @@ public class DepthFirstOrder {
         post[v] = postCounter++;
     }
 
-    /**
-     * Returns the preorder number of vertex {@code v}.
-     * @param  v the vertex
-     * @return the preorder number of vertex {@code v}
-     * @throws IllegalArgumentException unless {@code 0 <= v < V}
-     */
+    // Returns the preorder number of vertex v
     public int pre(int v) {
         validateVertex(v);
         return pre[v];
     }
 
-    /**
-     * Returns the postorder number of vertex {@code v}.
-     * @param  v the vertex
-     * @return the postorder number of vertex {@code v}
-     * @throws IllegalArgumentException unless {@code 0 <= v < V}
-     */
+    // Returns the postorder number of vertex v
     public int post(int v) {
         validateVertex(v);
         return post[v];
     }
 
-    /**
-     * Returns the vertices in postorder.
-     * @return the vertices in postorder, as an iterable of vertices
-     */
+    // Returns the vertices in postorder
     public Iterable<Integer> post() {
         return postorder;
     }
 
-    /**
-     * Returns the vertices in preorder.
-     * @return the vertices in preorder, as an iterable of vertices
-     */
+    // Returns the vertices in preorder
     public Iterable<Integer> pre() {
         return preorder;
     }
 
-    /**
-     * Returns the vertices in reverse postorder.
-     * @return the vertices in reverse postorder, as an iterable of vertices
-     */
     public Iterable<Integer> reversePost() {
         Stack<Integer> reverse = new Stack<Integer>();
         for (int v : postorder)
@@ -177,7 +130,6 @@ public class DepthFirstOrder {
 
     // check that pre() and post() are consistent with pre(v) and post(v)
     private boolean check() {
-
         // check that post(v) is consistent with post()
         int r = 0;
         for (int v : post()) {
@@ -208,11 +160,6 @@ public class DepthFirstOrder {
             throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
     }
 
-    /**
-     * Unit tests the {@code DepthFirstOrder} data type.
-     *
-     * @param args the command-line arguments
-     */
     public static void main(String[] args) {
         In in = new In(args[0]);
         Digraph G = new Digraph(in);
@@ -243,29 +190,4 @@ public class DepthFirstOrder {
         
         StdOut.println();
     }
-
 }
-
-/******************************************************************************
- *  Copyright 2002-2018, Robert Sedgewick and Kevin Wayne.
- *
- *  This file is part of algs4.jar, which accompanies the textbook
- *
- *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
- *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
- *      http://algs4.cs.princeton.edu
- *
- *
- *  algs4.jar is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  algs4.jar is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
- ******************************************************************************/

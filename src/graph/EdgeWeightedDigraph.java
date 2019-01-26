@@ -4,7 +4,7 @@ import utils.In;
 import utils.StdOut;
 import utils.Bag;
 import utils.StdRandom;
-import ds.Stack;
+import stack.Stack;
 
 public class EdgeWeightedDigraph{
     private static final String NEWLINE = System.getProperty("line.separator");
