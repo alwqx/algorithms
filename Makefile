@@ -15,7 +15,6 @@ test-all-stack: compile-stack compile-linked-stack compile-array-stack
 	java -classpath src stack.Stack < test_data/tobe.txt
 	java -classpath src stack.LinkedStack < test_data/tobe.txt
 	java -classpath src stack.ResizingArrayStack < test_data/tobe.txt
-	rm src/stack/*.class
 	echo "test stack success"
 
 compile-queue:
@@ -35,7 +34,6 @@ test-all-queue: compile-queue compile-linked-queue compile-array-queue
 	make test-queue
 	make test-linked-queue
 	make test-array-queue
-	rm -rf src/queue/*.class
 
 .PHONY: compile-stack test-stack
 
@@ -60,8 +58,6 @@ test-all-st: compile-st compile-sst compile-bsst compile-avltst
 	make test-sst
 	make test-bsst
 	make test-avltst
-	rm -rf src/search/*.class
-	rm -rf src/queue/*.class
 
 compile-lphash:
 	javac -classpath src src/hash/LinearProbingHashST.java
@@ -74,28 +70,24 @@ test-schash:
 test-all-hash: compile-schash compile-lphash
 	make test-schash
 	make test-lphash
-	rm -rf src/queue/*.class
-	rm -rf src/utils/*.class
-	rm -rf src/search/*.class
-	rm -rf src/hash/*.class
 
-compile-dg:
+compile-g:
 	javac -classpath src src/graph/Graph.java
-test-dg:
+test-g:
 	java -classpath src graph.Graph test_data/tinyG.txt
-compile-dgdfs:
+compile-gdfs:
 	javac -classpath src src/graph/DepthFirstSearch.java
-test-dgdfs:
+test-gdfs:
 	java -classpath src graph.DepthFirstSearch test_data/tinyG.txt 3
 	java -classpath src graph.DepthFirstSearch test_data/tinyG.txt 0
-compile-dgdfp:
+compile-gdfp:
 	javac -classpath src src/graph/DepthFirstPaths.java
-test-dgdfp:
+test-gdfp:
 	java -classpath src graph.DepthFirstPaths test_data/tinyG.txt 3
 	java -classpath src graph.DepthFirstPaths test_data/tinyG.txt 0
-compile-dgbfp:
+compile-gbfp:
 	javac -classpath src src/graph/BreadthFirstPaths.java
-test-dgbfp:
+test-gbfp:
 	java -classpath src graph.BreadthFirstPaths test_data/mediumG.txt 3
 	java -classpath src graph.BreadthFirstPaths test_data/tinyG.txt 0
 compile-cc:
@@ -104,14 +96,49 @@ test-cc:
 	java -classpath src graph.CC test_data/mediumG.txt
 	java -classpath src graph.CC test_data/tinyG.txt
 
-test-all-dg: compile-dg compile-dgdfs compile-dgdfp compile-cc
-	make test-dg
-	make test-dgdfs
-	make test-dgdfp
+test-all-g: compile-g compile-gdfs compile-gdfp compile-cc
+	make test-g
+	make test-gdfs
+	make test-gdfp
 	make test-cc
-	rm -rf src/utils/*.class
-	rm -rf src/queue/*.class
-	rm -rf src/stack/*.class
-	rm -rf src/graph/*.class
+	
+
+compile-dg:
+	javac -classpath src src/graph/Digraph.java
+test-dg:
+	java -classpath src graph.Digraph test_data/mediumDG.txt 3
+compile-dgfs:
+	javac -classpath src src/graph/DirectedDFS.java
+test-dgfs:
+	java -classpath src graph.DirectedDFS test_data/mediumDG.txt 3
+compile-dgcycle:
+	javac -classpath src src/graph/DirectedCycle.java
+test-dgcycle:
+	java -classpath src graph.DirectedCycle test_data/tinyDAG.txt
+	java -classpath src graph.DirectedCycle test_data/tinyDG.txt
+compile-dgdfo:
+	javac -classpath src src/graph/DepthFirstOrder.java
+test-dgdfo:
+	java -classpath src graph.DepthFirstOrder test_data/tinyDAG.txt
+compile-dgt:
+	javac -classpath src src/graph/Topological.java
+test-dgt:
+	java -classpath src graph.Topological test_data/jobs.txt "/"
+test-all-dg: compile-dg compile-dgfs compile-dgcycle compile-dgdfo compile-dgt
+	make test-dg
+	make test-dgfs
+	make test-dgcycle
+	make test-dgdfo
+	make test-dgt
 
 test: test-all-stack test-all-queue test-all-hash test-all-dg
+	make clean
+
+clean:
+	rm -rf src/graph/*.class
+	rm -rf src/hash/*.class
+	rm -rf src/queue/*.class
+	rm -rf src/search/*.class
+	rm -rf src/sort/*.class
+	rm -rf src/stack/*.class
+	rm -rf src/utils/*.class

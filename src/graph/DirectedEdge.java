@@ -1,6 +1,6 @@
 package graph;
 
-import edu.princeton.cs.algs4.*;
+import utils.StdOut;
 
 public class DirectedEdge{
     private final int v,w;

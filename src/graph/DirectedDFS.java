@@ -1,6 +1,31 @@
+/******************************************************************************
+ *  Compilation:  javac DirectedDFS.java
+ *  Execution:    java DirectedDFS digraph.txt s
+ *  Dependencies: Digraph.java Bag.java In.java StdOut.java
+ *  Data files:   https://algs4.cs.princeton.edu/42digraph/tinyDG.txt
+ *                https://algs4.cs.princeton.edu/42digraph/mediumDG.txt
+ *                https://algs4.cs.princeton.edu/42digraph/largeDG.txt
+ *
+ *  Determine single-source or multiple-source reachability in a digraph
+ *  using depth first search.
+ *  Runs in O(E + V) time.
+ *
+ *  % java DirectedDFS tinyDG.txt 1
+ *  1
+ *
+ *  % java DirectedDFS tinyDG.txt 2
+ *  0 1 2 3 4 5
+ *
+ *  % java DirectedDFS tinyDG.txt 1 2 6
+ *  0 1 2 3 4 5 6 8 9 10 11 12 
+ *
+ ******************************************************************************/
+
 package graph;
 
-import edu.princeton.cs.algs4.*;
+import utils.In;
+import utils.StdOut;
+import utils.Bag;
 
 public class DirectedDFS{
     private boolean[] marked;
@@ -8,24 +33,42 @@ public class DirectedDFS{
 
     public DirectedDFS(Digraph G, int s) {
         marked = new boolean[G.V()];
+        validateVertex(s);
         dfs(G, s);
     }
 
     public DirectedDFS(Digraph G, Iterable<Integer> sources) {
         marked = new boolean[G.V()];
+        validateVertices(sources);
         for (int v : sources) {
-            if (!marked[v]) {
-                dfs(G, v);
-            }
+            if (!marked[v]) dfs(G, v);
         }
     }
 
-    public void dfs(Digraph G, int s) {
+    private void dfs(Digraph G, int s) {
         count++;
         marked[s] = true;
         for(int w:G.adj(s)) {
-            if (!marked[w]) {
-                dfs(G, w);
+            if (!marked[w]) dfs(G, w);
+        }
+    }
+
+    // throw an IllegalArgumentException unless {@code 0 <= v < V}
+    private void validateVertex(int v) {
+        int V = marked.length;
+        if (v < 0 || v >= V)
+            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+    }
+
+    // throw an IllegalArgumentException unless {@code 0 <= v < V}
+    private void validateVertices(Iterable<Integer> vertices) {
+        if (vertices == null) {
+            throw new IllegalArgumentException("argument is null");
+        }
+        int V = marked.length;
+        for (int v : vertices) {
+            if (v < 0 || v >= V) {
+                throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
             }
         }
     }
