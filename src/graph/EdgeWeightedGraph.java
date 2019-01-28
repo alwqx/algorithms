@@ -1,6 +1,10 @@
 package graph;
 
-import edu.princeton.cs.algs4.*;
+import utils.Bag;
+import utils.StdRandom;
+import utils.In;
+import utils.StdOut;
+import stack.Stack;
 
 public class EdgeWeightedGraph{
     private static final String NEWLINE = System.getProperty("line.separator");

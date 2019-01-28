@@ -23,17 +23,22 @@ compile-linked-queue:
 	javac -classpath src src/queue/LinkedQueue.java
 compile-array-queue:
 	javac -classpath src src/queue/ResizingArrayQueue.java
+compile-minpq:
+	javac -classpath src src/queue/MinPQ.java
 test-queue:
 	java -classpath src queue.Queue < test_data/tobe.txt
 test-linked-queue:
 	java -classpath src queue.LinkedQueue < test_data/tobe.txt
 test-array-queue:
 	java -classpath src queue.ResizingArrayQueue < test_data/tobe.txt
+test-minpq:
+	java -classpath src queue.MinPQ < test_data/tinyPQ.txt
 
-test-all-queue: compile-queue compile-linked-queue compile-array-queue
+test-all-queue: compile-queue compile-linked-queue compile-array-queue compile-minpq
 	make test-queue
 	make test-linked-queue
 	make test-array-queue
+	make test-minpq
 
 .PHONY: compile-stack test-stack
 
@@ -124,6 +129,7 @@ compile-dgt:
 	javac -classpath src src/graph/Topological.java
 test-dgt:
 	java -classpath src graph.Topological test_data/jobs.txt "/"
+
 test-all-dg: compile-dg compile-dgfs compile-dgcycle compile-dgdfo compile-dgt
 	make test-dg
 	make test-dgfs
@@ -131,7 +137,16 @@ test-all-dg: compile-dg compile-dgfs compile-dgcycle compile-dgdfo compile-dgt
 	make test-dgdfo
 	make test-dgt
 
-test: test-all-stack test-all-queue test-all-hash test-all-dg
+compile-mst-prim-lazy:
+	javac -classpath src src/graph/LazyPrimMST.java
+test-mst-prim-lazy:
+	java -classpath src graph.LazyPrimMST test_data/tinyEWG.txt
+
+test-all-mst: compile-mst-prim-lazy
+	make test-mst-prim-lazy
+
+
+test: test-all-stack test-all-queue test-all-hash test-all-dg test-all-mst
 	make clean
 
 clean:
