@@ -25,6 +25,8 @@ compile-array-queue:
 	javac -classpath src src/queue/ResizingArrayQueue.java
 compile-minpq:
 	javac -classpath src src/queue/MinPQ.java
+compile-indexminpq:
+	javac -classpath src src/queue/IndexMinPQ.java
 test-queue:
 	java -classpath src queue.Queue < test_data/tobe.txt
 test-linked-queue:
@@ -33,12 +35,14 @@ test-array-queue:
 	java -classpath src queue.ResizingArrayQueue < test_data/tobe.txt
 test-minpq:
 	java -classpath src queue.MinPQ < test_data/tinyPQ.txt
-
-test-all-queue: compile-queue compile-linked-queue compile-array-queue compile-minpq
+test-indexminpq:
+	java -classpath src queue.IndexMinPQ
+test-all-queue: compile-queue compile-linked-queue compile-array-queue compile-minpq compile-indexminpq
 	make test-queue
 	make test-linked-queue
 	make test-array-queue
 	make test-minpq
+	make test-indexminpq
 
 .PHONY: compile-stack test-stack
 
@@ -137,13 +141,26 @@ test-all-dg: compile-dg compile-dgfs compile-dgcycle compile-dgdfo compile-dgt
 	make test-dgdfo
 	make test-dgt
 
-compile-mst-prim-lazy:
+compile-mst-lazy-prim:
 	javac -classpath src src/graph/LazyPrimMST.java
-test-mst-prim-lazy:
+test-mst-lazy-prim:
 	java -classpath src graph.LazyPrimMST test_data/tinyEWG.txt
+	java -classpath src graph.LazyPrimMST test_data/mediumEWG.txt
+compile-mst-prim:
+	javac -classpath src src/graph/PrimMST.java
+test-mst-prim:
+	java -classpath src graph.PrimMST test_data/tinyEWG.txt
+	java -classpath src graph.PrimMST test_data/mediumEWG.txt
+compile-mst-kruskal:
+	javac -classpath src src/graph/KruskalMST.java
+test-mst-kruskal:
+	java -classpath src graph.KruskalMST test_data/tinyEWG.txt
+	java -classpath src graph.KruskalMST test_data/mediumEWG.txt
 
-test-all-mst: compile-mst-prim-lazy
-	make test-mst-prim-lazy
+test-all-mst: compile-mst-lazy-prim compile-mst-prim compile-mst-kruskal
+	make test-mst-lazy-prim
+	make test-mst-prim
+	make test-mst-kruskal
 
 
 test: test-all-stack test-all-queue test-all-hash test-all-dg test-all-mst
