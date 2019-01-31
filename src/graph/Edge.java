@@ -27,7 +27,7 @@ public class Edge implements Comparable<Edge>{
     public int other(int vertex) {
         if (this.v == vertex) return w;
         else if (this.w == vertex) return v;
-        else throw new IllegalArgumentException("Illegal endpoint");
+        else throw new IllegalArgumentException("Illegal endpoint " + vertex);
     }
 
     public int compareTo(Edge other) {
