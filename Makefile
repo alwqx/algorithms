@@ -162,8 +162,32 @@ test-all-mst: compile-mst-lazy-prim compile-mst-prim compile-mst-kruskal
 	make test-mst-prim
 	make test-mst-kruskal
 
+compile-sp-di:
+	javac -classpath src src/graph/DijkstraSP.java
+test-sp-di:
+	java -classpath src graph.DijkstraSP test_data/tinyEWD.txt 0
+	java -classpath src graph.DijkstraSP test_data/mediumEWD.txt 0
+compile-sp-udi:
+	javac -classpath src src/graph/DijkstraUndirectedSP.java
+test-sp-udi:
+	java -classpath src graph.DijkstraUndirectedSP test_data/tinyEWD.txt 0
+	java -classpath src graph.DijkstraUndirectedSP test_data/mediumEWD.txt 0
+compile-sp-pdi:
+	javac -classpath src src/graph/DijkstraAllPairsSP.java
+test-sp-pdi:
+	java -classpath src graph.DijkstraAllPairsSP test_data/tinyEWD.txt
+compile-sp-adi:
+	javac -classpath src src/graph/AcyclicSP.java
+test-sp-adi:
+	java -classpath src graph.AcyclicSP test_data/tinyEWDAG.txt 5
 
-test: test-all-stack test-all-queue test-all-hash test-all-dg test-all-mst
+test-all-sp: compile-sp-di compile-sp-udi compile-sp-pdi compile-sp-adi
+	make test-sp-di
+	make test-sp-udi
+	make test-sp-pdi
+	make test-sp-adi
+
+test: test-all-stack test-all-queue test-all-hash test-all-dg test-all-mst test-all-sp
 	make clean
 
 clean:

@@ -1,31 +1,36 @@
 /******************************************************************************
- *  Compilation:  javac DijkstraSP.java
- *  Execution:    java DijkstraSP input.txt s
- *  Dependencies: EdgeWeightedDigraph.java IndexMinPQ.java Stack.java DirectedEdge.java
- *  Data files:   https://algs4.cs.princeton.edu/44sp/tinyEWD.txt
- *                https://algs4.cs.princeton.edu/44sp/mediumEWD.txt
- *                https://algs4.cs.princeton.edu/44sp/largeEWD.txt
+ *  Compilation:  javac DijkstraUndirectedSP.java
+ *  Execution:    java DijkstraUndirectedSP input.txt s
+ *  Dependencies: EdgeWeightedGraph.java IndexMinPQ.java Stack.java Edge.java
+ *  Data files:   https://algs4.cs.princeton.edu/43mst/tinyEWG.txt
+ *                https://algs4.cs.princeton.edu/43mst/mediumEWG.txt
+ *                https://algs4.cs.princeton.edu/43mst/largeEWG.txt
  *
  *  Dijkstra's algorithm. Computes the shortest path tree.
  *  Assumes all weights are nonnegative.
  *
- *  % java DijkstraSP tinyEWD.txt 0
- *  0 to 0 (0.00)  
- *  0 to 1 (1.05)  0->4  0.38   4->5  0.35   5->1  0.32   
- *  0 to 2 (0.26)  0->2  0.26   
- *  0 to 3 (0.99)  0->2  0.26   2->7  0.34   7->3  0.39   
- *  0 to 4 (0.38)  0->4  0.38   
- *  0 to 5 (0.73)  0->4  0.38   4->5  0.35   
- *  0 to 6 (1.51)  0->2  0.26   2->7  0.34   7->3  0.39   3->6  0.52   
- *  0 to 7 (0.60)  0->2  0.26   2->7  0.34   
+ *  % java DijkstraUndirectedSP tinyEWG.txt 6
+ *  6 to 0 (0.58)  6-0 0.58000
+ *  6 to 1 (0.76)  6-2 0.40000   1-2 0.36000
+ *  6 to 2 (0.40)  6-2 0.40000
+ *  6 to 3 (0.52)  3-6 0.52000
+ *  6 to 4 (0.93)  6-4 0.93000
+ *  6 to 5 (1.02)  6-2 0.40000   2-7 0.34000   5-7 0.28000
+ *  6 to 6 (0.00)
+ *  6 to 7 (0.74)  6-2 0.40000   2-7 0.34000
  *
- *  % java DijkstraSP mediumEWD.txt 0
- *  0 to 0 (0.00)  
- *  0 to 1 (0.71)  0->44  0.06   44->93  0.07   ...  107->1  0.07   
- *  0 to 2 (0.65)  0->44  0.06   44->231  0.10  ...  42->2  0.11   
- *  0 to 3 (0.46)  0->97  0.08   97->248  0.09  ...  45->3  0.12   
- *  0 to 4 (0.42)  0->44  0.06   44->93  0.07   ...  77->4  0.11   
+ *  % java DijkstraUndirectedSP mediumEWG.txt 0
+ *  0 to 0 (0.00)
+ *  0 to 1 (0.71)  0-44 0.06471   44-93  0.06793  ...   1-107 0.07484
+ *  0 to 2 (0.65)  0-44 0.06471   44-231 0.10384  ...   2-42  0.11456
+ *  0 to 3 (0.46)  0-97 0.07705   97-248 0.08598  ...   3-45  0.11902
  *  ...
+ *
+ *  % java DijkstraUndirectedSP largeEWG.txt 0
+ *  0 to 0 (0.00)  
+ *  0 to 1 (0.78)  0-460790 0.00190  460790-696678 0.00173   ...   1-826350 0.00191
+ *  0 to 2 (0.61)  0-15786  0.00130  15786-53370   0.00113   ...   2-793420 0.00040
+ *  0 to 3 (0.31)  0-460790 0.00190  460790-752483 0.00194   ...   3-698373 0.00172
  *
  ******************************************************************************/
 
@@ -36,25 +41,21 @@ import stack.Stack;
 import utils.In;
 import utils.StdOut;
 
-public class DijkstraSP{
-    private DirectedEdge[] edgeTo;
+public class DijkstraUndirectedSP {
     private Double[] distTo;
-    private IndexMinPQ<Double> pq;
+    private Edge[] edgeTo;
+    private IndexMinPQ pq;
 
-    public DijkstraSP(EdgeWeightedDigraph G, int s) {
-        for (DirectedEdge e : G.edges()) {
-            if (e.weight() < 0)
+    public DijkstraUndirectedSP (EdgeWeightedGraph G, int s) {
+        for(Edge e:G.edges())
+            if(e.weight()<0)
                 throw new IllegalArgumentException("edge " + e + " has negative weight");
-        }
-
-        edgeTo = new DirectedEdge[G.V()];
+        
         distTo = new Double[G.V()];
-
+        edgeTo = new Edge[G.V()];
         validateVertex(s);
-
-        for (int v=0; v<G.V(); v++) {
+        for(int v=0; v<G.V(); v++)
             distTo[v] = Double.POSITIVE_INFINITY;
-        }
         distTo[s] = 0.0;
 
         pq = new IndexMinPQ<Double>(G.V());
@@ -62,25 +63,24 @@ public class DijkstraSP{
 
         while(!pq.isEmpty()) {
             int v = pq.delMin();
-            for (DirectedEdge e : G.adj(v)) {
-                relax(e);
-            }
+            for(Edge e:G.adj(v))
+                relax(e, v);
         }
 
         assert check(G, s);
     }
 
-    public void relax(DirectedEdge e) {
-        int v = e.from(), w = e.to();
-        if (distTo[w] > distTo[v] + e.weight()) {
+    private void relax(Edge e, int v) {
+        int w = e.other(v);
+        if(distTo[w] > distTo[v]+e.weight()) {
             distTo[w] = distTo[v] + e.weight();
             edgeTo[w] = e;
-            if (pq.contains(w)) pq.decreaseKey(w, distTo[w]);
-            else pq.insert(w, distTo[w]);
+            if(pq.contains(w))  pq.decreaseKey(w, distTo[w]);
+            else                pq.insert(w, distTo[w]);
         }
     }
 
-    public double distTo(int v) {
+    public Double distTo(int v) {
         validateVertex(v);
         return distTo[v];
     }
@@ -90,20 +90,24 @@ public class DijkstraSP{
         return distTo[v] < Double.POSITIVE_INFINITY;
     }
 
-    public Iterable<DirectedEdge> pathTo(int v) {
-        if (!hasPathTo(v)) return null;
-        Stack<DirectedEdge> path = new Stack<DirectedEdge>();
-        for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) {
+    public Iterable<Edge> pathTo(int v) {
+        validateVertex(v);
+        if(!hasPathTo(v)) return null;
+
+        Stack<Edge> path = new Stack<Edge>();
+        int x = v;
+        for(Edge e=edgeTo[v]; e!=null; e=edgeTo[x]) {
             path.push(e);
+            x = e.other(x);
         }
 
         return path;
     }
 
-    private boolean check(EdgeWeightedDigraph G, int s) {
+    private boolean check(EdgeWeightedGraph G, int s) {
 
         // check that edge weights are nonnegative
-        for (DirectedEdge e : G.edges()) {
+        for (Edge e : G.edges()) {
             if (e.weight() < 0) {
                 System.err.println("negative edge weight detected");
                 return false;
@@ -123,10 +127,10 @@ public class DijkstraSP{
             }
         }
 
-        // check that all edges e = v->w satisfy distTo[w] <= distTo[v] + e.weight()
+        // check that all edges e = v-w satisfy distTo[w] <= distTo[v] + e.weight()
         for (int v = 0; v < G.V(); v++) {
-            for (DirectedEdge e : G.adj(v)) {
-                int w = e.to();
+            for (Edge e : G.adj(v)) {
+                int w = e.other(v);
                 if (distTo[v] + e.weight() < distTo[w]) {
                     System.err.println("edge " + e + " not relaxed");
                     return false;
@@ -134,12 +138,12 @@ public class DijkstraSP{
             }
         }
 
-        // check that all edges e = v->w on SPT satisfy distTo[w] == distTo[v] + e.weight()
+        // check that all edges e = v-w on SPT satisfy distTo[w] == distTo[v] + e.weight()
         for (int w = 0; w < G.V(); w++) {
             if (edgeTo[w] == null) continue;
-            DirectedEdge e = edgeTo[w];
-            int v = e.from();
-            if (w != e.to()) return false;
+            Edge e = edgeTo[w];
+            if (w != e.either() && w != e.other(e.either())) return false;
+            int v = e.other(w);
             if (distTo[v] + e.weight() != distTo[w]) {
                 System.err.println("edge " + e + " on shortest path not tight");
                 return false;
@@ -148,6 +152,7 @@ public class DijkstraSP{
         return true;
     }
 
+    // throw an IllegalArgumentException unless {@code 0 <= v < V}
     private void validateVertex(int v) {
         int V = distTo.length;
         if (v < 0 || v >= V)
@@ -156,24 +161,23 @@ public class DijkstraSP{
 
     public static void main(String[] args) {
         In in = new In(args[0]);
-        EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
+        EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         int s = Integer.parseInt(args[1]);
 
         // compute shortest paths
-        DijkstraSP sp = new DijkstraSP(G, s);
-
+        DijkstraUndirectedSP sp = new DijkstraUndirectedSP(G, s);
 
         // print shortest path
         for (int t = 0; t < G.V(); t++) {
             if (sp.hasPathTo(t)) {
                 StdOut.printf("%d to %d (%.2f)  ", s, t, sp.distTo(t));
-                for (DirectedEdge e : sp.pathTo(t)) {
+                for (Edge e : sp.pathTo(t)) {
                     StdOut.print(e + "   ");
                 }
                 StdOut.println();
             }
             else {
-                StdOut.printf("%d to %d no path\n", s, t);
+                StdOut.printf("%d to %d         no path\n", s, t);
             }
         }
     }
