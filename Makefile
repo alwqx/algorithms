@@ -187,7 +187,27 @@ test-all-sp: compile-sp-di compile-sp-udi compile-sp-pdi compile-sp-adi
 	make test-sp-pdi
 	make test-sp-adi
 
-test: test-all-stack test-all-queue test-all-hash test-all-dg test-all-mst test-all-sp
+compile-lp-di:
+	javac -classpath src src/graph/AcyclicLP.java
+test-lp-di:
+	java -classpath src graph.AcyclicLP test_data/tinyEWDAG.txt 5
+compile-lp-cpm:
+	javac -classpath src src/graph/CPM.java
+test-lp-cpm:
+	java -classpath src graph.CPM < test_data/jobsPC.txt
+
+test-all-lp: compile-lp-di compile-lp-cpm
+	make test-lp-di
+	make test-lp-cpm
+
+test:
+	make test-all-stack
+	make test-all-queue
+	make test-all-hash
+	make test-all-dg
+	make test-all-mst
+	make test-all-sp
+	make test-all-lp
 	make clean
 
 clean:
