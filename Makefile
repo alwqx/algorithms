@@ -200,6 +200,14 @@ test-all-lp: compile-lp-di compile-lp-cpm
 	make test-lp-di
 	make test-lp-cpm
 
+compile-avltree:
+	javac -classpath src src/tree/AVLTree.java
+test-avltree:
+	java -classpath src tree.AVLTree < test_data/tinyST.txt
+
+test-all-tree: compile-avltree
+	make test-avltree
+
 test:
 	make test-all-stack
 	make test-all-queue
@@ -208,6 +216,7 @@ test:
 	make test-all-mst
 	make test-all-sp
 	make test-all-lp
+	make test-all-tree
 	make clean
 
 clean:
