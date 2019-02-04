@@ -204,9 +204,14 @@ compile-avltree:
 	javac -classpath src src/tree/AVLTree.java
 test-avltree:
 	java -classpath src tree.AVLTree < test_data/tinyST.txt
+compile-btree:
+	javac -classpath src src/tree/BTree.java
+test-btree:
+	java -classpath src tree.BTree
 
-test-all-tree: compile-avltree
+test-all-tree: compile-avltree compile-btree
 	make test-avltree
+	make test-btree
 
 test:
 	make test-all-stack
@@ -227,3 +232,4 @@ clean:
 	rm -rf src/sort/*.class
 	rm -rf src/stack/*.class
 	rm -rf src/utils/*.class
+	rm -rf src/tree/*.class
