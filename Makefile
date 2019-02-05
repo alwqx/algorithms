@@ -208,10 +208,15 @@ compile-btree:
 	javac -classpath src src/tree/BTree.java
 test-btree:
 	java -classpath src tree.BTree
+compile-rbtree:
+	javac -classpath src src/tree/RedBlackBST.java
+test-rbtree:
+	java -classpath src tree.RedBlackBST < test_data/tinyST.txt
 
-test-all-tree: compile-avltree compile-btree
+test-all-tree: compile-avltree compile-btree compile-rbtree
 	make test-avltree
 	make test-btree
+	make test-rbtree
 
 test:
 	make test-all-stack
