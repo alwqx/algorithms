@@ -212,11 +212,16 @@ compile-rbtree:
 	javac -classpath src src/tree/RedBlackBST.java
 test-rbtree:
 	java -classpath src tree.RedBlackBST < test_data/tinyST.txt
+compile-bstree:
+	javac -classpath src src/tree/BinarySearchTree.java
+test-bstree:
+	java -classpath src tree.BinarySearchTree < test_data/tinyST.txt
 
-test-all-tree: compile-avltree compile-btree compile-rbtree
+test-all-tree: compile-avltree compile-btree compile-rbtree compile-bstree
 	make test-avltree
 	make test-btree
 	make test-rbtree
+	make test-bstree
 
 test:
 	make test-all-stack
