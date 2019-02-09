@@ -1,9 +1,31 @@
 # Algorithms
 [![Build Status](https://travis-ci.org/adolphlwq/algorithms.svg?branch=master)](https://travis-ci.org/adolphlwq/algorithms)
 
-A record of learning subject Algorithms by Princeton University. And implement algorithms by other languages(Golang,Python).
+<p align="center">
+  <a href="https://adolphlwq.xyz/algorithms" target="_blank">
+    <img src="https://i.loli.net/2019/02/09/5c5e25acd3469.png" width="700px">
+    <br>
+    Live Demo
+  </a>
+</p>
 
-## Overview
+<p align="center">A record of learning Algorithms with code implemented by multiple languages.</p>
+
+## Implements
+| Algorithms      |  C | Java  | Python | Golang |
+| :--------: | :--------:| :------: | :------: | :------: |
+|   Array  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
+| Link List  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Stack  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
+|   Queue  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
+|   Tree   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Graph  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Search | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
+|   Sort   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Hash  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
+|   Compression  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+
+## Directories
 This repo is edited by Eclipse. File structures are as follows:
 ```shell
 tree -L 1
@@ -22,42 +44,6 @@ tree -L 1
 ├── src
 └── test_data
 ```
-
-## Implements
-| Algorithms      |  C | Java  | Python | Golang |
-| :--------: | :--------:| :------: | :------: | :------: |
-|   Array  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
-| Link List  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
-|   Stack  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
-|   Queue  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
-|   Tree   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
-|   Graph  | :black_square_button: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
-|   Search | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
-|   Sort   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
-|   Hash  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
-|   Compression  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
-
-## Algorithms & Data Structures
-- data structure
-    - queue
-    - stack
-    - heap
-- sort
-    - bubble sort
-    - select sort
-    - insert sort
-    - shll sort
-    - merge sort
-    - quick sort
-- tree
-- graph
-- method
-    - daynamic program
-    - greedy
-    - search
-    - recursion
-- huffman code
-- minimum spanning tree (MST)
 
 ## Reference
 - [Princeton University Algorithms](/courses/README.md)
