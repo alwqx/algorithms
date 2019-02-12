@@ -18,10 +18,10 @@
 | Link List  | :heavy_check_mark: | :black_square_button: | :black_square_button: | :black_square_button: |
 |   Stack  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
 |   Queue  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
-|   Tree   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
-|   Graph  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Tree   | :black_square_button: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
+|   Graph  | :black_square_button: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
 |   Search | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
-|   Sort   | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
+|   Sort   | :black_square_button: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
 |   Hash  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
 |   Compression  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 

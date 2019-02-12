@@ -6,3 +6,6 @@
 ![](https://i.loli.net/2019/02/06/5c5afe2ad406c.png)
 
 [**查看原图**](http://naotu.baidu.com/file/5ff7208846e7fee9b27ba618e804b9e4?token=860ade158b7e0393)
+
+## 为什么学习算法
+1. 研究算法的设计和性能主要目的之一是通过提升速度来解决其它方式无法解决的问题
