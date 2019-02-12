@@ -11,4 +11,4 @@
 [GitHub](https://github.com/adolphlwq/algorithms/)
 [文档](/#算法与数据结构)
 
-<!-- ![color](#e4fff7) -->
+![color](#e4fff7)
