@@ -5,7 +5,7 @@
   <a href="https://adolphlwq.xyz/algorithms" target="_blank">
     <img src="https://i.loli.net/2019/02/09/5c5e25acd3469.png" width="700px">
     <br>
-    Live Demo
+    Online Website
   </a>
 </p>
 

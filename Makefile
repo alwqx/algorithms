@@ -1,42 +1,42 @@
 compile-stack:
-	javac -classpath src src/stack/Stack.java
+	javac -classpath src/java src/java/stack/Stack.java
 compile-linked-stack:
-	javac -classpath src src/stack/LinkedStack.java
+	javac -classpath src/java src/java/stack/LinkedStack.java
 compile-array-stack:
-	javac -classpath src src/stack/ResizingArrayStack.java
+	javac -classpath src/java src/java/stack/ResizingArrayStack.java
 test-stack:
-	java -classpath src stack.Stack < test_data/tobe.txt
+	java -classpath src/java stack.Stack < test_data/tobe.txt
 test-linked-stack:
-	java -classpath src stack.LinkedStack < test_data/tobe.txt
+	java -classpath src/java stack.LinkedStack < test_data/tobe.txt
 test-array-stack:
-	java -classpath src stack.ResizingArrayStack < test_data/tobe.txt
+	java -classpath src/java stack.ResizingArrayStack < test_data/tobe.txt
 
 test-all-stack: compile-stack compile-linked-stack compile-array-stack
-	java -classpath src stack.Stack < test_data/tobe.txt
-	java -classpath src stack.LinkedStack < test_data/tobe.txt
-	java -classpath src stack.ResizingArrayStack < test_data/tobe.txt
+	java -classpath src/java stack.Stack < test_data/tobe.txt
+	java -classpath src/java stack.LinkedStack < test_data/tobe.txt
+	java -classpath src/java stack.ResizingArrayStack < test_data/tobe.txt
 	echo "test stack success"
 
 compile-queue:
-	javac -classpath src src/queue/Queue.java
+	javac -classpath src/java src/java/queue/Queue.java
 compile-linked-queue:
-	javac -classpath src src/queue/LinkedQueue.java
+	javac -classpath src/java src/java/queue/LinkedQueue.java
 compile-array-queue:
-	javac -classpath src src/queue/ResizingArrayQueue.java
+	javac -classpath src/java src/java/queue/ResizingArrayQueue.java
 compile-minpq:
-	javac -classpath src src/queue/MinPQ.java
+	javac -classpath src/java src/java/queue/MinPQ.java
 compile-indexminpq:
-	javac -classpath src src/queue/IndexMinPQ.java
+	javac -classpath src/java src/java/queue/IndexMinPQ.java
 test-queue:
-	java -classpath src queue.Queue < test_data/tobe.txt
+	java -classpath src/java queue.Queue < test_data/tobe.txt
 test-linked-queue:
-	java -classpath src queue.LinkedQueue < test_data/tobe.txt
+	java -classpath src/java queue.LinkedQueue < test_data/tobe.txt
 test-array-queue:
-	java -classpath src queue.ResizingArrayQueue < test_data/tobe.txt
+	java -classpath src/java queue.ResizingArrayQueue < test_data/tobe.txt
 test-minpq:
-	java -classpath src queue.MinPQ < test_data/tinyPQ.txt
+	java -classpath src/java queue.MinPQ < test_data/tinyPQ.txt
 test-indexminpq:
-	java -classpath src queue.IndexMinPQ
+	java -classpath src/java queue.IndexMinPQ
 test-all-queue: compile-queue compile-linked-queue compile-array-queue compile-minpq compile-indexminpq
 	make test-queue
 	make test-linked-queue
@@ -47,21 +47,21 @@ test-all-queue: compile-queue compile-linked-queue compile-array-queue compile-m
 .PHONY: compile-stack test-stack
 
 compile-st:
-	javac -classpath src src/search/ST.java
+	javac -classpath src/java src/java/search/ST.java
 test-st:
-	java -classpath src search.ST < test_data/tinyST.txt
+	java -classpath src/java search.ST < test_data/tinyST.txt
 compile-sst:
-	javac -classpath src src/search/SequentialSearchST.java
+	javac -classpath src/java src/java/search/SequentialSearchST.java
 test-sst:
-	java -classpath src search.SequentialSearchST < test_data/tinyST.txt
+	java -classpath src/java search.SequentialSearchST < test_data/tinyST.txt
 compile-bsst:
-	javac -classpath src src/search/BinarySearchST.java
+	javac -classpath src/java src/java/search/BinarySearchST.java
 test-bsst:
-	java -classpath src search.BinarySearchST < test_data/tinyST.txt
+	java -classpath src/java search.BinarySearchST < test_data/tinyST.txt
 compile-avltst:
-	javac -classpath src src/search/AVLTreeST.java
+	javac -classpath src/java src/java/search/AVLTreeST.java
 test-avltst:
-	java -classpath src search.AVLTreeST < test_data/tinyST.txt
+	java -classpath src/java search.AVLTreeST < test_data/tinyST.txt
 test-all-st: compile-st compile-sst compile-bsst compile-avltst
 	make test-st
 	make test-sst
@@ -69,41 +69,41 @@ test-all-st: compile-st compile-sst compile-bsst compile-avltst
 	make test-avltst
 
 compile-lphash:
-	javac -classpath src src/hash/LinearProbingHashST.java
+	javac -classpath src/java src/java/hash/LinearProbingHashST.java
 test-lphash:
-	java -classpath src hash.LinearProbingHashST < test_data/tinyST.txt
+	java -classpath src/java hash.LinearProbingHashST < test_data/tinyST.txt
 compile-schash:
-	javac -classpath src src/hash/SeparateChainingHashST.java
+	javac -classpath src/java src/java/hash/SeparateChainingHashST.java
 test-schash:
-	java -classpath src hash.SeparateChainingHashST < test_data/tinyST.txt
+	java -classpath src/java hash.SeparateChainingHashST < test_data/tinyST.txt
 test-all-hash: compile-schash compile-lphash
 	make test-schash
 	make test-lphash
 
 compile-g:
-	javac -classpath src src/graph/Graph.java
+	javac -classpath src/java src/java/graph/Graph.java
 test-g:
-	java -classpath src graph.Graph test_data/tinyG.txt
+	java -classpath src/java graph.Graph test_data/tinyG.txt
 compile-gdfs:
-	javac -classpath src src/graph/DepthFirstSearch.java
+	javac -classpath src/java src/java/graph/DepthFirstSearch.java
 test-gdfs:
-	java -classpath src graph.DepthFirstSearch test_data/tinyG.txt 3
-	java -classpath src graph.DepthFirstSearch test_data/tinyG.txt 0
+	java -classpath src/java graph.DepthFirstSearch test_data/tinyG.txt 3
+	java -classpath src/java graph.DepthFirstSearch test_data/tinyG.txt 0
 compile-gdfp:
-	javac -classpath src src/graph/DepthFirstPaths.java
+	javac -classpath src/java src/java/graph/DepthFirstPaths.java
 test-gdfp:
-	java -classpath src graph.DepthFirstPaths test_data/tinyG.txt 3
-	java -classpath src graph.DepthFirstPaths test_data/tinyG.txt 0
+	java -classpath src/java graph.DepthFirstPaths test_data/tinyG.txt 3
+	java -classpath src/java graph.DepthFirstPaths test_data/tinyG.txt 0
 compile-gbfp:
-	javac -classpath src src/graph/BreadthFirstPaths.java
+	javac -classpath src/java src/java/graph/BreadthFirstPaths.java
 test-gbfp:
-	java -classpath src graph.BreadthFirstPaths test_data/mediumG.txt 3
-	java -classpath src graph.BreadthFirstPaths test_data/tinyG.txt 0
+	java -classpath src/java graph.BreadthFirstPaths test_data/mediumG.txt 3
+	java -classpath src/java graph.BreadthFirstPaths test_data/tinyG.txt 0
 compile-cc:
-	javac -classpath src src/graph/CC.java
+	javac -classpath src/java src/java/graph/CC.java
 test-cc:
-	java -classpath src graph.CC test_data/mediumG.txt
-	java -classpath src graph.CC test_data/tinyG.txt
+	java -classpath src/java graph.CC test_data/mediumG.txt
+	java -classpath src/java graph.CC test_data/tinyG.txt
 
 test-all-g: compile-g compile-gdfs compile-gdfp compile-cc
 	make test-g
@@ -113,26 +113,26 @@ test-all-g: compile-g compile-gdfs compile-gdfp compile-cc
 	
 
 compile-dg:
-	javac -classpath src src/graph/Digraph.java
+	javac -classpath src/java src/java/graph/Digraph.java
 test-dg:
-	java -classpath src graph.Digraph test_data/mediumDG.txt 3
+	java -classpath src/java graph.Digraph test_data/mediumDG.txt 3
 compile-dgfs:
-	javac -classpath src src/graph/DirectedDFS.java
+	javac -classpath src/java src/java/graph/DirectedDFS.java
 test-dgfs:
-	java -classpath src graph.DirectedDFS test_data/mediumDG.txt 3
+	java -classpath src/java graph.DirectedDFS test_data/mediumDG.txt 3
 compile-dgcycle:
-	javac -classpath src src/graph/DirectedCycle.java
+	javac -classpath src/java src/java/graph/DirectedCycle.java
 test-dgcycle:
-	java -classpath src graph.DirectedCycle test_data/tinyDAG.txt
-	java -classpath src graph.DirectedCycle test_data/tinyDG.txt
+	java -classpath src/java graph.DirectedCycle test_data/tinyDAG.txt
+	java -classpath src/java graph.DirectedCycle test_data/tinyDG.txt
 compile-dgdfo:
-	javac -classpath src src/graph/DepthFirstOrder.java
+	javac -classpath src/java src/java/graph/DepthFirstOrder.java
 test-dgdfo:
-	java -classpath src graph.DepthFirstOrder test_data/tinyDAG.txt
+	java -classpath src/java graph.DepthFirstOrder test_data/tinyDAG.txt
 compile-dgt:
-	javac -classpath src src/graph/Topological.java
+	javac -classpath src/java src/java/graph/Topological.java
 test-dgt:
-	java -classpath src graph.Topological test_data/jobs.txt "/"
+	java -classpath src/java graph.Topological test_data/jobs.txt "/"
 
 test-all-dg: compile-dg compile-dgfs compile-dgcycle compile-dgdfo compile-dgt
 	make test-dg
@@ -142,20 +142,20 @@ test-all-dg: compile-dg compile-dgfs compile-dgcycle compile-dgdfo compile-dgt
 	make test-dgt
 
 compile-mst-lazy-prim:
-	javac -classpath src src/graph/LazyPrimMST.java
+	javac -classpath src/java src/java/graph/LazyPrimMST.java
 test-mst-lazy-prim:
-	java -classpath src graph.LazyPrimMST test_data/tinyEWG.txt
-	java -classpath src graph.LazyPrimMST test_data/mediumEWG.txt
+	java -classpath src/java graph.LazyPrimMST test_data/tinyEWG.txt
+	java -classpath src/java graph.LazyPrimMST test_data/mediumEWG.txt
 compile-mst-prim:
-	javac -classpath src src/graph/PrimMST.java
+	javac -classpath src/java src/java/graph/PrimMST.java
 test-mst-prim:
-	java -classpath src graph.PrimMST test_data/tinyEWG.txt
-	java -classpath src graph.PrimMST test_data/mediumEWG.txt
+	java -classpath src/java graph.PrimMST test_data/tinyEWG.txt
+	java -classpath src/java graph.PrimMST test_data/mediumEWG.txt
 compile-mst-kruskal:
-	javac -classpath src src/graph/KruskalMST.java
+	javac -classpath src/java src/java/graph/KruskalMST.java
 test-mst-kruskal:
-	java -classpath src graph.KruskalMST test_data/tinyEWG.txt
-	java -classpath src graph.KruskalMST test_data/mediumEWG.txt
+	java -classpath src/java graph.KruskalMST test_data/tinyEWG.txt
+	java -classpath src/java graph.KruskalMST test_data/mediumEWG.txt
 
 test-all-mst: compile-mst-lazy-prim compile-mst-prim compile-mst-kruskal
 	make test-mst-lazy-prim
@@ -163,23 +163,23 @@ test-all-mst: compile-mst-lazy-prim compile-mst-prim compile-mst-kruskal
 	make test-mst-kruskal
 
 compile-sp-di:
-	javac -classpath src src/graph/DijkstraSP.java
+	javac -classpath src/java src/java/graph/DijkstraSP.java
 test-sp-di:
-	java -classpath src graph.DijkstraSP test_data/tinyEWD.txt 0
-	java -classpath src graph.DijkstraSP test_data/mediumEWD.txt 0
+	java -classpath src/java graph.DijkstraSP test_data/tinyEWD.txt 0
+	java -classpath src/java graph.DijkstraSP test_data/mediumEWD.txt 0
 compile-sp-udi:
-	javac -classpath src src/graph/DijkstraUndirectedSP.java
+	javac -classpath src/java src/java/graph/DijkstraUndirectedSP.java
 test-sp-udi:
-	java -classpath src graph.DijkstraUndirectedSP test_data/tinyEWD.txt 0
-	java -classpath src graph.DijkstraUndirectedSP test_data/mediumEWD.txt 0
+	java -classpath src/java graph.DijkstraUndirectedSP test_data/tinyEWD.txt 0
+	java -classpath src/java graph.DijkstraUndirectedSP test_data/mediumEWD.txt 0
 compile-sp-pdi:
-	javac -classpath src src/graph/DijkstraAllPairsSP.java
+	javac -classpath src/java src/java/graph/DijkstraAllPairsSP.java
 test-sp-pdi:
-	java -classpath src graph.DijkstraAllPairsSP test_data/tinyEWD.txt
+	java -classpath src/java graph.DijkstraAllPairsSP test_data/tinyEWD.txt
 compile-sp-adi:
-	javac -classpath src src/graph/AcyclicSP.java
+	javac -classpath src/java src/java/graph/AcyclicSP.java
 test-sp-adi:
-	java -classpath src graph.AcyclicSP test_data/tinyEWDAG.txt 5
+	java -classpath src/java graph.AcyclicSP test_data/tinyEWDAG.txt 5
 
 test-all-sp: compile-sp-di compile-sp-udi compile-sp-pdi compile-sp-adi
 	make test-sp-di
@@ -188,34 +188,34 @@ test-all-sp: compile-sp-di compile-sp-udi compile-sp-pdi compile-sp-adi
 	make test-sp-adi
 
 compile-lp-di:
-	javac -classpath src src/graph/AcyclicLP.java
+	javac -classpath src/java src/java/graph/AcyclicLP.java
 test-lp-di:
-	java -classpath src graph.AcyclicLP test_data/tinyEWDAG.txt 5
+	java -classpath src/java graph.AcyclicLP test_data/tinyEWDAG.txt 5
 compile-lp-cpm:
-	javac -classpath src src/graph/CPM.java
+	javac -classpath src/java src/java/graph/CPM.java
 test-lp-cpm:
-	java -classpath src graph.CPM < test_data/jobsPC.txt
+	java -classpath src/java graph.CPM < test_data/jobsPC.txt
 
 test-all-lp: compile-lp-di compile-lp-cpm
 	make test-lp-di
 	make test-lp-cpm
 
 compile-avltree:
-	javac -classpath src src/tree/AVLTree.java
+	javac -classpath src/java src/java/tree/AVLTree.java
 test-avltree:
-	java -classpath src tree.AVLTree < test_data/tinyST.txt
+	java -classpath src/java tree.AVLTree < test_data/tinyST.txt
 compile-btree:
-	javac -classpath src src/tree/BTree.java
+	javac -classpath src/java src/java/tree/BTree.java
 test-btree:
-	java -classpath src tree.BTree
+	java -classpath src/java tree.BTree
 compile-rbtree:
-	javac -classpath src src/tree/RedBlackBST.java
+	javac -classpath src/java src/java/tree/RedBlackBST.java
 test-rbtree:
-	java -classpath src tree.RedBlackBST < test_data/tinyST.txt
+	java -classpath src/java tree.RedBlackBST < test_data/tinyST.txt
 compile-bstree:
-	javac -classpath src src/tree/BinarySearchTree.java
+	javac -classpath src/java src/java/tree/BinarySearchTree.java
 test-bstree:
-	java -classpath src tree.BinarySearchTree < test_data/tinyST.txt
+	java -classpath src/java tree.BinarySearchTree < test_data/tinyST.txt
 
 test-all-tree: compile-avltree compile-btree compile-rbtree compile-bstree
 	make test-avltree
@@ -224,34 +224,34 @@ test-all-tree: compile-avltree compile-btree compile-rbtree compile-bstree
 	make test-bstree
 
 compile-sort-selection:
-	javac -classpath src src/sort/Selection.java
+	javac -classpath src/java src/java/sort/Selection.java
 test-sort-selection:
-	java -classpath src sort.Selection < test_data/tiny.txt
-	java -classpath src sort.Selection < test_data/words3.txt
+	java -classpath src/java sort.Selection < test_data/tiny.txt
+	java -classpath src/java sort.Selection < test_data/words3.txt
 compile-sort-insertion:
-	javac -classpath src src/sort/Insertion.java
+	javac -classpath src/java src/java/sort/Insertion.java
 test-sort-insertion:
-	java -classpath src sort.Insertion < test_data/tiny.txt
-	java -classpath src sort.Insertion < test_data/words3.txt
+	java -classpath src/java sort.Insertion < test_data/tiny.txt
+	java -classpath src/java sort.Insertion < test_data/words3.txt
 compile-sort-shell:
-	javac -classpath src src/sort/Shell.java
+	javac -classpath src/java src/java/sort/Shell.java
 test-sort-shell:
-	java -classpath src sort.Shell < test_data/tiny.txt
-	java -classpath src sort.Shell < test_data/words3.txt
+	java -classpath src/java sort.Shell < test_data/tiny.txt
+	java -classpath src/java sort.Shell < test_data/words3.txt
 compile-sort-merge:
-	javac -classpath src src/sort/Merge.java
+	javac -classpath src/java src/java/sort/Merge.java
 test-sort-merge:
-	java -classpath src sort.Merge < test_data/tiny.txt
-	java -classpath src sort.Merge < test_data/words3.txt
+	java -classpath src/java sort.Merge < test_data/tiny.txt
+	java -classpath src/java sort.Merge < test_data/words3.txt
 compile-sort-quick:
-	javac -classpath src src/sort/Quick.java
+	javac -classpath src/java src/java/sort/Quick.java
 test-sort-quick:
-	java -classpath src sort.Quick < test_data/tiny.txt
-	java -classpath src sort.Quick < test_data/words3.txt
+	java -classpath src/java sort.Quick < test_data/tiny.txt
+	java -classpath src/java sort.Quick < test_data/words3.txt
 
 test-sort-judge: compile-sort-selection compile-sort-insertion
-	javac -classpath src src/sort/SortCompare.java
-	java -classpath src sort.SortCompare Insertion Selection 1000 10
+	javac -classpath src/java src/java/sort/SortCompare.java
+	java -classpath src/java sort.SortCompare Insertion Selection 1000 10
 
 test-all-sort: compile-sort-selection compile-sort-insertion compile-sort-shell compile-sort-merge compile-sort-quick
 	make test-sort-selection
