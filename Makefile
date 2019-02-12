@@ -223,6 +223,43 @@ test-all-tree: compile-avltree compile-btree compile-rbtree compile-bstree
 	make test-rbtree
 	make test-bstree
 
+compile-sort-selection:
+	javac -classpath src src/sort/Selection.java
+test-sort-selection:
+	java -classpath src sort.Selection < test_data/tiny.txt
+	java -classpath src sort.Selection < test_data/words3.txt
+compile-sort-insertion:
+	javac -classpath src src/sort/Insertion.java
+test-sort-insertion:
+	java -classpath src sort.Insertion < test_data/tiny.txt
+	java -classpath src sort.Insertion < test_data/words3.txt
+compile-sort-shell:
+	javac -classpath src src/sort/Shell.java
+test-sort-shell:
+	java -classpath src sort.Shell < test_data/tiny.txt
+	java -classpath src sort.Shell < test_data/words3.txt
+compile-sort-merge:
+	javac -classpath src src/sort/Merge.java
+test-sort-merge:
+	java -classpath src sort.Merge < test_data/tiny.txt
+	java -classpath src sort.Merge < test_data/words3.txt
+compile-sort-quick:
+	javac -classpath src src/sort/Quick.java
+test-sort-quick:
+	java -classpath src sort.Quick < test_data/tiny.txt
+	java -classpath src sort.Quick < test_data/words3.txt
+
+test-sort-judge: compile-sort-selection compile-sort-insertion
+	javac -classpath src src/sort/SortCompare.java
+	java -classpath src sort.SortCompare Insertion Selection 1000 10
+
+test-all-sort: compile-sort-selection compile-sort-insertion compile-sort-shell compile-sort-merge compile-sort-quick
+	make test-sort-selection
+	make test-sort-insertion
+	make test-sort-shell
+	make test-sort-merge
+	make test-sort-quick
+
 test:
 	make test-all-stack
 	make test-all-queue
@@ -232,6 +269,7 @@ test:
 	make test-all-sp
 	make test-all-lp
 	make test-all-tree
+	make test-all-sort
 	make clean
 
 clean:
