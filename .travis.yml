@@ -15,6 +15,6 @@ matrix:
       - gcc
       - clang
     before_script:
-      - cd languages/c
+      - cd src/c
     script:
       - make test
