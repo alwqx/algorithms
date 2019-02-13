@@ -1,3 +1,8 @@
+compile-bag:
+	javac -classpath src/java src/java/utils/Bag.java
+test-bag: compile-bag
+	java -classpath src/java utils.Bag < test_data/tobe.txt
+
 compile-stack:
 	javac -classpath src/java src/java/stack/Stack.java
 compile-linked-stack:
@@ -270,14 +275,15 @@ test:
 	make test-all-lp
 	make test-all-tree
 	make test-all-sort
+	make test-bag
 	make clean
 
 clean:
-	rm -rf src/graph/*.class
-	rm -rf src/hash/*.class
-	rm -rf src/queue/*.class
-	rm -rf src/search/*.class
-	rm -rf src/sort/*.class
-	rm -rf src/stack/*.class
-	rm -rf src/utils/*.class
-	rm -rf src/tree/*.class
+	rm -rf src/java/graph/*.class
+	rm -rf src/java/hash/*.class
+	rm -rf src/java/queue/*.class
+	rm -rf src/java/search/*.class
+	rm -rf src/java/sort/*.class
+	rm -rf src/java/stack/*.class
+	rm -rf src/java/utils/*.class
+	rm -rf src/java/tree/*.class
