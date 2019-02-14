@@ -40,6 +40,7 @@ public class UF {
         }
     }
 
+    // Returns the component identifier for the component containing site p
     public int find(int p) {
         validate(p);
         while (p != parent[p]) {
@@ -57,6 +58,8 @@ public class UF {
         return find(p) == find(q);
     }
   
+    // Merges the component containing site p with the 
+    // the component containing site q
     public void union(int p, int q) {
         int rootP = find(p);
         int rootQ = find(q);
