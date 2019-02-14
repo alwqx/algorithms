@@ -1,7 +1,30 @@
 compile-bag:
 	javac -classpath src/java src/java/utils/Bag.java
-test-bag: compile-bag
+test-bag:
 	java -classpath src/java utils.Bag < test_data/tobe.txt
+compile-uf:
+	javac -classpath src/java src/java/utils/UF.java
+test-uf:
+	java -classpath src/java utils.UF < test_data/mediumUF.txt
+compile-qfuf:
+	javac -classpath src/java src/java/utils/QuickFindUF.java
+test-qfuf:
+	java -classpath src/java utils.QuickFindUF < test_data/mediumUF.txt
+compile-quuf:
+	javac -classpath src/java src/java/utils/QuickUnionUF.java
+test-quuf:
+	java -classpath src/java utils.QuickUnionUF < test_data/mediumUF.txt
+compile-wquuf:
+	javac -classpath src/java src/java/utils/WeightedQuickUnionUF.java
+test-wquuf:
+	java -classpath src/java utils.WeightedQuickUnionUF < test_data/mediumUF.txt
+
+test-all-utils: compile-bag compile-uf compile-qfuf compile-quuf compile-wquuf
+	make test-bag
+	make test-uf
+	make test-qfuf
+	make test-quuf
+	make test-wquuf
 
 compile-stack:
 	javac -classpath src/java src/java/stack/Stack.java
@@ -275,7 +298,7 @@ test:
 	make test-all-lp
 	make test-all-tree
 	make test-all-sort
-	make test-bag
+	make test-all-utils
 	make clean
 
 clean:
