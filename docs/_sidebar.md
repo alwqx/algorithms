@@ -1,4 +1,5 @@
 - [首页](/)
+- [基础](/zh-cn/intro)
 - 线性表
     - [简介](zh-cn/linear_table/intro)
     - [数组](zh-cn/linear_table/array)
