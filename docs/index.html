@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Algorithm Distilled</title>
+  <link rel="shortcut icon" href="lwq-square.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -20,11 +21,15 @@
       subMaxLevel: 2,
       coverpage: true,
       coverpage: ['/', '/us-en/'],
+      ga: 'UA-67747174-1',
+      alias: {
+        '/zh-cn/_sidebar.md': '/_sidebar.md'
+      },
       plugins: [
         function (hook) {
             var footer = [
                 '<hr/>',
-                '<footer>',
+                '<footer align="center">',
                 '<span><a href="https://github.com/adolphlwq/algorithms">algorithms</a> &copy;2017 - 2019. </span>',
                 '<span>Powered By <a href="https://github.com/QingWei-Li/docsify" target="_blank">docsify</a>.</span>',
                 '</footer>'
@@ -37,5 +42,8 @@
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
+  <script src="//unpkg.com/docsify-copy-code"></script>
 </body>
 </html>
