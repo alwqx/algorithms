@@ -9,7 +9,7 @@
   </a>
 </p>
 
-<p align="center">A record of learning Algorithms with code implemented by multiple languages.</p>
+<p align="center">Algorithms and Data Structures Distilled with code implemented by multiple languages.</p>
 
 ## Implements
 | Algorithms      |  C | Java  | Python | Golang |
@@ -25,25 +25,10 @@
 |   Hash  | :heavy_check_mark: | :heavy_check_mark: | :black_square_button: | :black_square_button: |
 |   Compression  | :black_square_button: | :black_square_button: | :black_square_button: | :black_square_button: |
 
-## Directories
-This repo is edited by Eclipse. File structures are as follows:
-```shell
-tree -L 1
-.
-├── assets
-├── bin
-├── courses
-├── Dockerfile
-├── documents
-├── languages
-├── lecture
-├── leetcode
-├── LICENSE
-├── Makefile
-├── README.md
-├── src
-└── test_data
-```
+## Getting Involved
+- [Document](https://adolphlwq.xyz/algorithms): Dive into details.
+- [GitHub Issues](https://github.com/adolphlwq/algorithms/issues): For reporting bugs and feature algorithms.
+- [Pull Requests](https://github.com/adolphlwq/algorithms/pulls): For submitting code contributions.
 
 ## Reference
 - [Princeton University Algorithms](/courses/README.md)
