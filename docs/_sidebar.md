@@ -15,4 +15,5 @@
 - [图<sup style="color:red">**<sup>](zh-cn/graph)
 - [排序](zh-cn/sort)
 - [压缩](zh-cn/compression)
-- [在线评测](zh-cn/online_judge)
+- [在线评测](zh-cn/online_judge/)
+    - [PAT](zh-cn/online_judge/pat)
