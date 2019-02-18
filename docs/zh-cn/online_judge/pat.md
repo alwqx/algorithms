@@ -1,7 +1,9 @@
-# PAT
+## 基础编程题目集
+https://pintia.cn/problem-sets/14/problems
 
-## [基础编程题目集](https://pintia.cn/problem-sets/14/problems)
-### [6-7](https://pintia.cn/problem-sets/14/problems/739)
+### 6-7
+https://pintia.cn/problem-sets/14/problems/739
+
 如何判断一个数是完全平方数，代码参考：
 ```c
 int IsTheNumber(const int N) {
@@ -25,13 +27,19 @@ int IsTheNumber(const int N) {
 }
 ```
 
-### [6-9](https://pintia.cn/problem-sets/14/problems/741)
+### 6-9
+https://pintia.cn/problem-sets/14/problems/741
+
 注意临界情况：输入0 0,应该返回1。
 
-### [6-10](https://pintia.cn/problem-sets/14/problems/742)
+### 6-10
+https://pintia.cn/problem-sets/14/problems/742
+
 大数阶乘，大数超过了64位存储极限，应该如何处理。
 
-### [6-11](https://pintia.cn/problem-sets/14/problems/743)
+### 6-11
+https://pintia.cn/problem-sets/14/problems/743
+
 1. 求中位数，理解提议，确定是递增排序还是递减排序。**笔者自己当初递减排序了**，虽然排序方法对了，但是测试样例不对
 2. 虽然MAXN是10,但是用O(n*n)的排序算法过不了N非常大的情况
 3. 使用希尔排序、快排、归并等方法
