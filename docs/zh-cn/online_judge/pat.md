@@ -44,6 +44,11 @@ https://pintia.cn/problem-sets/14/problems/743
 2. 虽然MAXN是10,但是用O(n*n)的排序算法过不了N非常大的情况
 3. 使用希尔排序、快排、归并等方法
 
+## 7-1
+https://pintia.cn/problem-sets/14/problems/781
+
+概念比较绕，没理解清楚很难接触来，可以说考察的是**思辨**能力。参考https://blog.csdn.net/qq_36810403/article/details/70939134
+
 ## 总结
 1. 看清题目要求
 2. 理解问题和解答方案
