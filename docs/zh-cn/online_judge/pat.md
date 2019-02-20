@@ -49,6 +49,35 @@ https://pintia.cn/problem-sets/14/problems/781
 
 概念比较绕，没理解清楚很难接触来，可以说考察的是**思辨**能力。参考https://blog.csdn.net/qq_36810403/article/details/70939134
 
+## 7-5
+https://pintia.cn/problem-sets/14/problems/785
+
+!>把问题想复杂似乎是我经常犯的错误，要谨记教训。按行输出就行，[参考](https://blog.csdn.net/qq_32999795/article/details/53733766)
+
+## 7-7
+[12-24小时制](https://pintia.cn/problem-sets/14/problems/787)
+
+自己的解法不仅复杂，而且不好调试
+```c
+int main() {
+    int hour, min;
+    scanf("%d:%d", &hour, &min);
+
+    if(hour==12 && min==0)
+        printf("12:0 PM\n");
+    else if(hour==0 && min==0)
+        printf("0:0 AM\n");
+    else if(hour==24 && min==0)
+        printf("12:0 AM\n");
+    else if(hour>12) {
+        printf("%d:%d PM\n", hour-12, min);
+    } else
+        printf("%d:%d AM\n", hour, min);
+    
+    return 0;
+}
+```
+
 ## 总结
 1. 看清题目要求
 2. 理解问题和解答方案

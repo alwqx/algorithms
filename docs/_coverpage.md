@@ -9,6 +9,6 @@
 - 多语言实现常用算法与数据结构
 
 [GitHub](https://github.com/adolphlwq/algorithms/)
-[文档](/#算法与数据结构)
+[文档](/#为什么学习算法)
 
 ![color](#e4fff7)
