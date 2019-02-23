@@ -88,7 +88,113 @@ int main() {
 
 不要用枚举的方法
 
+## 7-17
+[爬动的蠕虫](https://pintia.cn/problem-sets/14/problems/797)
+
+测试点少考虑情况，即N<U的情况
+
+## 7-18<sup style="color:red">**<sup>
+[二分法求多项式单根](https://pintia.cn/problem-sets/14/problems/798)
+
+题目没有给出具体的`阈值`是多少，因此需要合理的拓展。
+
+错误解法：
+```c++
+// https://pintia.cn/problem-sets/14/problems/798
+
+#include <iostream>
+#include <iomanip>
+#define DELTA 1e-5
+
+using namespace std;
+
+int f(double a3, double a2, double a1, double a0, double x) {
+    double ret = a3*x*x*x + a2*x*x + a1*x +a0;
+    if(ret > 0)         return 1;
+    else if(ret == 0)   return 0;
+    else                return -1;
+}
+
+int main() {
+    double a3, a2, a1, a0;
+    double a, b, mid;
+    cin>>a3>>a2>>a1>>a0;
+    cin>>a>>b;
+
+    int fa, fb, ret;
+    fa = f(a3, a2, a1, a0, a);
+    fb = f(a3, a2, a1, a0, b);
+    mid = (a+b)/2;
+    ret = f(a3, a2, a1, a0, mid);
+
+    while(b-a>DELTA) {
+        if(ret == fa)
+            a = mid;
+        else if(ret == fb)
+            b = mid;
+        mid = (a+b)/2;
+        ret = f(a3, a2, a1, a0, mid);
+    }
+
+    cout<<fixed<<setprecision(2)<<ret;
+    return 0;
+}
+```
+
+## 7-19
+[支票面额](https://pintia.cn/problem-sets/14/problems/799)
+
+注意使用二分法降低时间复杂度
+
+## 7-21
+[求特殊方程的正整数解](https://pintia.cn/problem-sets/14/problems/801)
+
+?>注意**减枝思想**的运用，去掉没必要的运算
+
+code costs 4ms
+```c++
+if(N<=4) {
+    for(x=1; x<N; x++)
+        for(y=x; y<=N-x*x; y++){
+            if(x*x+y*y == N) {
+                cout<<x<<" "<<y<<endl;
+                found = 0;
+            }
+        }
+} else {
+    for(x=1; x*x<N; x++)
+        for(y=x; y<=N-x*x; y++){
+            if(x*x + y*y == N) {
+                cout<<x<<" "<<y<<endl;
+                found = 0;
+            }
+        }
+}
+```
+
+code costs 19ms
+```c++
+if(N<=4) {
+    for(x=1; x<N; x++)
+        for(y=x; y<N; y++){
+            if(x*x+y*y == N) {
+                cout<<x<<" "<<y<<endl;
+                found = 0;
+            }
+        }
+} else {
+    for(x=1; x<=N/2; x++)
+        for(y=x; y<N/2; y++){
+            if(x*x + y*y == N) {
+                cout<<x<<" "<<y<<endl;
+                found = 0;
+            }
+        }
+}
+```
+
 ## 总结
 1. 看清题目要求
 2. 理解问题和解答方案
 3. 考虑临界情况
+4. `减枝`思想运用，减少不必要的运算
