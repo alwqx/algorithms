@@ -193,6 +193,11 @@ if(N<=4) {
 }
 ```
 
+## 7-22
+[龟兔赛跑](https://pintia.cn/problem-sets/14/problems/802)
+
+题目相对抽象，规律不好找，[参考](https://blog.csdn.net/weixin_37571609/article/details/68927271)
+
 ## 总结
 1. 看清题目要求
 2. 理解问题和解答方案
