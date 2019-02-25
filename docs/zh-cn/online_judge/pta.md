@@ -198,6 +198,13 @@ if(N<=4) {
 
 题目相对抽象，规律不好找，[参考](https://blog.csdn.net/weixin_37571609/article/details/68927271)
 
+## 7-23
+[币值转换](https://pintia.cn/problem-sets/14/problems/803)
+
+代码参考：[2018年冬季寒假作业4--PTA 币值转换](https://www.cnblogs.com/youlanghua/p/10413356.html)
+
+此题灵活性比较大，自己的题目有2个测试集无法通过。参考方案是倒序处理的。
+
 ## 总结
 1. 看清题目要求
 2. 理解问题和解答方案
