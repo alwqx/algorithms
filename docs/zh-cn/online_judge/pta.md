@@ -205,6 +205,21 @@ if(N<=4) {
 
 此题灵活性比较大，自己的题目有2个测试集无法通过。参考方案是倒序处理的。
 
+## 7-26
+[单词长度](https://pintia.cn/problem-sets/14/problems/806)
+
+涉及输入字符串处理、统计的问题是薄弱项，结合K&R中的相关示例代码多练习
+
+## 7-27
+[指定遍历次数的排序](https://pintia.cn/problem-sets/14/problems/807)
+
+!>Not Implemented
+
+## 7-28
+[猴子选大王](https://pintia.cn/problem-sets/14/problems/808)
+
+使用`暴力解法`，用程序模拟选猴王的过程。使用数组进行建模。
+
 ## 总结
 1. 看清题目要求
 2. 理解问题和解答方案
