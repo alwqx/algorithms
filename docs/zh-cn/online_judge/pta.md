@@ -220,6 +220,12 @@ if(N<=4) {
 
 使用`暴力解法`，用程序模拟选猴王的过程。使用数组进行建模。
 
+## 7-30
+[字符串的冒泡排序](https://pintia.cn/problem-sets/14/problems/810)
+
+使用C编写，遇到错误提示**Expression must be a modifiable L-value**，数组的item如果是字符数组，不能直接修改，
+要`声明成指针`才行。[参考](https://stackoverflow.com/questions/6008733/expression-must-be-a-modifiable-l-value)
+
 ## 总结
 1. 看清题目要求
 2. 理解问题和解答方案
