@@ -226,6 +226,54 @@ if(N<=4) {
 使用C编写，遇到错误提示**Expression must be a modifiable L-value**，数组的item如果是字符数组，不能直接修改，
 要`声明成指针`才行。[参考](https://stackoverflow.com/questions/6008733/expression-must-be-a-modifiable-l-value)
 
+## 7-29
+[删除字符串中的子串](https://pintia.cn/problem-sets/14/problems/809)
+
+重点是解决嵌套问题，ccatat与cat如何处理。下面的代码是自己实现的，有bug，不能处理嵌套的情况
+```c
+// https://pintia.cn/problem-sets/14/problems/809
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAXN 80
+
+void readline(char s[]);
+
+int main() {
+    char S1[MAXN], S2[MAXN];
+    readline(S1);
+    readline(S2);
+
+    int i, j, k, n, len_s1=strlen(S1), len_s2=strlen(S2);
+    while(i<len_s1) {
+        j = 0;
+        while(S2[j] != '\0') {
+            if(S1[i] == S2[j]) {
+                i++;
+                j++;
+            } else 
+                break;
+        }
+        if(j == len_s2)
+            i--;
+        else {  // not match, print
+            for(n=i-j; n<=i; n++)
+                putchar(S1[n]);
+        }
+    }
+
+    return 0;
+}
+
+void readline(char s[]) {
+    int c, i = 0;
+    while((c=getchar()) != '\n')
+        s[i++] = c;
+
+    s[i] = '\0';
+}
+```
 ## 总结
 1. 看清题目要求
 2. 理解问题和解答方案
