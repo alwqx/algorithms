@@ -208,7 +208,14 @@ if(N<=4) {
 ## 7-26
 [单词长度](https://pintia.cn/problem-sets/14/problems/806)
 
-涉及输入字符串处理、统计的问题是薄弱项，结合K&R中的相关示例代码多练习
+涉及输入字符串处理、统计的问题是薄弱项，结合K&R中的相关示例代码多练习。
+
+测试案例中**开头结尾多空格**，输出数字会有一个空格
+```shell
+    abc    .
+3 %
+```
+[参考](https://www.muchenhen.com/2018/10/28/pta%E9%A2%98%E7%9B%AE%E9%9B%86%EF%BC%9A7-26-%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6/)
 
 ## 7-27
 [指定遍历次数的排序](https://pintia.cn/problem-sets/14/problems/807)
@@ -274,7 +281,23 @@ void readline(char s[]) {
     s[i] = '\0';
 }
 ```
+
+## 7-35
+[有理数均值](https://pintia.cn/problem-sets/14/problems/815)
+
+综合数组、输入输出等知识，需要多看。
+
+## 7-37
+[整数分解为若干项之和](https://pintia.cn/problem-sets/14/problems/2990)
+
+[参考](https://www.cnblogs.com/masterchd/p/7801445.html)
+
+## 7-38
+[数列求和-加强版](https://pintia.cn/problem-sets/14/problems/3006)
+
+
 ## 总结
+0. 掌握C/C++基本用法，常用函数库。STL模板等。
 1. 看清题目要求
 2. 理解问题和解答方案
 3. 考虑临界情况
