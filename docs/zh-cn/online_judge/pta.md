@@ -295,6 +295,7 @@ void readline(char s[]) {
 ## 7-38
 [数列求和-加强版](https://pintia.cn/problem-sets/14/problems/3006)
 
+[参考](http://www.voidcn.com/article/p-rranmapg-wk.html)
 
 ## 总结
 0. 掌握C/C++基本用法，常用函数库。STL模板等。
