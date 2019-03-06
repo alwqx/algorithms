@@ -297,6 +297,12 @@ void readline(char s[]) {
 
 [参考](http://www.voidcn.com/article/p-rranmapg-wk.html)
 
+## 基础算法
+
+## 6-1
+[单链表逆转](https://pintia.cn/problem-sets/15/problems/724)
+思想方法与具体实现。
+
 ## 总结
 0. 掌握C/C++基本用法，常用函数库。STL模板等。
 1. 看清题目要求
