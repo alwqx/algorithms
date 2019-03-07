@@ -317,6 +317,22 @@ struct LNode {
 };
 ```
 
+### 6-5
+[链式表操作集](https://pintia.cn/problem-sets/15/problems/728)
+
+用于调试的Print函数写错了，浪费了大量时间调试。
+
+对于这种`List Insert(List L, ElementType X, Position P)`插入位置也是List(Position)类型，可以用下面的方法直接找L。而不用再家一个pre指针。
+```c
+List head = L;
+while(L) {
+    if(L->Next == P) {
+        ....
+    }
+    L=L->Next;
+}
+```
+
 ## 总结
 0. 掌握C/C++基本用法，常用函数库。STL模板等。
 1. 看清题目要求
