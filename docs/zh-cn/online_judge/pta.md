@@ -306,6 +306,17 @@ void readline(char s[]) {
 - 新建链表
 - 递归实现
 
+### 6-2
+[顺序表操作集](https://pintia.cn/problem-sets/15/problems/725)
+
+这道题目的描述信息容易让人误解。其实`Last`指的是最后一个元素的下一个位置。
+```c
+struct LNode {
+    ElementType Data[MAXSIZE];
+    Position Last; /* 保存线性表中最后一个元素的位置 */
+};
+```
+
 ## 总结
 0. 掌握C/C++基本用法，常用函数库。STL模板等。
 1. 看清题目要求
