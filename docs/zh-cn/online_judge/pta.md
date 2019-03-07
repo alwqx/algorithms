@@ -44,17 +44,17 @@ https://pintia.cn/problem-sets/14/problems/743
 2. 虽然MAXN是10,但是用O(n*n)的排序算法过不了N非常大的情况
 3. 使用希尔排序、快排、归并等方法
 
-## 7-1
+### 7-1
 https://pintia.cn/problem-sets/14/problems/781
 
 概念比较绕，没理解清楚很难接触来，可以说考察的是**思辨**能力。参考https://blog.csdn.net/qq_36810403/article/details/70939134
 
-## 7-5
+### 7-5
 https://pintia.cn/problem-sets/14/problems/785
 
 !>把问题想复杂似乎是我经常犯的错误，要谨记教训。按行输出就行，[参考](https://blog.csdn.net/qq_32999795/article/details/53733766)
 
-## 7-7
+### 7-7
 [12-24小时制](https://pintia.cn/problem-sets/14/problems/787)
 
 自己的解法不仅复杂，而且不好调试
@@ -78,22 +78,22 @@ int main() {
 }
 ```
 
-## 7-15
+### 7-15
 [计算圆周率](https://pintia.cn/problem-sets/14/problems/795)
 
 本题在题意理解上至关重要，注意题干：根据下面关系式，求圆周率的值，**直到最后一项的值小于给定阈值**，第一个小于阈值的项也要加上。
 
-## 7-16
+### 7-16
 [求符合给定条件的整数集](https://pintia.cn/problem-sets/14/problems/796)
 
 不要用枚举的方法
 
-## 7-17
+### 7-17
 [爬动的蠕虫](https://pintia.cn/problem-sets/14/problems/797)
 
 测试点少考虑情况，即N<U的情况
 
-## 7-18<sup style="color:red">**<sup>
+### 7-18<sup style="color:red">**<sup>
 [二分法求多项式单根](https://pintia.cn/problem-sets/14/problems/798)
 
 题目没有给出具体的`阈值`是多少，因此需要合理的拓展。
@@ -141,12 +141,12 @@ int main() {
 }
 ```
 
-## 7-19
+### 7-19
 [支票面额](https://pintia.cn/problem-sets/14/problems/799)
 
 注意使用二分法降低时间复杂度
 
-## 7-21
+### 7-21
 [求特殊方程的正整数解](https://pintia.cn/problem-sets/14/problems/801)
 
 ?>注意**减枝思想**的运用，去掉没必要的运算
@@ -193,19 +193,19 @@ if(N<=4) {
 }
 ```
 
-## 7-22
+### 7-22
 [龟兔赛跑](https://pintia.cn/problem-sets/14/problems/802)
 
 题目相对抽象，规律不好找，[参考](https://blog.csdn.net/weixin_37571609/article/details/68927271)
 
-## 7-23
+### 7-23
 [币值转换](https://pintia.cn/problem-sets/14/problems/803)
 
 代码参考：[2018年冬季寒假作业4--PTA 币值转换](https://www.cnblogs.com/youlanghua/p/10413356.html)
 
 此题灵活性比较大，自己的题目有2个测试集无法通过。参考方案是倒序处理的。
 
-## 7-26
+### 7-26
 [单词长度](https://pintia.cn/problem-sets/14/problems/806)
 
 涉及输入字符串处理、统计的问题是薄弱项，结合K&R中的相关示例代码多练习。
@@ -217,23 +217,23 @@ if(N<=4) {
 ```
 [参考](https://www.muchenhen.com/2018/10/28/pta%E9%A2%98%E7%9B%AE%E9%9B%86%EF%BC%9A7-26-%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6/)
 
-## 7-27
+### 7-27
 [指定遍历次数的排序](https://pintia.cn/problem-sets/14/problems/807)
 
 !>Not Implemented
 
-## 7-28
+### 7-28
 [猴子选大王](https://pintia.cn/problem-sets/14/problems/808)
 
 使用`暴力解法`，用程序模拟选猴王的过程。使用数组进行建模。
 
-## 7-30
+### 7-30
 [字符串的冒泡排序](https://pintia.cn/problem-sets/14/problems/810)
 
 使用C编写，遇到错误提示**Expression must be a modifiable L-value**，数组的item如果是字符数组，不能直接修改，
 要`声明成指针`才行。[参考](https://stackoverflow.com/questions/6008733/expression-must-be-a-modifiable-l-value)
 
-## 7-29
+### 7-29
 [删除字符串中的子串](https://pintia.cn/problem-sets/14/problems/809)
 
 重点是解决嵌套问题，ccatat与cat如何处理。下面的代码是自己实现的，有bug，不能处理嵌套的情况
@@ -282,26 +282,29 @@ void readline(char s[]) {
 }
 ```
 
-## 7-35
+### 7-35
 [有理数均值](https://pintia.cn/problem-sets/14/problems/815)
 
 综合数组、输入输出等知识，需要多看。
 
-## 7-37
+### 7-37
 [整数分解为若干项之和](https://pintia.cn/problem-sets/14/problems/2990)
 
 [参考](https://www.cnblogs.com/masterchd/p/7801445.html)
 
-## 7-38
+### 7-38
 [数列求和-加强版](https://pintia.cn/problem-sets/14/problems/3006)
 
 [参考](http://www.voidcn.com/article/p-rranmapg-wk.html)
 
 ## 基础算法
 
-## 6-1
+### 6-1
 [单链表逆转](https://pintia.cn/problem-sets/15/problems/724)
-思想方法与具体实现。
+思想方法与具体实现：
+- 指针变量
+- 新建链表
+- 递归实现
 
 ## 总结
 0. 掌握C/C++基本用法，常用函数库。STL模板等。

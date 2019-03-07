@@ -21,13 +21,14 @@ int main() {
     L1 = Read();
     Print(L1);
     // L2 = Reverse(L1);
-    L2 = Reverse1(L1);
+    // L2 = Reverse1(L1);
+    L2 = Reverse2(L1);
     Print(L2);
     return 0;
 }
 
 List Read() {
-    List L, tail;
+    List L=NULL, tail=NULL;
     int i, n, N;
     scanf("%d", &N);
     for(i=0; i<N; i++) {
@@ -80,10 +81,9 @@ List Reverse(List L) {
 
 List Reverse1(List L) {
     if(L==NULL || L->Next==NULL) return L;
-    List newL, t=L;
+    List newL=NULL, t=L;
     while(t) {
         if(newL == NULL) { // first node
-            printf("first node %d\n", t->Data);
             newL = (List) malloc(sizeof(List));
             newL->Data = t->Data;
             newL->Next = NULL;
@@ -97,4 +97,14 @@ List Reverse1(List L) {
     }
 
     return newL;
+}
+
+// Reverse2 recurion implement!
+List Reverse2(List L) {
+    if(L==NULL || L->Next==NULL) return L;
+    List tail = Reverse2(L->Next); // get tail node
+    L->Next->Next = L;
+    L->Next = NULL;
+
+    return tail;
 }
