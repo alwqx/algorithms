@@ -338,6 +338,30 @@ while(L) {
 
 多练习
 
+### 6-7
+[在一个数组中实现两个堆栈](https://pintia.cn/problem-sets/15/problems/730)
+
+!>注意打印的格式，是否换行，是否有`.`等格式不匹配问题。
+
+### 6-8
+[本题要求给定二叉树的高度](https://pintia.cn/problem-sets/15/problems/731)
+
+!>注意考虑临界情况：空树
+
+### 6-9
+[二叉树的遍历](https://pintia.cn/problem-sets/15/problems/732)
+
+!>难点是如何层序遍历。参考中的做法是实现一个数组队列，使用head和base来判断队列是否为空，值得借鉴
+
+[参考](https://blog.csdn.net/yangd9292/article/details/83626386)
+
+### 6-12
+[二叉搜索树的操作集](https://pintia.cn/problem-sets/15/problems/927)
+
+基础题，需要牢固掌握。[参考](https://blog.csdn.net/wanmeiwushang/article/details/51921821)
+
+?>注意if(!BST) <==> if(BST==NULL)
+
 ## 总结
 0. 掌握C/C++基本用法，常用函数库。STL模板等。
 1. 看清题目要求
