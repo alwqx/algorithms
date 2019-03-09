@@ -362,6 +362,13 @@ while(L) {
 
 ?>注意if(!BST) <==> if(BST==NULL)
 
+### 7-1
+[最大子列和问题](https://pintia.cn/problem-sets/15/problems/709)
+
+[参考](https://blog.csdn.net/jimtrump/article/details/72782852)分析得很到位。
+
+在线算法、分治算法
+
 ## 总结
 0. 掌握C/C++基本用法，常用函数库。STL模板等。
 1. 看清题目要求
