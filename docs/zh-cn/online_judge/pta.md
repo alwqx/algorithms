@@ -433,6 +433,68 @@ int main() {
 
 自己有2个案例错了，但是题目没给是什么案例，导致自己不好调试。
 
+### 1012
+[数字分类](https://pintia.cn/problem-sets/994805260223102976/problems/994805311146147840)
+不能用结果是否为零来判断打印N
+
+### 1013
+[数素数 （20 point(s)）](https://pintia.cn/problem-sets/994805260223102976/problems/994805309963354112)
+
+注意格式控制和素数高效判断算法
+
+### 1014
+[福尔摩斯的约会 （20 point(s)）](https://pintia.cn/problem-sets/994805260223102976/problems/994805308755394560)
+
+!>自己为了图省事，使用了库函数，把范围扩大了，不能用`isupper(c)`代替`c>='A'&&c<='N`。
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+#define MAXN 61
+
+char wa[][4] = {"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
+
+int main() {
+    char s1[MAXN], s2[MAXN], s3[MAXN], s4[MAXN];
+    scanf("%s", s1);
+    scanf("%s", s2);
+    scanf("%s", s3);
+    scanf("%s", s4);
+
+    int i;
+    for(i=0; i<strlen(s1); i++) {
+        // if(s1[i]==s2[i] && isupper(s1[i])) {
+        if(s1[i]==s2[i] && s1[i]>='A'&&s1[i]<='G') {
+            printf("%s ", wa[s1[i]-'A']);
+            i++;
+            break;
+        }
+    }
+    for(; i<strlen(s1); i++) {
+        if(s1[i] == s2[i]) {
+            if(isdigit(s1[i])) {
+                printf("0%c:", s1[i]);
+                break;
+            // } else if(isupper(s1[i])) {
+            } else if(s1[i]>='A' && s1[i]<='N') {
+                printf("%d:", s1[i]-'A'+10);
+                break;
+            }
+        }
+    }
+    
+    for(i=0; i<strlen(s3); i++) {
+        if(s3[i]==s4[i] && isalpha(s3[i])) {
+            printf("%02d\n", i);
+            break;
+        }
+    }
+    
+    return 0;
+}
+```
 ## 总结
 0. 掌握C/C++基本用法，常用函数库。STL模板等。
 1. 看清题目要求
