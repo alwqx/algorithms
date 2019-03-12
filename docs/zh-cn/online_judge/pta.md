@@ -495,6 +495,12 @@ int main() {
     return 0;
 }
 ```
+
+### 1015
+[德才论 （25 point(s)）](https://pintia.cn/problem-sets/994805260223102976/problems/994805307551629312)
+
+排序有点绕，用C++中的vector相对容易些。[参考](https://blog.csdn.net/daoshen1314/article/details/87093400)
+
 ## 总结
 0. 掌握C/C++基本用法，常用函数库。STL模板等。
 1. 看清题目要求

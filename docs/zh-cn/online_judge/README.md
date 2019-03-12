@@ -8,6 +8,7 @@
 - [codeforces](http://codeforces.com/)
 
 ## 常用高效算法
+1. 快排
 1. 判断素数，[参考](https://blog.csdn.net/huang_miao_xin/article/details/51331710)
 ```c
 int prime(long int n) {
