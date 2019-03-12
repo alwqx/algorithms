@@ -17,3 +17,4 @@
 - [压缩](zh-cn/compression)
 - [在线评测](zh-cn/online_judge/)
     - [PTA](zh-cn/online_judge/pta)
+    - [EOJ](zh-cn/online_judge/ecnu)

@@ -7,6 +7,11 @@
 - [ECNU OJ](https://acm.ecnu.edu.cn/) [备用网址](https://eoj.i64d.com/)
 - [codeforces](http://codeforces.com/)
 
+## 基础知识
+### int类型
+- 32bit
+- 64bit
+
 ## 常用高效算法
 1. 快排
 1. 判断素数，[参考](https://blog.csdn.net/huang_miao_xin/article/details/51331710)
