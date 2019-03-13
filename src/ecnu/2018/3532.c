@@ -3,6 +3,20 @@
 #include <string.h>
 #include <math.h>
 
+int main() {
+    long long int t,p;
+    scanf("%lld", &t);
+    while(t--) {
+        scanf("%lld", &p);
+        double x=(1+sqrt(1.0+8.0*(p-1)))/2.0;
+        if(x-(long long int)x==0) printf("1\n");
+        else printf("0\n");
+    }
+    
+    return 0;
+}
+
+/*
 void process(long int n);
 
 int main() {
@@ -31,4 +45,4 @@ void process(long int N) {
     
     if(alg(i)+1 == N)   printf("1\n");
     else                printf("0\n");
-}
+}*/
