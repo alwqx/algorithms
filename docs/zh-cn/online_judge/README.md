@@ -12,7 +12,7 @@
 - 32bit
 - 64bit
 
-## 常用高效算法
+## 常用范式
 1. 快排
 1. 判断素数，[参考](https://blog.csdn.net/huang_miao_xin/article/details/51331710)
 ```c
@@ -33,5 +33,5 @@ int prime(long int n) {
 ```
 
 2. 最大公约数
-
 3. 最小公倍数
+4. 打印四种蛇形数组，顺时针，逆时针，Z，倒Z。[参考](https://blog.csdn.net/Echo_Ana/article/details/53411476)
