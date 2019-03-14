@@ -59,3 +59,70 @@ while(t--) {
     else printf("0\n");
 }
 ```
+
+## 2017 保研题
+### 3346
+[3346. 皇后问题](https://eoj.i64d.com/problem/3346/)
+
+直接根据题意编写代码时间复杂度很高，而且容易超时。
+
+根据坐标间的关系来判断点在二维上的横纵斜关系判断可以减少计算复杂度，但是O(n*n)，数据量太大还是超时。
+
+用四个数组记录横、纵、主、副上点的个数，然后一次遍历求和。以横向为例，row表示：
+如果row[i]为0，1，说明第i行不存在冲突的皇后，如果row[i]>=2，则根据排列组合的知识，从里面取2个，有row[i]*(row[i]-1)/2个皇后。
+
+[参考](https://blog.csdn.net/KlD1412/article/details/79613615)
+
+### 3357
+[3357. 吉吉木的野望](https://eoj.i64d.com/problem/3357/)
+
+不会做，自己写的代码输出很奇怪。
+```c
+#include <stdio.h>
+
+void v1();
+void v2();
+
+int main() {
+    v1();
+}
+
+void v1() {
+    int d;
+    long long i, k;
+    scanf("%d %lld", &d, &k);
+    
+    double s = 0.0;
+    long long a = 1 + (k-1)*d;
+    for(i=k; i>=1; i--) {
+        if(i==k)    s = 1.0/((double) a);
+        else        s = 1.0/((double) a+1/s);
+        a -= d;
+    }
+
+    printf("%.16f\n", s);
+}
+```
+
+### 3337
+[3337. 我认识你](https://eoj.i64d.com/problem/3337/)
+用邻接表做，找共同定点。了解下C++中的数据结构和STL
+
+### 3338
+[3338. 双塔问题](https://eoj.i64d.com/problem/3338/)
+
+不知道怎么用DP做
+
+### 3355
+[3355. 开心消消乐](https://eoj.i64d.com/problem/3355/)
+
+没有思路
+
+### 3356
+[3356. 解方程](https://eoj.i64d.com/problem/3356/)
+
+### 3340
+[3340. 又是 GCD](https://eoj.i64d.com/problem/3340/)
+
+### 3339
+[3339. 提交答案题](https://eoj.i64d.com/problem/3339/)
