@@ -126,3 +126,15 @@ void v1() {
 
 ### 3339
 [3339. 提交答案题](https://eoj.i64d.com/problem/3339/)
+
+## 2009
+### 2573
+[2573. Hub Connection plan](https://eoj.i64d.com/problem/2573/)
+
+MST，有难度
+
+### 2575
+[2575. Separate Connections](https://eoj.i64d.com/problem/2575/)
+
+### 2574
+[2574. Principles of Compiler](https://eoj.i64d.com/problem/2574/)
