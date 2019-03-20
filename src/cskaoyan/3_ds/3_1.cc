@@ -26,14 +26,13 @@ void v1() {
     int i, n;
     scanf("%d", &n);
 
-    for(i=0; i<n; i++) {
-        scanf("%s", s);
+    while(scanf("%s", s) != EOF) {
         for(i=0; s[i]; i++) {
             if(s[i] == '(') {
-                v.push(s[i]);
+                v.push(i);
                 ans[i] = ' ';
             } else if(s[i] == ')') {
-                if(v.empty() == false) {
+                if(!v.empty()) {
                     v.pop();
                     ans[i] = ' ';
                 } else ans[i] = '?';
@@ -41,14 +40,12 @@ void v1() {
         }
 
         while(!v.empty()) {
-            printf("v top is: %d\n", v.top());
             ans[v.top()] = '$';
             v.pop();
         }
 
         ans[i] = '\0';
-        printf("src is: %s\n", s);
-        printf("ans is: %s\n", ans);
+        printf("%s\n%s\n", s, ans);
     }
 }
 
