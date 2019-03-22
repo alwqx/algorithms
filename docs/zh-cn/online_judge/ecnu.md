@@ -131,7 +131,7 @@ void v1() {
 ### 2573
 [2573. Hub Connection plan](https://eoj.i64d.com/problem/2573/)
 
-MST，有难度
+MST，有难度，并查集+克鲁斯卡尔
 
 ### 2575
 [2575. Separate Connections](https://eoj.i64d.com/problem/2575/)
