@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 /*
 10 5
 ..*.....**
@@ -8,9 +7,7 @@
 ..****.***
 ..****.***
 */
-
 int width, height;
-int n, m;
 char maze[1010][85];
 bool mark[1010][85];
 int go[][2] = {
@@ -42,35 +39,7 @@ void dfs(int x, int y) {
     return;
 }
 
-void dfsv2(int x, int y) {
-    int i;
-    for(i=0; i<8; i++) {
-        int nx, ny;
-        nx = x+go[i][0];
-        ny = y+go[i][1];
-        
-        if(nx<1||nx>n||ny<1||ny>m) continue;
-        if(maze[nx][ny] == '.') continue;
-        if(mark[nx][ny]) continue;
-
-        mark[nx][ny] = true;
-        dfsv2(nx, ny);
-    }
-
-    return;
-}
-
-void v1();
-void v2();
-
 int main() {
-    v1();
-    // v2();
-
-    return 0;
-}
-
-void v1() {
     int i, j, ans;
     while(scanf("%d %d", &width, &height) != EOF) {
         if(width==0 && height==0) break;
@@ -91,26 +60,10 @@ void v1() {
 
         printf("%d\n", ans);
     }
+
+    return 0;
 }
 
-void v2() {
-    int i, j, ans;
-    while(scanf("%d %d", &m, &n) != EOF) {
-        if(m==0 && n==0)  break;
-        for(i=1; i<=n; i++) scanf("%s", maze[i]+1);
-        for(i=1; i<=n; i++)
-            for(j=1; j<=m; j++) mark[i][j] = false;
-        
-        ans = 0;
-        for(i=1; i<=n; i++) {
-            for(j=1; j<=m; j++) {
-                if(mark[i][j]) continue;
-                if(maze[i][j] == '.') continue;
-                dfsv2(i, j);
-                ans++;
-            }
-        }
-
-        printf("%d\n", ans);
-    }
+void v1() {
+    
 }
