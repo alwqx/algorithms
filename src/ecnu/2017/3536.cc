@@ -1,4 +1,7 @@
 // https://eoj.i64d.com/problem/3536/
+/*
+蛇形矩阵求行和
+*/
 #include <stdio.h>
 
 int main() {
