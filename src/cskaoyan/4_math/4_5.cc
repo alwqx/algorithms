@@ -17,6 +17,8 @@ int gcd1(int a, int b) {
         a = b;
         b = t;
     }
+
+    return a;
 }
 
 int main() {
