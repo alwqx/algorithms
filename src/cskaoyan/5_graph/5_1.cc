@@ -13,7 +13,7 @@ int findRoot(int x) {
     if(tree[x] == -1) return x;
     int tmp = findRoot(tree[x]);
     tree[x] = tmp;
-    return findRoot(tmp);
+    return tmp;
 }
 
 int main() {
