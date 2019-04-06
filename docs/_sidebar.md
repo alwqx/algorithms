@@ -16,6 +16,7 @@
 - [排序](zh-cn/sort)
 - [压缩](zh-cn/compression)
 - [在线评测](zh-cn/online_judge/)
+    - [LeetCode](zh-cn/online_judge/leetcode)
     - [PTA](zh-cn/online_judge/pta)
     - [EOJ](zh-cn/online_judge/ecnu)
     - [CSKaoYan](zh-cn/online_judge/cskaoyan)
