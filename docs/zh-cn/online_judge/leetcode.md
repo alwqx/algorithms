@@ -26,3 +26,9 @@
 
 ### 53
 [最大子序和](https://leetcode-cn.com/problems/maximum-subarray)
+
+## Medium
+### 3
+[无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/description/)
+
+自己想到了暴力解法，参考题解理解O(n)的滑动窗口解法
