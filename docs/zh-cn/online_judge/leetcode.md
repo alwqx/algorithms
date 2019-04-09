@@ -32,3 +32,9 @@
 [无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/description/)
 
 自己想到了暴力解法，参考题解理解O(n)的滑动窗口解法
+
+### 5
+[最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring)
+
+暴力解法O(n*n*n)，超时
+看题解用的中心发散算法。
