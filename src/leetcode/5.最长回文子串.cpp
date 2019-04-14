@@ -33,7 +33,7 @@
 
 using namespace std;
 
-/*
+
 // abbd abc aabbdd
 bool isHuiwen(string s, int low, int high) {
     int i=low, j=high;
@@ -65,54 +65,9 @@ public:
 
         return s.substr(ri, ret);
     }
-};*/
-
-int m[1000][1000] = {0};
-bool p(string& s, int i, int j) {
-    // cout<<"i is "<<i<<endl<<"j is "<<j<<endl;
-    if(j<i) return false;
-    if(m[i][j] == 1) return true;
-    if(i == j) {
-        m[i][j] = 1;
-        return true;
-    }
-    if(j==i+1) {
-        if(s[i] == s[j]) {
-            m[i][j] = 1;
-            return true;
-        }
-        return false;
-    }
-
-    bool ret = p(s, i+1, j-1) && s[i]==s[j];
-    if(ret) m[i][j] = 1;
-    return ret;
-}
-
-class Solution {
-public:
-    string longestPalindrome(string s) {
-        int i, j, ret = 0;
-        int ri = 0;
-        for(i=0; i<s.size(); i++) {
-            for(j=i; j<s.size(); j++) {
-                if(p(s, i, j)) {
-                    if(ret < j-i+1) {
-                        ret = j-i+1;
-                        ri = i;
-                    }
-                }
-            }
-        }
-        
-        cout<<"ri is "<<ri<<endl<<"ret is "<<ret<<endl;
-        cout<<s.substr(ri, ret)<<endl;
-
-        return s.substr(ri, ret);
-    }
 };
 
-/*
+
 int expandAroundCenter(string s, int left, int right) {
     int L = left, R = right;
     while (L >= 0 && R < s.size() && s[L] == s[R]) {
@@ -122,7 +77,7 @@ int expandAroundCenter(string s, int left, int right) {
     return R - L - 1;
 }
 
-class SolutionV3 {
+class Solution {
 public:
     string longestPalindrome(string s) {
         if(s.size()<=1) return s;
@@ -141,7 +96,7 @@ public:
 
         return s.substr(start, end-start+1);
     }
-};*/
+};
 
 /*
 int main() {
