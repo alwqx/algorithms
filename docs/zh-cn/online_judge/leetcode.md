@@ -128,3 +128,7 @@ Expected
 [盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/description/)
 
 双指针法，从两侧逼近
+
+## 栈
+### 42
+[42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
