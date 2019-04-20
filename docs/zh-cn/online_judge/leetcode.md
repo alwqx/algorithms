@@ -1,5 +1,28 @@
 # LeetCode
 
+## 栈
+### 42
+[42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
+
+### 71
+[简化路径](https://leetcode-cn.com/problems/simplify-path/description/)
+
+## 堆
+### 23
+[合并K个排序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/description/)
+
+## 贪心
+
+## 排序
+
+## 树
+
+## 图
+
+## 动态规划
+
+## 分治
+
 ## Easy
 ### 14
 [最长公共前缀](https://leetcode-cn.com/problems/longest-common-prefix/description/)
@@ -128,7 +151,3 @@ Expected
 [盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/description/)
 
 双指针法，从两侧逼近
-
-## 栈
-### 42
-[42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
