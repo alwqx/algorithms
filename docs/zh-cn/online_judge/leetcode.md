@@ -16,6 +16,8 @@
 ## 排序
 
 ## 树
+### 94
+[二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
 
 ## 图
 
@@ -151,3 +153,78 @@ Expected
 [盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/description/)
 
 双指针法，从两侧逼近
+
+### 110
+[平衡二叉树](https://leetcode-cn.com/problems/balanced-binary-tree/submissions/)
+
+top 10%的解法很快，要理解
+
+### 111
+[二叉树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/)
+
+这题解法上有语言上的陷阱，**队列qt在for循环中是不断变化的，不能在for()中取q.size()**，会的到意外的结果。
+```cpp
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(!root) return 0;
+        
+        bool stop = false;
+        int i, minLen = 0;
+        queue<TreeNode*> qt;
+        qt.push(root);
+        TreeNode *tmp;
+
+        while(!qt.empty() && !stop) {
+            minLen++;
+            // qLen = qt.size();
+            for(i=0; i<qt.size(); i++) {
+                tmp = qt.front();
+                qt.pop();
+
+                if(tmp->left==NULL && tmp->right==NULL) {stop=true; break;}
+                if(tmp->left) qt.push(tmp->left);
+                if(tmp->right) qt.push(tmp->right);
+            }
+        }
+
+        return minLen;
+    }
+};
+```
+
+### 112
+[路径总和](https://leetcode-cn.com/problems/path-sum/)
+
+递归解法理解不深入
+
+### 118
+[杨辉三角](https://leetcode-cn.com/problems/pascals-triangle)
+
+杨辉三角快速求法。
+
+### 119
+[杨辉三角 II](https://leetcode-cn.com/problems/pascals-triangle-ii/)
+
+利用题目的特点和组合数计算i+1与i的关系快速计算
+
+### 121 122
+[买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
+[买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
+
+### 141
+第一次见这种题目
+[环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
+
+### 168
+[Excel表列名称](https://leetcode-cn.com/problems/excel-sheet-column-title/)
+
+为什么减1
+
+### 268
+[缺失数字](https://leetcode-cn.com/problems/missing-number/)
+
+解法比较多，要拓宽思路
+
+### 448
+[找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/)
