@@ -1,5 +1,14 @@
 # LeetCode
 
+## 思路总结
+1. 有些题目虽然描述起来让人觉得很难，但是看到问题的本质后就不难了，如561
+
+### 数组
+对于数组，常用的方法有：
+1. 排序
+2. 双指针
+3. 使用map和set等
+
 ## 栈
 ### 42
 [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
@@ -228,3 +237,12 @@ public:
 
 ### 448
 [找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/)
+
+### 532
+数组中的K-diff数对
+
+### 566
+重塑矩阵
+
+### 605
+对边界问题的巧妙使用
