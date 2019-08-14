@@ -1,7 +1,6 @@
 - [首页](/)
 - [基础](/zh-cn/intro)
-- 线性表
-    - [简介](zh-cn/linear_table/intro)
+- [线性表](zh-cn/linear_table/intro)
     - [数组](zh-cn/linear_table/array)
     - [链表](zh-cn/linear_table/list)
 - [栈](zh-cn/stack)
