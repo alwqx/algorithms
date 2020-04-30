@@ -8,7 +8,7 @@
 - [codeforces](http://codeforces.com/)
 
 ## 基础知识
-### int类型
+1. int类型
 - 32bit (-2^31~2^31-1)
 - 64bit (-2^63~2^63-1)
 
