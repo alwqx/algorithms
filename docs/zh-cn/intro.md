@@ -40,6 +40,8 @@ Abstract Data Type(ADT)，是指一个数学模型以及定义在该数学模型
 >通过时间复杂度和空间复杂度来度量。
 
 ### 时间复杂度
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Comparison_computational_complexity.svg/1024px-Comparison_computational_complexity.svg.png)
+
 1. 指令的`频度`指指令在算法中被执行的次数。
 2. 算法所有指令频度之和记做`T(n)`，它是算法问题规模n的函数
 3. 时间复杂度`主要分析T(n)的数量级`，用`O(n)`精确表示。
