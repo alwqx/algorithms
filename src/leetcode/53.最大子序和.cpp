@@ -44,4 +44,22 @@ public:
     }
 };
 
+/*
+思维方式有点绕，自己要弄清楚
+*/
+class SolutionV1 {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int i, sum, res, len=nums.size();
+        if(len == 0) return 0;
+        res = sum = nums[0];
+
+        for(i=1; i<len; i++) {
+            sum = max(nums[i], sum+nums[i]);
+            res = max(res, sum);
+        }
+
+        return res;
+    }
+};
  

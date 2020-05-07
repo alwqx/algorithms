@@ -87,6 +87,54 @@ ListNode* create() {
     return t->next;
 }
 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if(l1 == NULL) return l2;
+        if(l2 == NULL) return l1;
+        int s, great = 0;
+        ListNode *cur, *ph = new ListNode(0);
+        cur = ph;
+
+        while(l1 && l2) {
+            s = l1->val + l2->val + great;
+            great = s/10;
+            ph->next = new ListNode(s%10);
+            ph = ph->next;
+            l1 = l1->next;
+            l2 = l2->next;
+        }
+
+        while(l1) {
+            s = l1->val + great;
+            great = s/10;
+            ph->next = new ListNode(s%10);
+            ph = ph->next;
+            l1 = l1->next;
+        }
+
+        while(l2) {
+            s = l2->val + great;
+            great = s/10;
+            ph->next = new ListNode(s%10);
+            ph = ph->next;
+            l2 = l2->next;
+        }
+
+        if(great!=0) ph->next = new ListNode(great);
+        return cur->next;
+        
+    }
+};
+
 int main() {
     ListNode* L1 = create();
     ListNode* L2 = create();
