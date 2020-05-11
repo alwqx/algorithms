@@ -7,7 +7,21 @@
 - 查找
 - 压缩
 
-1. 如何分割字符串 C++
+## 如何分割字符串 C++
+1. 可以配合stringstream和getline
+```cpp
+vector<string> main() {
+    string path  ="abc/adsfa/./../daf/";
+    stringstream is(path);
+    string tmp;
+    vector<string> res;
+    while(getline(is, tmp, '/')) {
+        res.emplace_back(tmp);
+    }
+
+    return res;
+}
+```
 
 ## 999. 可以被一步捕获的棋子数
 1. 两层for循环终止时不能只在内部for循环加break，外部也要加。
@@ -152,6 +166,29 @@ public:
         }
 
         return dummy;
+    }
+};
+```
+
+## 71. 简化路径
+题目要求简化Unix中的路径，暴力法/常规法会比较繁琐，这里[看到一个大佬的解法](https://leetcode-cn.com/problems/simplify-path/solution/cli-yong-stringstreamhe-getlinefen-ge-zi-fu-chuan-/)，非常简洁优雅，整理出来一起学习。
+
+```cpp
+class Solution {
+public:
+    string simplifyPath(string path) {
+        stringstream is(path);
+        string res, tmp;
+        list<string> strs;
+        while(getline(is, tmp, '/')) {
+            if(tmp=="" || tmp==".") continue;
+            else if(tmp==".." && !strs.empty()) strs.pop_back();
+            else if(tmp != "..") strs.push_back(tmp);
+        }
+
+        for(string str:strs) res += "/"+str;
+        if(res.empty()) return "/";
+        return res;
     }
 };
 ```
