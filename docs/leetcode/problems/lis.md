@@ -189,5 +189,49 @@ public:
 
 一维w升序后，求LIS w就不再考虑了，但是比较h时，如果w相等，h升序，会重复计算，所以对h降序。
 
-# TODOs
-- [673. 最长递增子序列的个数](https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/)
+# 673. 最长递增子序列的个数
+## 300DP改进
+这道题目的思路应该和`300 最长上升子序列`的思路类似，只是需要结合题目进行改进。在使用dp数组表示`以nums[i]为结尾的上升子序列的最大长度`基础上，引入cnt数组，`cnt[i]表示以nums[i]为结尾的最大上升子序列的个数`，在动态规划的过程中不断更新dp和cnt。
+
+cnt和dp的默认值都是1，
+
+```cpp
+class Solution {
+public:
+    int findNumberOfLIS(vector<int>& nums) {
+        int size = nums.size();
+        if(size < 2) return size;
+
+        int i, j;
+        vector<int> dp(size, 1);
+        vector<int> cnt(size, 1);
+        for(j=0; j<size; j++) {
+            for(i=0; i<j; i++) {
+                // 当j>i且nums[j]>nums[i]，把nums[j]附加到以nums[i]为结尾的最大子序列的后面，形成新的子序列。
+                if(nums[j] > nums[i]) {
+                    // 如果j的序列长度比i小，则j的长度为i加一，且j的数量等于i的数量
+                    // 取=是因为初始化时大家是相等的，要考虑这个情况
+                    if(dp[j] <= dp[i]) {
+                        dp[j] = dp[i] + 1;
+                        cnt[j] = cnt[i];
+                    // 如果j的长度和新的长度相等，则加到后面
+                    // 这块感觉还不是很理解...
+                    } else if(dp[i]+1 == dp[j]) cnt[j] += cnt[i];
+                }
+            }
+        }
+
+        int mlen = *max_element(dp.begin(), dp.end());
+        int ans = 0;
+        for(i=0; i<size; i++) {
+            if(dp[i] == mlen) ans += cnt[i];
+        }
+
+        return ans;
+    }
+}
+
+```
+
+## 线段树
+TODOs
