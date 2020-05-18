@@ -101,7 +101,7 @@ public:
 ```
 
 UF放在类中专门实现
-```class
+```cpp
 class UF {
 private:
     vector<int> size;
