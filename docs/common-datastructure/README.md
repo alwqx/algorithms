@@ -12,3 +12,7 @@
   - 最短路径
   - 拓扑排序
 - 哈希表
+
+
+- [快排、归并排序](/common-datastructure/sort)
+- [并查集](/common-datastructure/union-find)

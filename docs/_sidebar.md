@@ -3,6 +3,7 @@
 - [基础算法思想](/common-thinking)
 - [基础数据结构](/common-datastructure/)
     - [排序](/common-datastructure/sort)
+    - [并查集](/common-datastructure/union-find)
 - [LeetCode](/leetcode/)
     - [经典题解](/leetcode/problems)
 - [考研算法](/cskaoyan/)
