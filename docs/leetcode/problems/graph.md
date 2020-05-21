@@ -241,3 +241,87 @@ public:
     }
 };
 ```
+
+## 463. 岛屿的周长
+一开始没有透彻理解，`找规律的思路`，假设岛屿数量为n，则周长为n*2+2，其实这个思路是错误的，只能通过50%的案例。
+
+后来发现思路不对，就以dfs入手，当前节点为1(岛屿)，总边长是否增加取决于四周的情况：
+1. 四周有越界，则加1
+2. 四周没越界，且为0，则加1
+3. 然后递归四周，核心代码如下
+
+```cpp
+void dfs(vector<vector<int>>& grid, vector<vector<bool>>& visited, int x, int y) {
+    if(x<0 || x==row || y<0 || y==col || visited[x][y] || grid[x][y]==0) return;
+    
+    int i, nx, ny;
+    visited[x][y] = true;
+
+    // calc bian
+    for(i=0; i<4; i++) {
+        nx = x + dir[i][0];
+        ny = y + dir[i][1];
+        if(nx<0 || nx>=row || ny<0 || ny>=col) ans++;
+        else if(grid[nx][ny] == 0) ans++;
+    }
+
+    // digui
+    for(i=0; i<4; i++) {
+        nx = x + dir[i][0];
+        ny = y + dir[i][1];
+        dfs(grid, visited, nx, ny);
+    }
+}
+```
+
+然后递归。
+```cpp
+class Solution {
+private:
+    int row, col, ans=0;
+    int dir[4][2] = {{1,0},{-1,0},{0,1},{0,-1}};
+public:
+    int islandPerimeter(vector<vector<int>>& grid) {
+        row = grid.size();
+        if(row == 0) return 0;
+        col = grid[0].size();
+        if(col == 0) return 0;
+
+        vector<vector<bool>> visited(row, vector<bool>(col, false));
+
+        int i, j, k;
+        for(i=0; i<row; i++) {
+            for(j=0; j<col; j++) {
+                if(grid[i][j]==1 && !visited[i][j]) {
+                    dfs(grid, visited, i, j);
+                    break;
+                }
+            }
+        }
+
+        return ans;
+    }
+
+    void dfs(vector<vector<int>>& grid, vector<vector<bool>>& visited, int x, int y) {
+        if(x<0 || x==row || y<0 || y==col || visited[x][y] || grid[x][y]==0) return;
+        
+        int i, nx, ny;
+        visited[x][y] = true;
+
+        // calc bian
+        for(i=0; i<4; i++) {
+            nx = x + dir[i][0];
+            ny = y + dir[i][1];
+            if(nx<0 || nx>=row || ny<0 || ny>=col) ans++;
+            else if(grid[nx][ny] == 0) ans++;
+        }
+
+        // digui
+        for(i=0; i<4; i++) {
+            nx = x + dir[i][0];
+            ny = y + dir[i][1];
+            dfs(grid, visited, nx, ny);
+        }
+    }
+};
+```
