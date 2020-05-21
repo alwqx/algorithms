@@ -6,3 +6,4 @@
 - [674 300 354. LIS问题](/leetcode/problems/lis)
 - [547. 朋友圈](/leetcode/problems/547-friend-circles)
 - [图问题汇总：遍历和回溯、DFS和BFS](/leetcode/problems/graph)
+- [剑指Offer-面试题38. 字符串的排列](/leetcode/problems/offer-38-string-pailie)
