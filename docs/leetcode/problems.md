@@ -8,3 +8,5 @@
 - [图问题汇总：遍历和回溯、DFS和BFS](/leetcode/problems/graph)
 - [剑指Offer-面试题38. 字符串的排列](/leetcode/problems/offer-38-string-pailie)
 - [剑指Offer-面试题46. 把数字翻译成字符串](/leetcode/problems/offer-46-translate-num-to-str)
+- [面试题43. 1~n整数中1出现的次数](/leetcode/problems/offer-43-calculate-one)
+- [面试题33. 二叉搜索树的后序遍历序列](/leetcode/problems/offer-33)
