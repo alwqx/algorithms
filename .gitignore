@@ -9,3 +9,4 @@ a.out
 *.gch
 .vscode/
 ecnutest
+main.cpp

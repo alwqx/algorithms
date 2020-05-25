@@ -17,7 +17,7 @@ int partition(vector<int>& nums, int low, int high) {
 }
 ```
 
-两端逼近
+两端逼近，参考[最常用的排序——快速排序](https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html)中的图解
 ```cpp
 int partition(vector<int>& nums, int low, int right) {
     int i=low, j=high+1, pivot=nums[low];
@@ -80,7 +80,7 @@ void shullfle(vector<int>& nums) {
     }
 }
 
-int select(vector<int>&nums, int k) {
+int select(vector<int>& nums, int k) {
     if(k<1 || k>nums.size()) return -1;
     k--;
     // shullfle(nums);
@@ -123,6 +123,81 @@ int main() {
     printf("%d\n", select(nums, 3));
     printf("%d\n", select(nums, 4));
 
+    return 0;
+}
+```
+
+# 归并排序
+归并排序的采用**分-合**的思想，先把数组从中间分成两部分，然后合并到一起的时候进行排序。
+
+代码如下：
+```cpp
+class Merge {
+private:
+    vector<int> aux;
+public:
+    void merge(vector<int>& nums, int low, int mid, int high) {
+        int i, j, k;
+        for(i=low; i<=high; i++) aux[i] = nums[i];
+        
+        i=low, j=mid+1;
+        for(k=low; k<=high; k++) {
+            if(i>mid) nums[k] = aux[j++];
+            else if(j>high) nums[k] = aux[i++];
+            else if(aux[i] < aux[j]) nums[k] = aux[i++];
+            else nums[k] = aux[j++];
+        }
+    }
+
+    void helper(vector<int>& nums, int low, int high) {
+        if(low >= high) return;
+
+        int mid = (low+high)/2;
+        helper(nums, low, mid);
+        helper(nums, mid+1, high);
+        merge(nums, low, mid, high);
+    }
+
+    void sort(vector<int>& nums) {
+        int size = nums.size();
+        aux = vector<int>(size, 0);
+        helper(nums, 0, size-1);
+    }
+
+    void shullfle(vector<int>& nums) {
+        int i, j;
+        for(j=nums.size()-1; j>=0; j--) {
+            i = rand()%(j+1);
+            swap(nums[i], nums[j]);
+        }
+    }
+
+    void show(vector<int>& nums) {
+        int i, size=nums.size();
+        for(i=0; i<size; i++) {
+            printf("%d", nums[i]);
+            if(i != size-1) printf("-");
+            else printf("\n");
+        }
+    }
+};
+
+int main() {
+    vector<int> nums = {5,8,1,4,2,9,70,4};
+
+    Quick quick;
+    quick.show(nums);
+    quick.sort(nums, 0, nums.size()-1);
+    quick.show(nums);
+    quick.shullfle(nums);
+    quick.show(nums);
+
+    Merge merge;
+    merge.show(nums);
+    merge.sort(nums);
+    merge.show(nums);
+
+    printf("select:%d\n", quick.select(nums, 2));
     return 0;
 }
 ```
