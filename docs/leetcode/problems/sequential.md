@@ -82,3 +82,22 @@ public:
     }
 }
 ```
+
+该方法参考[图解 滑动窗口（双指针）及优化方法](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/tu-jie-hua-dong-chuang-kou-shuang-zhi-zhen-shi-xia/)的题解。通过滑动窗口的思想来做。注意，引入字典后空间复杂度依然是O(1)，因为计算机中的字符数有限，ascii有128个，所以m存储的字符不超过128，空间复杂度O(1)。
+
+```cpp
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int left=0, right=0, ans=0;
+        map<char, int> m;
+        while(right < s.size()) {
+            if(m.find(s[right]) != m.end()) left = max(left, m[s[right]]+1);
+            m[s[right++]] = right;
+            ans = max(ans, right-left);
+        }
+
+        return ans;
+    }
+}
+```
