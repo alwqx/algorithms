@@ -16,3 +16,7 @@
 - [面试题33. 二叉搜索树的后序遍历序列](/leetcode/problems/offer-33)
 - [序列问题](/leetcode/problems/sequential)
 - [面试题60. n个骰子的点数](/leetcode/problems/offer-60)
+
+## 数组
+1. [16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/)：暴力法，或者排序后利用二分查找
+2. [31. 下一个排列](https://leetcode-cn.com/problems/next-permutation/)：起初被题目难倒了，不知道如何入手。后来看解析发现可以用分割法。把问题分成两部分，首先是全降序的，重新排序返回即可；然后非降序里面，从后往前找第一个不递增的元素a，和后面的比a大的最小数b交换，然后从a后面反转数组。
