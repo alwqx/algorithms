@@ -20,3 +20,4 @@
 ## 数组
 1. [16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/)：暴力法，或者排序后利用二分查找
 2. [31. 下一个排列](https://leetcode-cn.com/problems/next-permutation/)：起初被题目难倒了，不知道如何入手。后来看解析发现可以用分割法。把问题分成两部分，首先是全降序的，重新排序返回即可；然后非降序里面，从后往前找第一个不递增的元素a，和后面的比a大的最小数b交换，然后从a后面反转数组。
+3. [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)：二分查找中确定重复元素的左右边界

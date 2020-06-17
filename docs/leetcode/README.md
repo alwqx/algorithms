@@ -70,6 +70,13 @@
 ### 下一阶段任务
 1. 对算法思想进行分类，针对应刷题巩固
 
+## 算法面试
+编程面试，只有高频知识点，没有所谓的高频题。
+
+时间不够没必要面面俱到，可以先掌握高频知识点。
+
 ## 参考
 - [labuladong-fucking-algorithm](https://github.com/labuladong/fucking-algorithm)
 - leetcode题解
+- [别再埋头刷LeetCode之：北美算法面试的题目分类，按类型和规律刷题，事半功倍](https://zhuanlan.zhihu.com/p/89392459)
+- [Grokking the System Design Interview](https://www.educative.io/courses/grokking-the-system-design-interview)
