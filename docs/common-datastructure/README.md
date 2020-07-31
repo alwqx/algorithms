@@ -16,3 +16,4 @@
 
 - [快排、归并排序](/common-datastructure/sort)
 - [并查集](/common-datastructure/union-find)
+- [二分查找](/common-datastructure/binary-search)
