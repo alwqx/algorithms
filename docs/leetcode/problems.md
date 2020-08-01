@@ -24,3 +24,7 @@
 4. [73. 矩阵置零](/leetcode/problems/73)
 5. [74. 搜索二维矩阵](/leetcode/problems/74)
 6. [75. 颜色分类](/leetcode/problems/75)
+7. [80. 删除排序数组中的重复项 II](/leetcode/problems/80)
+8. [81. 搜索旋转排序数组 II](/leetcode/problems/81)90. 子集 II
+8. [90. 子集 II](/leetcode/problems/90)
+8. [152. 乘积最大子数组](/leetcode/problems/152)
