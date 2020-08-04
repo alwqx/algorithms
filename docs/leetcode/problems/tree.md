@@ -126,9 +126,9 @@ public:
 # 124. 二叉树中的最大路径和
 自己想到了可能用dfs做，但是没有具体思路。看了官网题解。
 
-**重点是理解题目的含义**，题干要求计算的最大路径和，根据递归的思想，只考虑`当前节点`、`左子树`、`右子树`。函数dfs(node)计算当前节点的最大路径和，分别就出左、右子树的最大路径和记为left、right，然后结合node的值更新结果ans。
+**重点是理解题目的含义**，**题干要求计算的最大路径和，不是指从根节点到叶子节点的一条最大路径和，而是任意节点到任意节点**。根据递归的思想，只考虑`当前节点`、`左子树`、`右子树`，先求出当前节点的最大贡献值，然后在递归步骤中更新结果。函数dfs(node)计算当前节点的最大路径和，分别求出左、右子树的最大路径和记为left、right，然后结合node的值更新结果ans。
 
-最后返回node->val + max(left, right)，是因为dfs返回的是路径和，不能返回node->val+left+right(这是当前阶段的最大值，不能和上层节点构成路径)。
+最后返回node->val + max(left, right)，是因为dfs返回的是节点最大贡献值，不能返回node->val+left+right(这是当前阶段的最大值，不能和上层节点构成路径)。
 
 ```cpp
 class Solution {
@@ -138,6 +138,7 @@ public:
     int dfs(TreeNode *node) {
         if(!node) return 0;
 
+        // 负值用0代替，相当于没有考虑这条路径
         int left = max(dfs(node->left), 0);
         int right = max(dfs(node->right), 0);
 
@@ -152,6 +153,56 @@ public:
         return ans;
     }
 }
+```
+
+# 113. 路径总和 II
+给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。
+
+有思路，但是未必能写出来，多练练：
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<int> cur;
+
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        dfs(root, sum);
+        return ans;
+    }
+
+    void dfs(TreeNode* node, int sum) {
+        if(!node) return;
+        if(!node->left && !node->right) {
+            if(node->val == sum) {
+                cur.push_back(node->val);
+                ans.push_back(cur);
+                cur.pop_back();
+            }
+            return;
+        }
+
+        if(node->left) {
+            cur.push_back(node->val);
+            dfs(node->left, sum-node->val);
+            cur.pop_back();
+        }
+
+        if(node->right) {
+            cur.push_back(node->val);
+            dfs(node->right, sum-node->val);
+            cur.pop_back();
+        }
+    }
+};
 ```
 
 # 230. 二叉搜索树中第K小的元素
@@ -221,7 +272,7 @@ LeetCode上的105和106都是这个问题:
 2. 在算法思路中，根节点的位置pos如何变化
 
 ## 根据先序和中序
-解决代码：
+先序遍历的代码思路是先找到根节点，然后找到左右子树，接着递归求左右子树的根节点。解决代码：
 ```cpp
 /**
  * Definition for a binary tree node.
@@ -240,6 +291,8 @@ public:
         int ihead=left;
         while(ihead<=right && preorder[pos]!=inorder[ihead]) ihead++;
 
+        // ihead是根节点的位置，在上面TreeNode *node = new TreeNode(preorder[pos])中已经被使用了，
+        // 所以这里ihead不会参与到递归的范围中
         if(left <= ihead-1) node->left = helper(preorder, ++pos, inorder, left, ihead-1);
         if(ihead+1 <= right) node->right = helper(preorder, ++pos, inorder, ihead+1, right);
 
@@ -254,12 +307,11 @@ public:
 ```
 
 上面的代码有以下注意点：
-1. pos是`引用传递`，node->left=helper(...)调用过程中会不断递归把左子树，因此先序遍历中的根节点、子问题中的根节点都会被遍历到，这样pos就需要跟着递归而增加，因此是引用传递
-2. node->left在node->right的前面，这是由于先序、中序遍历节点中顺序特点决定的。先序中对应这根节点，然后通过根节点把中序分割成左右两个子树。**中序遍历中左->中->右的遍历特点决定分割的左子树在前面，右子树在后面**，所以递归中先求node->left，然后是node->right。
+1. pos是`引用传递`，node->left=helper(...)调用过程中会不断递归左子树，因此先序遍历中的根节点、子问题中的根节点都会被遍历到，这样pos就需要跟着递归而增加，因此是引用传递
+2. node->left在node->right的前面，这是由于先序、中序遍历节点中顺序特点决定的。先序中对应着根节点，然后通过根节点把中序分割成左右两个子树。**中序遍历中左->中->右的遍历特点决定分割的左子树在前面，右子树在后面**，所以递归中先求node->left，然后是node->right。
 3. 递归前的`if(left <= ihead-1)`和`if(ihead+1 <= right)`是否可以去掉？不能去掉，`TreeNode *node = new TreeNode(preorder[pos]);`中node的左右子树本身是NULL，在下面递归中如果子树是空，就不需要递归，**避免不必要的++pos运算**，这样会扰乱pos的值。
 
-
-## 根据后序和中序
+## 根据中序和后序
 解决代码：
 ```cpp
 /**
