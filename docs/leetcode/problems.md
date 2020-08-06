@@ -6,6 +6,7 @@
 最后还是决定在理解别人题解的基础上整理自己的思路，自己写出来的再不好也是自己的理解过程，有参考意义，而且也会慢慢内化成自己的。
 
 - [剑指Offer系列](/leetcode/problems/offer_sword)
+- [数组系列](/leetcode/problems/array)
 - [树系列](/leetcode/problems/tree)
 - [链表系列](/leetcode/problems/linked_list)
 - [动态规划系列](/leetcode/problems/dp)
