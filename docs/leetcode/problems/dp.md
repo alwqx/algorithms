@@ -76,3 +76,128 @@ public:
     }
 };
 ```
+
+# [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)
+官方题解看思路能明白，但是给的代码感觉和思路不对应，有些细节1小时内看不懂，就参考了其他人的。
+
+## 贪心+dfs
+参考[ikaruga](https://leetcode-cn.com/problems/coin-change/solution/322-by-ikaruga/)的题解，代码简炼，很好理解。
+
+先将coins从大到小排序，先尽可能多地选面值大的硬币，判断是否能凑齐，不够的再选小的配，直到选完所有的。
+```cpp
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        if(amount == 0) return 0;
+        int ans = INT_MAX;
+        sort(coins.rbegin(), coins.rend());
+        dfs(coins, amount, 0, 0, ans);
+        return ans==INT_MAX?-1:ans;
+    }
+
+    void dfs(vector<int>& coins, int amount, int pos, int cnt, int& ans) {
+        /*
+        if(pos == coins.size()) {
+            if(amount == 0) {
+                ans = min(ans, cnt);
+            }
+            return;
+        }
+        */
+        // 这里两个if判断次序不能颠倒，否则结果不同
+        // 如果放在后面，根据实际代码执行过程，pos == coins.size()时需要加上判断
+        // 如上面代码注释所示，下面的代码对两种情况进行汇总得到的
+        if(amount == 0) {
+            ans = min(ans, cnt);
+            return;
+        }
+        if(pos == coins.size()) return;
+
+        for(int k=amount/coins[pos]; k>=0 && cnt+k<ans; k--) {
+            dfs(coins, amount-k*coins[pos], pos+1, cnt+k, ans);
+        }
+    }
+};
+```
+
+## 自上而下迭代
+[sugar](https://leetcode-cn.com/problems/coin-change/solution/javadi-gui-ji-yi-hua-sou-suo-dong-tai-gui-hua-by-s/)的思路和官方思路一致，但是更好理解。
+
+考虑最优子结构和递推公式:
+```shell
+F(s) = F(s-c)+1;
+F(s) = 0 if s=0
+F(s) = -1 if s<0 || coins empty
+```
+
+我们用dp数组存储最小硬币数，dp[amount-1](**下表从0开始，所以-1**)，表示amount的最少硬币数。amount的结果有`amount-c`中的最小值决定，c为硬币。
+```cpp
+class Solution {
+public:
+    vector<int> dp;
+    int coinChange(vector<int>& coins, int amount) {
+        if(coins.empty()) return -1;
+        dp.resize(amount);
+        return dfs(coins, amount);
+    }
+
+    int dfs(vector<int>& coins, int amount) {
+        if(amount == 0) return 0;
+        if(amount < 0) return -1;
+        if(dp[amount-1] != 0) return dp[amount-1];
+
+        int ans = INT_MAX;
+        for(int c:coins) {
+            int res = dfs(coins, amount-c);
+            if(res!=-1 && res<ans) ans = res+1;
+        }
+        dp[amount-1] = ans==INT_MAX?-1:ans;
+        return dp[amount-1];
+    }
+};
+```
+
+## 自下而上迭代
+这里的代码很有意思，未注释的部分是原来的代码，我觉得最后返回判断太多，就用了注释的部分，但是coins=[2] amount=3无法通过测试，我自己根据样例推到了过程，发现如果在迭代过程中就对dp赋值-1，则后面`dp[i-c]<ans`有可能覆盖掉结果，dp[1]=-1,dp[3]结果应该是-1，但是因为dp[1]<INT_MAX，所以dp[3]会变为0，前后判断的不一致了，不能在迭代过程中将INT_MAX替换为-1。
+```cpp
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        if(coins.empty()) return -1;
+        vector<int> dp(amount+1, 0);
+
+        for(int i=1; i<=amount; i++) {
+            int ans = INT_MAX;
+            for(int c:coins) {
+                if(i-c>=0 && dp[i-c]<ans) ans = dp[i-c]+1;
+            }
+            // dp[i] = ans==INT_MAX?-1:ans;
+            dp[i] = ans;
+        }
+
+        // return dp[amount];
+        return dp[amount]==INT_MAX?-1:dp[amount];
+    }
+};
+```
+
+# [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/)
+递归法超时，尝试其它方法。
+
+```cpp
+class Solution {
+public:
+    int numDecodings(string s) {
+        if(s.empty()) return 0;
+        if(s.size() == 1) return s=="0"?0:1;
+
+        if(s[0] == '0') return 0;
+        if(s[1] == '0') {
+            if(s[0]=='1' || s[0]=='2') return numDecodings(s.substr(2));
+            return 0;
+        }
+        if(s.substr(0, 2)>"26") return numDecodings(s.substr(1));
+        return numDecodings(s.substr(1))+numDecodings(s.substr(2));
+    }
+};
+```
