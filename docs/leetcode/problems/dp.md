@@ -1,4 +1,5 @@
 # 动态规划
+[leetcode dp tags](https://leetcode-cn.com/tag/dynamic-programming/)
 
 # 5. 最长回文子串
 
@@ -130,7 +131,7 @@ F(s) = 0 if s=0
 F(s) = -1 if s<0 || coins empty
 ```
 
-我们用dp数组存储最小硬币数，dp[amount-1](**下表从0开始，所以-1**)，表示amount的最少硬币数。amount的结果有`amount-c`中的最小值决定，c为硬币。
+我们用dp数组存储最小硬币数，dp[amount-1](**下表从0开始，所以-1**)，表示amount的最少硬币数。amount的结果由`amount-c`中的最小值决定，c为硬币。
 ```cpp
 class Solution {
 public:
