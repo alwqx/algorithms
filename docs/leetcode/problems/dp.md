@@ -233,3 +233,40 @@ public:
     }
 };
 ```
+
+# [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/)
+
+# 买卖股票系列
+## [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
+自己能想到的方法是暴力法，套两层循环做，时间复杂度是O(n*n)，下面O(n)方法中，使用minp记录当天之前的最小值，然后假设当天卖能赚多少钱，一次比较得出最大值。
+```cpp
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int profile=0, minp=INT_MAX;
+        for(int p:prices) {
+            if(p < minp) minp = p;
+            else if(profile < (p-minp))
+                profile = p-minp;
+        }
+
+        return profile;
+    }
+};
+
+class SolutionV1 {
+public:
+    int maxProfit(vector<int>& prices) {
+        int i, j, res = 0;
+        if(prices.size() <= 1) return res;
+        
+        for(i=0; i<prices.size()-1; i++) {
+            for(j=i+1; j<prices.size(); j++)
+                if(res<=prices[j]-prices[i])
+                    res = prices[j]-prices[i];
+        }
+
+        return res;
+    }
+};
+```
