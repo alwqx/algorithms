@@ -270,3 +270,67 @@ public:
     }
 };
 ```
+
+## [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
+>可以对此交易
+
+下面的代码本质上思路是一致的，V1里面的思路是找波峰和波谷。V0的代码中，如果价格递增，后面的值会覆盖前面的值，从而达到波峰的目的。
+```cpp
+class SolutionV0 {
+public:
+    int maxProfit(vector<int>& prices) {
+        if(prices.size() <= 1) return 0;
+        int i, ans=0;
+        for(i=1; i<prices.size(); i++) {
+            if(prices[i] > prices[i-1])
+                ans += prices[i]-prices[i-1];
+        }
+
+        return ans;
+    }
+};
+
+class SolutionV1 {
+public:
+    int maxProfit(vector<int>& prices) {
+        int ans=0, size=prices.size();
+        if(size <= 1) return ans;
+
+        int i=0, low=prices[0], high=prices[0];
+        while(i < size-1) {
+            while(i<size-1 && prices[i] >= prices[i+1]) i++;
+            low = prices[i];
+            while(i<size-1 && prices[i] <= prices[i+1]) i++;
+            high = prices[i];
+
+            ans += high-low;
+        }
+
+        return ans;
+    }
+};
+```
+
+## [123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)
+>值允许交易两次
+
+参考[Clark](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/solution/xiao-bai-tong-su-yi-dong-de-jie-fa-by-clark-12/)题解。
+
+```cpp
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int b1=INT_MAX, b2=INT_MAX;
+        int p1=0, p2=0;
+
+        for(int p:prices) {
+            b1 = min(b1, p);
+            p1 = max(p1, p-b1);
+            b2 = min(b2, p-p1);
+            p2 = max(p2, p-b2);
+        }
+
+        return p2;
+    }
+};
+```
