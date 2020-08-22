@@ -1,6 +1,8 @@
 # 快速排序
 
-快排的核心思路/方法是**分区**，分区函数决定最终效果的好坏。下面介绍集中分区方法，自己只需**深入理解记忆其中一个，降低负担**。
+快排的核心思路/方法是**分区**，每执行一次分区函数，排序数组就有一个元素被放在了正确的位置，返回该位置。
+
+分区函数决定最终效果的好坏。下面介绍集中分区方法，自己只需**深入理解记忆其中一个，降低负担**。
 
 ## 默认左端为枢纽
 ```cpp
@@ -16,6 +18,10 @@ int partition(vector<int>& nums, int low, int high) {
     return pos;
 }
 ```
+这个方法有个缺陷，在数组是降序排列等特殊情况下，复杂度降为O(n^2)。我们引入舍伍德概率算法，使得排序的时间复杂度和输入无关。
+
+使用概率随机在[low, high]选择一个位置和low交换，然后再进行分区。
+
 
 两端逼近，参考[最常用的排序——快速排序](https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html)中的图解
 ```cpp
@@ -32,6 +38,7 @@ int partition(vector<int>& nums, int low, int right) {
     return j;
 }
 ```
+
 
 ## 完整代码
 ```cpp
@@ -201,3 +208,6 @@ int main() {
     return 0;
 }
 ```
+
+## 参考
+- [快速排序的4种优化](https://blog.csdn.net/qq_38289815/article/details/82718428)
