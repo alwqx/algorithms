@@ -2,7 +2,6 @@
 [leetcode dp tags](https://leetcode-cn.com/tag/dynamic-programming/)
 
 # 5. 最长回文子串
-
 根据[官方题解](https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/)，这个问题有三种思路，第三种Manacher算法自己不是很理解，先不看了。
 
 ## 动态规划
@@ -22,6 +21,23 @@ public:
 
         int i, j, start=0;
         // 从0到s.size()之间进行判断，start是判断的起始点
+        // 这里的循环判断写法是相当精妙了，以s="abbd"为例，判断过程一次为：
+        // start = 0.    i   j
+        //               0   0
+        //               1   1
+        //               2   2
+        //               3   3
+        // start = 1.    i   j
+        //               0   1
+        //               1   2
+        //               2   3
+        // start = 2.    i   j
+        //               0   2
+        //               1   3
+        // start = 3.    i   j
+        //               0   3
+        //
+        // 不得不佩服，上面的循环写法是怎么想起来的？
         for(start=0; start<size; start++) {
             for(i=0; i+start<size; i++) {
                 // 迭代，i和j才是真正的判断区间
@@ -46,7 +62,7 @@ public:
 ## 中心扩散法
 代码中有个问题要弄清，为什么循环中调用了`t0 = help(s, i, i);`和`t1 = help(s, i, i+1);`两个进行判断？
 
-**因为中心可能是字符，也可能是字符间隙**
+**因为中心可能是字符，也可能是两个相邻字符之间的间隙**
 
 ```cpp
 class Solution {
@@ -77,6 +93,10 @@ public:
     }
 };
 ```
+
+**上面的代码中，为什么`pl = i-(t-1)/2;`括号中是-1呢**？
+
+考虑样例`abbd`，当i=1时，len1=2，这时更新left=i-len1/2导致得到的左边界不对。
 
 # [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)
 官方题解看思路能明白，但是给的代码感觉和思路不对应，有些细节1小时内看不懂，就参考了其他人的。
