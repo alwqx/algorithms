@@ -4,11 +4,47 @@
 这个题目很好，考察了链表和归并排序的思路，也考验编程能力。
 
 链表的赋值、交换操作和数据有很大差异，所以自己起初没有想到合适的解法，下面的代码都是在参考别人思路的基础上完成的。
+```cpp
+
+```
 
 ## 字典
 时间和空间复杂度都是O(n)，然是思路和代码很好理解。
 ```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        if(head==NULL || head->next==NULL) return head;
 
+        map<int, int> m;
+        ListNode* cur = head;
+        while(cur) {
+            m[cur->val]++;
+            cur = cur->next;
+        }
+
+        int i;
+        cur = head;
+        auto it = m.begin();
+        while(it!=m.end()) {
+            for(i=0; i<it->second; i++) {
+                cur->val = it->first;
+                cur = cur->next;
+            }
+            it++;
+        }
+
+        return head;
+    }
+};
 ```
 
 ## 归并排序

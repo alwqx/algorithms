@@ -125,6 +125,17 @@ public:
 }
 ```
 
+```cpp
+class Solution{
+public:
+    TreeNode* bbb(TreeNode *root, TreeNode* p, TreeNode* q) {
+        if(!root || root==p || root==q) return root;
+        TreeNode *left = bbb(root->left, p, q);
+        TreeNode *right = 
+    }
+}
+```
+
 # 124. 二叉树中的最大路径和
 自己想到了可能用dfs做，但是没有具体思路。看了官网题解。
 

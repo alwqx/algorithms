@@ -1,4 +1,7 @@
-# 674. 最长连续递增序列
+# 最长序列问题
+
+
+# [674. 最长连续递增序列](https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/)
 ## 动态规划
 找到状态和状态转移方程dp[i]表示索引为i的元素对应的连续LIS，dp[i+1]的结果为：
 1. dp[i]+1      n[i+1]>n[i]
@@ -83,9 +86,9 @@ public:
 }
 ```
 
-# 300. 最长上升子序列
+# [300. 最长上升子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
 ## DP
-关键在于定义状态和找到状态间的转移方程，我们用dp[i]表示以元素n[i]结尾的的上升子序列的长度
+关键在于定义状态和找到状态间的转移方程，我们用dp[i]表示以元素n[i]结尾的上升子序列的长度
 
 更新dp[i]需要找到`0<=j<i`中所有的n[j]<n[i]中最大的那个dp[j]+1，遍历结束后返回最大的那个数。
 
@@ -156,7 +159,7 @@ public:
 
 上面代码的难点在二分查找中的边界与停止条件，因为要找的数要么和nums[i]相等，要么是第一个大于nums[i]的数，所以对right进行了放大，取end+1，并且每次right=mid。
 
-# 354. 俄罗斯套娃信封问题
+# [354. 俄罗斯套娃信封问题](https://leetcode-cn.com/problems/russian-doll-envelopes/)
 这是二维LIS问题，要转化成一维来做，关键是如何降维
 
 ```cpp
@@ -168,7 +171,7 @@ public:
 
         int i, j;
         vector<int> dp(n, 1);
-        sort(envelopes.begin(), envelopes.end(), [](const vector<int>&a, const vector<int>& b){
+        sort(envelopes.begin(), envelopes.end(), [](const vector<int>& a, const vector<int>& b){
             if(a[0] != b[0]) return a[0]<b[0];
             return a[1]>b[1];
         });
@@ -189,11 +192,11 @@ public:
 
 一维w升序后，求LIS w就不再考虑了，但是比较h时，如果w相等，h升序，会重复计算，所以对h降序。
 
-# 673. 最长递增子序列的个数
+# [673. 最长递增子序列的个数](https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/)
 ## 300DP改进
 这道题目的思路应该和`300 最长上升子序列`的思路类似，只是需要结合题目进行改进。在使用dp数组表示`以nums[i]为结尾的上升子序列的最大长度`基础上，引入cnt数组，`cnt[i]表示以nums[i]为结尾的最大上升子序列的个数`，在动态规划的过程中不断更新dp和cnt。
 
-cnt和dp的默认值都是1，
+cnt和dp的默认值都是1，cnt数组记录的是最大长度的个数。
 
 ```cpp
 class Solution {

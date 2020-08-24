@@ -116,6 +116,7 @@ public:
         return ans==INT_MAX?-1:ans;
     }
 
+    // amount待匹配的面值，pos当前使用的硬币，cnt当前已有的数量，ans最终结果
     void dfs(vector<int>& coins, int amount, int pos, int cnt, int& ans) {
         /*
         if(pos == coins.size()) {
