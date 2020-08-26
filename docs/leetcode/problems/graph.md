@@ -329,7 +329,7 @@ public:
 # [399. 除法求值](https://leetcode-cn.com/problems/evaluate-division/)
 我认为这个问题非常经典，而且特别实用，学会这个算法在生活中真的有用武之地。下面的代码参考自[C++ 带权值的并查集](https://leetcode-cn.com/problems/evaluate-division/solution/c-dai-quan-zhi-de-bing-cha-ji-by-wen-zhong-qiu-she/)，这里的代码是非常好理解的。关键是实际编写中还是要看一会儿才能理解。
 
-在myUnion(string a, string b)方法中，将a和b放在同一个树上，
+在myUnion(string a, string b)方法中，将a和b放在同一个树上。带路径压缩的方法参考[并查集+路径压缩](https://leetcode-cn.com/problems/evaluate-division/solution/bing-cha-ji-lu-jing-ya-suo-by-bueryt/)。
 
 ```cpp
 class Solution {
@@ -367,6 +367,7 @@ public:
             pa = myFind(a);
             pb = myFind(b);
 
+            // 输入的值可能不在并查集中
             if(pa.first!=pb.first || pa.first=="" || pb.first=="") {
                 ans.push_back(-1.0);
             } else {
@@ -377,7 +378,21 @@ public:
         return ans;
     }
 
-    // 返回root以及节点/root的值
+    // 返回root以及节点/root的值，
+    // 带路径压缩
+    pair<string, double> myFind(string a) {
+        if(parent.find(a) == parent.end()) return {"", -1.0};
+        if(parent[a] == a) return {a, 1.0};
+
+        auto t = myFind(parent[a]);
+        parent[a] = t.first;
+        weight[a] *= t.second;
+
+        return {t.first, weight[a]};
+    }
+
+    /*
+    // 不带路径压缩
     pair<string, double> myFind(string a) {
         if(parent.find(a) == parent.end())
             return {"", -1.0};
@@ -391,6 +406,7 @@ public:
 
         return {a, res};
     }
+    */
 
     // a_b表示a/b的结果
     void myUnion(string a, string b, double a_b) {

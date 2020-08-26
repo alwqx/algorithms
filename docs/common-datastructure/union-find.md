@@ -5,7 +5,7 @@
 
 UF有两个优化点：
 1. union操作中`按秩合并`，将更小的树连接到更大的树上
-2. find查询时路径压缩，是一种查找时扁平化树结构的方法
+2. find查询时路径压缩，是一种查找时`扁平化树结构`的方法
 
 ```cpp
 class UF {
@@ -28,6 +28,7 @@ public:
         int rootq = find(q);
         if(rootp == rootq) return;
 
+        // p的节点比q多
         if(rank[rootp] > rank[rootq]) {
             parent[rootq] = rootp;
             rank[rootp] += rank[rootq];
