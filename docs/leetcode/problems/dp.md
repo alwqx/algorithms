@@ -225,6 +225,40 @@ public:
 ```
 
 # [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/)
+>若某格子值为 1，则以此为右下角的正方形的、最大边长为：上面的正方形、左面的正方形或左上的正方形中，最小的那个，再加上此格。
+
+```cpp
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        if(matrix.empty()) return 0;
+        int row=matrix.size(), col=matrix[0].size();
+        if(col == 0) return 0;
+
+        int ans = matrix[0][0] - '0';
+        int i, j;
+        for(i=0; i<row; i++) {
+            for(j=0; j<col; j++) {
+                if(i==0 || j==0) {
+                    ans = max(ans, matrix[i][j]-'0');
+                    continue;
+                }
+                if(matrix[i][j]!='0' && matrix[i-1][j]!='0' && matrix[i][j-1]!='0' && matrix[i-1][j-1]!='0') {
+                    matrix[i][j] = help(matrix[i][j-1]-'0', help(matrix[i-1][j]-'0', matrix[i-1][j-1]-'0'))+1+'0';
+                }
+
+                ans = max(ans, matrix[i][j]-'0');
+            }
+        }
+
+        return pow(ans, 2);
+    }
+
+    int help(int a, int b) {
+        return a<b?a:b;
+    }
+};
+```
 
 # 买卖股票系列
 ## [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
