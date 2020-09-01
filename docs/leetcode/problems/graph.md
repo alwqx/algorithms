@@ -398,7 +398,6 @@ public:
             return {"", -1.0};
         
         double res = 1.0;
-        string b = a;
         while(a != parent[a]) {
             res *= weight[a]; // res *= a/parent
             a = parent[a];
