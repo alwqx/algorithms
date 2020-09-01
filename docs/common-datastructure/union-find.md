@@ -43,7 +43,7 @@ public:
     int find(int x) {
         /*
         // 递归写法
-        if(x != parent[x]) parent[x] = find(x);
+        if(x != parent[x]) parent[x] = find(parent[x]);
         return parent[x];
         */
         while(x != parent[x]) {
