@@ -1,5 +1,76 @@
 # 树系列
 
+# 101 对称二叉树
+简单题型，但是要注意里面的方法。借助一些基本的数据结构(栈、队列、递归、抽象)和思路来解决这个问题。
+
+我自己首先采用的是`问题分割`的思想，先求树的对称树，然后比较这两个树是否相等。用连两子函数实现，内存占用大约18M。
+
+后来的思路是**抽象**，**将二叉树问题抽象成根节点、左子树、右子树三个节点间的关系，把三个节点的对称关系理清楚了使用递归来做**。直接原地比较二叉树，大概使用15M内存，节省了一部分内存。
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        return judge(root, root);
+    }
+
+    bool judge(TreeNode* l, TreeNode* r) {
+        if(l == NULL) {
+            return r == NULL;
+        }
+
+        if(r == NULL) {
+            return false;
+        }
+
+        return l->val==r->val && judge(l->left, r->right) && judge(l->right, r->left);
+    }
+};
+
+
+// 使用队列
+#include <queue>
+
+using namespace std;
+
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        queue<TreeNode*> mq;
+        mq.push(root);
+        mq.push(root);
+
+        TreeNode *pl, *pr;
+        while(!mq.empty()) {
+            pl = mq.front();
+            mq.pop();
+            pr = mq.front();
+            mq.pop();
+
+            if(pl==NULL && pr==NULL) continue;
+            if(pl==NULL || pr==NULL) return false;
+            if(pl->val != pr->val) return false;
+
+            mq.push(pl->left);
+            mq.push(pr->right);
+            mq.push(pl->right);
+            mq.push(pr->left);
+        }
+
+        return true;
+    }
+};
+```
+
 # 235 二叉搜索树的最近公共祖先
 二叉搜索树自身具有一些性质：左节点值小于根节点，右节点的值大于根节点。
 递归版：
@@ -131,7 +202,7 @@ public:
     TreeNode* bbb(TreeNode *root, TreeNode* p, TreeNode* q) {
         if(!root || root==p || root==q) return root;
         TreeNode *left = bbb(root->left, p, q);
-        TreeNode *right = 
+        TreeNode *right =
     }
 }
 ```
@@ -341,14 +412,14 @@ class Solution {
 public:
     TreeNode* helper(vector<int>& postorder, int &pos, vector<int>& inorder, int left, int right) {
         if(left>right || pos<0) return nullptr;
-        
+
         TreeNode *root = new TreeNode(postorder[pos]);
         int ihead = left;
         while(ihead<=right && inorder[ihead] != postorder[pos]) ihead++;
-        
+
         if(ihead+1 <= right) root->right = helper(postorder, --pos, inorder, ihead+1, right);
         if(left <= ihead-1) root->left = helper(postorder, --pos, inorder, left, ihead-1);
-        
+
         return root;
     }
 

@@ -6,7 +6,7 @@
 
 个人觉得应该从`基础知识`和`动手实践`两部分入手，同时要注意**思想方法的归纳总结**。
 
-基础知识从刷LeetCode和之前的algorithm这个repo入手，动手实践不仅是参加LeetCode编程挑战赛，还要能够从实际应用中找到练习的内容，这里主要参考巩鹏的算法学习之路参考
+基础知识从刷LeetCode和之前的algorithm这个repo入手，动手实践不仅是参加LeetCode编程挑战赛，还要能够从实际应用中找到练习的内容，这里主要参考[巩鹏-我的算法学习之路](http://lucida.me/blog/on-learning-algorithms/)。
 
 ## 复习方法
 1. 刷LeetCode
@@ -15,9 +15,6 @@
 
 ## 实践
 1. [海量数据中寻找中位数](https://zhuanlan.zhihu.com/p/75397875)
-
-## 参考
-- [我的算法学习之路](http://lucida.me/blog/on-learning-algorithms/)
 
 
 # 算法思想方法整理
@@ -41,7 +38,7 @@
 以上是我理解的刷题目的，用来纠正自己，不要陷入题海陷阱，因为题目是刷不完的。
 
 ## 误区阶段
-初始化阶段有个误区，**就是想从简单题目开始刷完leetcode所有的题目**,大概有1800多题目，前两天按照tag和难度从简单题目开始，一个数据结构来。结果发现时间根本来不及！及时调整，**以目的为导向**，直接刷企业题库，看[ByteDance](https://leetcode-cn.com/explore/interview/card/bytedance/)的题目。
+初始化阶段有个误区，**就是想从简单题目开始刷完leetcode所有的题目**,大概有1800多题目，前两天按照tag和难度从简单题目开始，一个数据结构来。结果发现`时间根本来不及`！及时调整，**以目的为导向**，直接刷企业题库，看[ByteDance](https://leetcode-cn.com/explore/interview/card/bytedance/)的题目。
 
 一开始刷很多题目有思路，但是不会编程实现，自己很苦恼，于是就看题解，照着题解的代码写一遍，熟悉代码和算法思想。
 
@@ -68,10 +65,10 @@
 3. **要把问题按照思想方法归类，然后每个思想方法去针对应做一些题目，加强巩固**，这是下一阶段的任务
 
 ### 下一阶段任务
-1. 对算法思想进行分类，针对应刷题巩固
+1. 对算法思想进行分类，针对分类刷题巩固
 
 # 三轮刷题
-2020.8-now
+2020.8-2020.9，找到B站实习后，没有再刷题了。
 
 这次将会一直刷下去，直到找到合适的工作岗位。
 
@@ -87,6 +84,6 @@
 
 # 参考
 - [labuladong-fucking-algorithm](https://github.com/labuladong/fucking-algorithm)
-- leetcode题解
-- [别再埋头刷LeetCode之：北美算法面试的题目分类，按类型和规律刷题，事半功倍](https://zhuanlan.zhihu.com/p/89392459)
+- LeetCode网站上的题解
+- [别再埋头刷LeetCode之：北美算法面试的题目分类，按类型和规律刷题，事半功倍](https://zhuanlan.zhihu.com/p/161204634)
 - [Grokking the System Design Interview](https://www.educative.io/courses/grokking-the-system-design-interview)
