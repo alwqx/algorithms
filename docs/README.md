@@ -21,6 +21,7 @@
 - [Pull Requests](https://github.com/adolphlwq/algorithms/pulls): 提交您的修改。
 
 ## Reference
+- [吴自华-我的CP笔记-强推！](https://cp-wiki.vercel.app/)
 - [Princeton University Algorithms](/courses/README.md)
 - [algs4 source code and api](http://algs4.cs.princeton.edu/code/index.php)
 - [Algs in C](https://github.com/TheAlgorithms/C)
