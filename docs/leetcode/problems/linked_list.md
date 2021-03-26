@@ -3,6 +3,14 @@
 - 字典存储
 - 链表考什么？就是哨兵节点+虚拟节点+链表指针的移动
 
+# [173. 二叉搜索树迭代器](https://leetcode-cn.com/problems/binary-search-tree-iterator/)
+可控递归的解法不熟悉
+
+# [109. 有序链表转换二叉搜索树](https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree/)
+这里涉及到递归、二叉树抽象以及平衡树构造与链表关系的等价转换。
+
+需要多做几遍
+
 # [86. 分隔链表](https://leetcode-cn.com/problems/partition-list/)
 没有想到最佳的虚拟指针方案。
 
