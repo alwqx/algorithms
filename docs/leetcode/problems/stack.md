@@ -1,5 +1,45 @@
 # 栈
 
+# [331. 验证二叉树的前序序列化](https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/)
+
+没有想到方法，题解也不是熟练理解了，感觉都利用了**二叉树叶子节点数=度为2的节点数+1**这个性质。
+
+另一个性质：**所有节点的入度之和=出度之和**，但是不能直接迭代到最后再判断，因为中间可能不符合条件，但是最后计算下来是符合的。
+```cpp
+class Solution {
+public:
+    bool isValidSerialization(string preorder) {
+        if(preorder == "#") return true;
+
+        int i=0, size=preorder.size();
+        int inn=0, out=0;
+        while(i < size) {
+            if(i == 0) {
+                if(preorder[i] == '#') return false;
+                while(i<size && preorder[i]!=',') i++;
+                out += 2;
+                continue;
+            }
+
+            if(preorder[i] == ',') {
+                i++;
+            } else if(preorder[i] == '#') {
+                inn += 1;
+                i++;
+            } else {
+                while(i<size && preorder[i]!=',') i++;
+                inn += 1;
+                out += 2;
+            }
+
+            if(i<size-1 && inn>=out) return false;
+        }
+
+        return inn == out;
+    }
+};
+```
+
 # [316. 去除重复字母](https://leetcode-cn.com/problems/remove-duplicate-letters/)
 这个题目的要求有点绕，首先要理解题目的要求：
 1. 去重
