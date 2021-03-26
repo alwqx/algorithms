@@ -1,12 +1,59 @@
 # 链表
+- dummy节点的使用
+- 字典存储
+- 链表考什么？就是哨兵节点+虚拟节点+链表指针的移动
+
+# [86. 分隔链表](https://leetcode-cn.com/problems/partition-list/)
+没有想到最佳的虚拟指针方案。
+
+# [82. 删除排序链表中的重复元素 II](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/)
+
+使用字典存储，时间和空间都是O(n)，关键是要想出一次遍历就能解决的方案。**自己没有想到用dummy node的思路**。
+
+使用dummy指向head节点，这样简化了后续记录head位置变更的相关逻辑，**这里通过良好的数据结构设计，简化了算法思路和流程**。
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head==NULL || head->next==NULL) return head;
+
+        // 注意这里初始化pre的方法
+        ListNode *tmp, *pre = new ListNode(-1, head);
+        ListNode *cur = pre;
+        int v;
+        while(cur->next && cur->next->next) {
+            if(cur->next->val == cur->next->next->val) {
+                v = cur->next->val;
+                while(cur->next && cur->next->val == v) {
+                    tmp = cur->next;
+                    cur->next = cur->next->next;
+                    tmp->next = NULL;
+                }
+            } else {
+                cur = cur->next;
+            }
+        }
+
+        return pre->next;
+    }
+};
+```
+
 
 # [148. 排序链表](https://leetcode-cn.com/problems/sort-list/)
 这个题目很好，考察了链表和归并排序的思路，也考验编程能力。
 
 链表的赋值、交换操作和数据有很大差异，所以自己起初没有想到合适的解法，下面的代码都是在参考别人思路的基础上完成的。
-```cpp
-
-```
 
 ## 字典
 时间和空间复杂度都是O(n)，然是思路和代码很好理解。
@@ -78,7 +125,7 @@ public:
         ListNode *left, *right;
         left = sortList(head);
         right = sortList(mid);
-        
+
         ListNode *h, *ans;
         h = ans = new ListNode(0);
         while(left && right) {
@@ -100,7 +147,7 @@ public:
     ListNode* merge(ListNode* l1, ListNode* l2) {
         if (!l1) return l2;
         if (!l2) return l1;
-        
+
         ListNode* head;
         ListNode* next;
         if (l1->val < l2->val) {
@@ -112,7 +159,7 @@ public:
             next = l2;
             l2 = l2->next;
         }
-        
+
         while (l1 && l2) {
             if (l1->val < l2->val) {
                 next->next = l1;
@@ -124,9 +171,9 @@ public:
                 l2 = l2->next;
             }
         }
-        
+
         next->next = l1 ? l1 : l2;
-        
+
         return head;
     }
 };

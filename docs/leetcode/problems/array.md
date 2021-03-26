@@ -1,6 +1,19 @@
 # 数组
 TODO：**加上思路！**
 
+# 前缀和专题
+## [974. 和可被 K 整除的子数组](https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/)
+1. 首先定义P[i]=a[0] + ... + a[i]
+2. 前缀和sum(i, j)=P[j] - P[i-1] (j>i>0)
+3. 使用map存储前缀和余数为mod时对应的出现次数，因为是从左到右遍历数组，所以到第i个前缀和时，i前面的子数组都已经统计好
+
+**这里的问题是，为么初始化m[0]=1**
+
+## [560. 和为K的子数组](https://leetcode-cn.com/problems/subarray-sum-equals-k/)
+和974一样的思路，**这里还是不明白，为么初始化m[0]=1**
+
+字典中`key=0`并不是指下标为0的情况，而是指连续子数组和为k的情况，这样才会导致差为0，这种情况未必会出现，但是对应的值应该为1，因为此时子数组的和为k。---感觉这样解释也不是很对...
+
 # [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
 
 ```cpp
@@ -190,3 +203,9 @@ public:
 从1开始要和整体的解题思路相一致，当i=0时，sum=arr[0]，此时odd和even的初始值要和题设一致，i=0的情况下：
 - 如果sum是奇数，cnt应该为1，`cnt = (cnt + (sum%2==0?odd:even)) % MODULO`取even的值，所以even初始值应该为1
 - 如果sum是偶数，cnt应该为0，`cnt = (cnt + (sum%2==0?odd:even)) % MODULO`取odd的值，所以odd初始值应该为0
+
+
+# [456. 132 模式](https://leetcode-cn.com/problems/132-pattern/)
+只想到了O(n^3)的方法，连提示中的O(n^2)的方法都没有想到，二次方的解法我很容易看懂，但是题解中的其它方法我理解起来需要些时间。`总体感觉这个题目有点抽象，比较新，没见过`。
+
+[官方题解](https://leetcode-cn.com/problems/132-pattern/solution/132mo-shi-by-leetcode-solution-ye89/)中的`枚举1`方法还需要好好理解。
