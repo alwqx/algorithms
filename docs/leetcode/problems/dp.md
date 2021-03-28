@@ -1,6 +1,8 @@
 # 动态规划
 [leetcode dp tags](https://leetcode-cn.com/tag/dynamic-programming/)
 
+# [264. 丑数 II](https://leetcode-cn.com/problems/ugly-number-ii/)
+
 # 5. 最长回文子串
 根据[官方题解](https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/)，这个问题有三种思路，第三种Manacher算法自己不是很理解，先不看了。
 
@@ -82,7 +84,7 @@ public:
 
         return s.substr(pl, pr-pl+1);
     }
- 
+
     int help(string s, int left, int right) {
         while(left>=0 && right<s.size() && s[left]==s[right]) {
             left--;
@@ -283,7 +285,7 @@ public:
     int maxProfit(vector<int>& prices) {
         int i, j, res = 0;
         if(prices.size() <= 1) return res;
-        
+
         for(i=0; i<prices.size()-1; i++) {
             for(j=i+1; j<prices.size(); j++)
                 if(res<=prices[j]-prices[i])
