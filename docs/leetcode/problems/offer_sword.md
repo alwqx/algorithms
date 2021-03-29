@@ -21,7 +21,7 @@ public:
     }
 
     bool verifyPostorder(vector<int>& postorder) {
-        int len = postorder.size(); 
+        int len = postorder.size();
         if(len <= 1) return true;
         pr = postorder;
         return helper(0, len-1);
@@ -30,11 +30,65 @@ public:
 ```
 
 # 剑指Offer-面试题38. 字符串的排列
+**非常经典的回溯算法题目**，参考[OOofer](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/hui-su-fa-by-luo-jing-yu-yu/)的思路，代码框架如下：
+```cpp
+/*
+ * 回溯法
+ *
+ * 字符串的排列和数字的排列都属于回溯的经典问题
+ *
+ * 回溯算法框架：解决一个问题，实际上就是一个决策树的遍历过程：
+ * 1. 路径：做出的选择
+ * 2. 选择列表：当前可以做的选择
+ * 3. 结束条件：到达决策树底层，无法再做选择的条件
+ *
+ * 伪代码：
+ * result = []
+ * def backtrack(路径，选择列表):
+ *     if 满足结束条件：
+ *         result.add(路径)
+ *         return
+ *     for 选择 in 选择列表:
+ *         做选择
+ *         backtrack(路径，选择列表)
+ *         撤销选择
+ *
+ * 核心是for循环中的递归，在递归调用之前“做选择”，
+ * 在递归调用之后“撤销选择”。
+ *
+ * 字符串的排列可以抽象为一棵决策树：
+ *                       [ ]
+ *          [a]          [b]         [c]
+ *      [ab]   [ac]  [bc]   [ba]  [ca]  [cb]
+ *     [abc]  [acb] [bca]  [bac]  [cab] [cba]
+ *
+ * 考虑字符重复情况：
+ *                       [ ]
+ *          [a]          [a]         [c]
+ *      [aa]   [ac]  [ac]   [aa]  [ca]  [ca]
+ *     [aac]  [aca] [aca]  [aac]  [caa] [caa]
+ *
+ * 字符串在做排列时，等于从a字符开始，对决策树进行遍历，
+ * "a"就是路径，"b""c"是"a"的选择列表，"ab"和"ac"就是做出的选择，
+ * “结束条件”是遍历到树的底层，此处为选择列表为空。
+ *
+ * 本题定义backtrack函数像一个指针，在树上遍历，
+ * 同时维护每个点的属性，每当走到树的底层，其“路径”就是一个全排列。
+ * 当字符出现重复，且重复位置不一定时，需要先对字符串进行排序，
+ * 再对字符串进行“去重”处理，之后按照回溯框架即可。
+ * */
+```
+
+
 感觉对这种题型还不是很熟练，按照ACM学弟的建议，要多写几遍，在理解的基础上，把思路固化成记录。
 
 题目主要有两种思路，一种是交换、dfs的思路，一种是决策树回溯的思路。
 
 交换+dfs是参考[Krahets](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/)的思路和代码，使用set来去重。
+
+这个解法把所有的情况都考虑了，然后使用set自身的性质自动帮我们去重，从计算量的角度来讲，没有做到`计算量上的剪枝`。
+
+笔者试了下也可以使用map来做标记去重，但是这样占用的空间变多了，而且时间也增加了，map和set底层用的都是红黑树，这里综合来讲，用set更合适些，避免了map带来的额外空间。
 
 ```cpp
 class Solution {
@@ -89,6 +143,17 @@ public:
         for(int i=0; i<s.size(); i++) {
             if(vis[i]) continue;
             // 下面这行代码至关重要！要好好理解
+            /*
+            @Sonnig 这里可以这么理解, 对于 aab, 记为 "a1a2b", 为了保证不出现重复，我们可以规定一个顺序，当我们需要使用字符 a 的时候，必须先用字符 a1, 后再用字符 a2； 或者当我们需要使用字符a时，必须先用字符a2, 后用字符 a1. 这样就是要保证在生成的字符串排列中不会因为 a1 和 a2 的位置发生对换，而产生新的重复的字符串。
+
+            我们可以有以下两种方式：
+
+            a1a2b, a1ba2, ba1a2 # 对应 !visit[i-1]
+            a2a1b, a2ba1, ba2a1 # 对应 visit[i-1]
+            当使用 visit[i-1]时，若第一个字符就取了 a1, 那么 a2 不会被取，最终循环会被终结终结在 a1b, 不会进入更深的 dfs, 也不会生成解 a1ba2. 对使用 !visit[i-1] 也是同理。
+
+            这里对于三重复 aaab, 也是成立的。
+            */
             if(i>0 && !vis[i-1] && s[i-1]==s[i]) continue;
 
             vis[i] = true;
