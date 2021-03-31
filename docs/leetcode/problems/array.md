@@ -1,6 +1,77 @@
 # 数组
 TODO：**加上思路！**
 
+# [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)
+[官方题解]()是按行和列分别进行二分查找的，先找到对应行，然后对该行进行二分查找。
+```cpp
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int row=matrix.size(), col=matrix[0].size();
+        int rowi = 0;
+        // 找行应该优化为二分查找
+        while(rowi<row) {
+            if(matrix[rowi][0]<=target && matrix[rowi][col-1]>=target) break;
+            rowi++;
+        }
+        if(rowi >= row) return false;
+
+        int mid, v, left=0, right=col-1;
+        while(left <= right) {
+            mid = (left+right)/2;
+            v = matrix[rowi][mid];
+            if(v < target) left += 1;
+            else if(v == target) return true;
+            else right -= 1;
+        }
+
+        return false;
+    }
+};
+```
+
+从右上角到左下角查找，O(m+n):
+```cpp
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty() || matrix[0].empty()) return 0;
+
+        int p, x=0, y=matrix[0].size()-1;
+        while(x<matrix.size() && y>=0) {
+            p = matrix[x][y];
+            if(p>target) y--;
+            else if(p<target) x++;
+            else return true;
+        }
+
+        return false;
+    }
+};
+```
+
+将整个数据看成一维数组，这个思路自己很难想到了。
+```cpp
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty() || matrix[0].empty()) return 0;
+
+        int col = matrix[0].size();
+        int mid, p, left=0, right=matrix.size()*col-1;
+        while(left <= right) {
+            mid = left + ((right-left)>>1);
+            p = matrix[mid/col][mid%col];
+            if(p < target) left = mid+1;
+            else if(p > target) right = mid-1;
+            else return true;
+        }
+
+        return false;
+    }
+};
+```
+
 # 前缀和专题
 ## [974. 和可被 K 整除的子数组](https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/)
 1. 首先定义P[i]=a[0] + ... + a[i]
