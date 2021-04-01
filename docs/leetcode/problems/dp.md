@@ -226,6 +226,29 @@ public:
 };
 ```
 
+
+`2021.4.1更新`：深搜也超时，看了[Iris_bupt](https://leetcode-cn.com/problems/decode-ways/solution/c-wo-ren-wei-hen-jian-dan-zhi-guan-de-jie-fa-by-pr/)的题解，自己也想到了使用动态规划，但是没有理清楚解码数dp[i]，dp[i-1] dp[i-2]之间的递推关系，导致没有找到解决方案。
+
+首先，dp[i]表示s[0] s[1] ... s[i]的解码数。我们要找s[i]时，dp[i]和dp[i-1] dp[i-2]之间的关系，笔者没有想清楚他们之间的关系，还是理解不深刻，**建议自己可以从几个特例入手，把抽象的问题具体化，方便理解**。
+
+下面是题主的最优解法：
+```cpp
+int numDecodings(string s) {
+    if (s[0] == '0') return 0;
+    int pre = 1, curr = 1;//dp[-1] = dp[0] = 1
+    for (int i = 1; i < s.size(); i++) {
+        int tmp = curr;
+        if (s[i] == '0')
+            if (s[i - 1] == '1' || s[i - 1] == '2') curr = pre;
+            else return 0;
+        else if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] >= '1' && s[i] <= '6'))
+            curr = curr + pre;
+        pre = tmp;
+    }
+    return curr;
+}
+```
+
 # [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/)
 >若某格子值为 1，则以此为右下角的正方形的、最大边长为：上面的正方形、左面的正方形或左上的正方形中，最小的那个，再加上此格。
 
