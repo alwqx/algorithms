@@ -1,5 +1,12 @@
 # 栈
 
+# [32. 最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/)
+自己理解错题意了，题目要求是求有效括号的最大长度，不是求有效括号的数量。
+
+当然自己没有想出来咯(要求30分钟内搞定)，参考了[官方题解](https://leetcode-cn.com/problems/longest-valid-parentheses/solution/zui-chang-you-xiao-gua-hao-by-leetcode-solution/)的栈的做法，有两点值得借鉴：
+1. stack中存放的是括号对应的下标，这样有利于计算长度，如果存`(`和`)`，则还需要额外信息记录长度
+2. stack中默认加了一个-1，方便后续计算
+
 # [331. 验证二叉树的前序序列化](https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/)
 
 没有想到方法，题解也不是熟练理解了，感觉都利用了**二叉树叶子节点数=度为2的节点数+1**这个性质。
