@@ -1,6 +1,39 @@
 # 动态规划
 [leetcode dp tags](https://leetcode-cn.com/tag/dynamic-programming/)
 
+# [139. 单词拆分](https://leetcode-cn.com/problems/word-break/)
+没想到方法，看的题解:
+```cpp
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> m;
+        int msize = 0;
+        for(string word:wordDict) {
+            m.insert(word);
+            if(msize < word.size()) {
+                msize = word.size();
+            }
+        }
+
+        int i, j, size=s.size();
+        vector<bool> dp(size+1);
+        dp[0] = true;
+
+        for(i=1; i<=size; i++) {
+            for(j=i; j>=0 && j>=i-msize; j--) {
+                if(dp[j] && m.find(s.substr(j, i-j))!=m.end()) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[size];
+    }
+};
+```
+
 # [97. 交错字符串](https://leetcode-cn.com/problems/interleaving-string/)
 题解牛啊，自己没想到，[要弄清楚滚动数组优化存储空间的方法](https://leetcode-cn.com/problems/interleaving-string/solution/jiao-cuo-zi-fu-chuan-by-leetcode-solution/)
 
