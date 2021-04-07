@@ -1,4 +1,7 @@
-# DFS
+# BFS & DFS
+
+# [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/)
+被标签带偏了，直接bfs或者dfs都可以做的，不清楚为啥方并查集的标签
 
 # [131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)
 这是一道综合题目，结合了dfs和dp，dp主要是用来加速判断一个字符串任意s[i...j]是否是回文串。在O(n^2)时间和空间复杂度内，得到任意s[i...j]是否是回文串的结果:
