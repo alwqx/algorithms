@@ -1,30 +1,33 @@
-# 56. 合并区间
-自己的思路是排序，然后使用滑动窗口做，提交4-5次出现一些没有考虑的情况。最后通过122/169
+# 排序
+
+# [56. 合并区间](https://leetcode-cn.com/problems/merge-intervals/)
+自己的思路是先排序，然后使用滑动窗口/双指针做，提交4-5次出现一些没有考虑的情况。最后改改通过了。
+
+核心思路是找到待合并区间最后的left和right，然后加到结果中。
 
 ```cpp
 class Solution {
 public:
-    static bool cmp(vector<int> a, vector<int> b) {
-        if(a[0] != b[0]) return a[0] < b[0];
-        return a[1] < b[1];
-    }
-
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        vector<vector<int>> res;
-        if(intervals.size() <= 1) return intervals;
-        sort(intervals.begin(), intervals.end(), cmp);
+        int l=0, r=0, size=intervals.size();
+        vector<vector<int>> ans;
+        sort(intervals.begin(), intervals.end());
+        int right;
 
-        int i=0, j=1;
-        while(j<intervals.size()) {
-            if(intervals[j-1][1] >= intervals[j][0] || intervals[i][1] >= intervals[j][0]) j++;
-            else {
-                vector<int> tmp = {intervals[i][0], max(intervals[j-1][1], intervals[i][1])};
-                res.push_back(tmp);
-                i=j;j++;
+        while(l < size) {
+            right = -1;
+            while(r<size && (intervals[r][0]<=intervals[l][1] || right>=intervals[r][0])) {
+                right = max(right, intervals[r][1]);
+                r++;
             }
+            r--;
+            if(r >= size) break;
+            ans.push_back({intervals[l][0], right});
+            r += 1;
+            l = r;
         }
-        res.push_back({intervals[i][0], max(intervals[j-1][1], intervals[i][1])});
-        return res;
+
+        return ans;
     }
 };
 ```
@@ -35,13 +38,13 @@ class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         if (intervals.size() == 0 || intervals.size() == 1) return intervals;
-        \\ initialize 
+        // initialize
         int u = 0, v = 0;
         vector<vector<int>> ans;
-        \\ 思路①
+        // 思路①
         std::sort(intervals.begin(), intervals.end());
-        \\ 思路②
-        while (v < intervals.size()) { 
+        // 思路②
+        while (v < intervals.size()) {
             if (intervals[v][0] > intervals[u][1]) {
                 ans.emplace_back(intervals[u]);
                 u = v;
@@ -52,7 +55,7 @@ public:
                 ++ v;
             }
         }
-        \\ 思路③
+        // 思路③
         ans.emplace_back(intervals[u]);
         return ans;
     }
