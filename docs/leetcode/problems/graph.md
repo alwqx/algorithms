@@ -1,7 +1,20 @@
 # 图问题汇总
 图的问题涉及求最大面积、单词搜索等，可以使用dfs配合回溯来做，也可以使用DP，关键看题目特点。
 
-## [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/)
+# [207. 课程表](https://leetcode-cn.com/problems/course-schedule/) && [210. 课程表 II](https://leetcode-cn.com/problems/course-schedule-ii/)
+非常经典的题目，判断图中是否有环，自己一开始想用并查集做的，但是没有想出来并查集怎么做。看了题解发现可以使用拓扑排序的方法，通过dfs或者bfs来做。
+
+问题中并没有包含完整的图结构，所以需要自己根据需要来选择图的表示方法，题解使用的是邻接数组的表示方法。
+
+
+210的思路和207是一样的。
+
+# [133. 克隆图](https://leetcode-cn.com/problems/clone-graph/)
+自己的做法相对复杂些，使用三个map存储节点和邻接节点之间的关系，没有官方题解简单（只用了一个map），但是理解起来相对复杂些。
+
+应对了那句话，用思维换代码负载度，思考的多一些，编写的代码就简洁些，但是理解起来要花费更多脑力。
+
+# [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/)
 第一次做看完题目有点懵，没有思路，看了别人的题解通过的。
 
 第二次看这道题目，大概知道要用dfs，但是具体dfs怎么处理？是否要用visited数组？dfs是否有返回值等自己还不明确，`只知道大致思路，却不清楚如何实现`。
@@ -55,7 +68,7 @@ public:
                     q.push(make_pair(i, j));
                     grid[i][j] = 0;
                     area = 1;
-                    
+
                     while(!q.empty()) {
                         auto [x, y] = q.front();
                         q.pop();
@@ -80,7 +93,7 @@ public:
 };
 ```
 
-## 200. 岛屿数量
+# 200. 岛屿数量
 有了695的铺垫，这个题目dfs和bfs思路就相对简单些了。
 
 dfs
@@ -191,7 +204,7 @@ public:
     void uunion(int x, int y) {
         int rootx=find(x), rooty=find(y);
         if(rootx == rooty) return;
-        
+
         if(size[rootx] < size[rooty]) {
             group[rootx] = rooty;
             size[rooty] += size[rootx];
@@ -242,7 +255,7 @@ public:
 };
 ```
 
-## 463. 岛屿的周长
+# 463. 岛屿的周长
 一开始没有透彻理解，`找规律的思路`，假设岛屿数量为n，则周长为n*2+2，其实这个思路是错误的，只能通过50%的案例。
 
 后来发现思路不对，就以dfs入手，当前节点为1(岛屿)，总边长是否增加取决于四周的情况：
@@ -253,7 +266,7 @@ public:
 ```cpp
 void dfs(vector<vector<int>>& grid, vector<vector<bool>>& visited, int x, int y) {
     if(x<0 || x==row || y<0 || y==col || visited[x][y] || grid[x][y]==0) return;
-    
+
     int i, nx, ny;
     visited[x][y] = true;
 
@@ -304,7 +317,7 @@ public:
 
     void dfs(vector<vector<int>>& grid, vector<vector<bool>>& visited, int x, int y) {
         if(x<0 || x==row || y<0 || y==col || visited[x][y] || grid[x][y]==0) return;
-        
+
         int i, nx, ny;
         visited[x][y] = true;
 
@@ -396,7 +409,7 @@ public:
     pair<string, double> myFind(string a) {
         if(parent.find(a) == parent.end())
             return {"", -1.0};
-        
+
         double res = 1.0;
         while(a != parent[a]) {
             res *= weight[a]; // res *= a/parent
