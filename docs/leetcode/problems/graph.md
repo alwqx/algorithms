@@ -1,6 +1,23 @@
 # 图问题汇总
 图的问题涉及求最大面积、单词搜索等，可以使用dfs配合回溯来做，也可以使用DP，关键看题目特点。
 
+# [684. 冗余连接](https://leetcode-cn.com/problems/redundant-connection/) && [685. 冗余连接 II](https://leetcode-cn.com/problems/redundant-connection-ii/)
+一开始自己的思路是使用节点的度来计算，先根据边计算出每个节点的度，然后从后向前遍历边，判断边的两个端点对应的度，只要degree[u v]>1，则认为该边可以去掉。[实际案例运行过程中报错了](https://leetcode-cn.com/submissions/detail/169504601/)，看来我的方法不是等价的方法。
+
+题解用的方法是并查集，相对来说比较方便好理解，但是不是完整的并查集，而是根据题目要求简化了。
+
+685 是升级版，hard难度，无论冲代码量、数据结构、思维量这三个角度来思考，都是很不错的考察题目。
+
+# [332. 重新安排行程](https://leetcode-cn.com/problems/reconstruct-itinerary/)
+看题目完全没思路，看题解是欧拉通路，需要好好理解官方题解。
+
+# [310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/)
+自己的思路是遍历所有节点，一次算出每个节点为根节点得到的树的高度，然后求出最小高度，将最小高度的根节点加入到返回数组中。
+
+这个思路通过了65/68个样例，后面超时了。然后看了题解的思路，是利用bfs的思路，从外围向里逼近，树的高度最小，对应的根节点越可能在整个图的中心位置。
+
+[这个题解C++】循序渐进的思路，BFS/DFS/拓扑排序](https://leetcode-cn.com/problems/minimum-height-trees/solution/c-xun-xu-jian-jin-de-si-lu-bfsdfstuo-bu-hmk2y/)给出了三种方法，**并且有dfs记忆化剪枝**，多看看。
+
 # [207. 课程表](https://leetcode-cn.com/problems/course-schedule/) && [210. 课程表 II](https://leetcode-cn.com/problems/course-schedule-ii/)
 非常经典的题目，判断图中是否有环，自己一开始想用并查集做的，但是没有想出来并查集怎么做。看了题解发现可以使用拓扑排序的方法，通过dfs或者bfs来做。
 
