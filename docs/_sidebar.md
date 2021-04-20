@@ -7,8 +7,3 @@
 - [CPP基础](/cpp/)
 - [LeetCode](/leetcode/)
     - [经典题解](/leetcode/problems)
-- [考研算法](/cskaoyan/)
-    - [LeetCode](/cskaoyan/leetcode)
-    - [PTA](/cskaoyan/pta)
-    - [EOJ](/cskaoyan/ecnu)
-    - [CSKaoYan](/cskaoyan/cskaoyan)
