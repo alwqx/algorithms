@@ -4,6 +4,7 @@
 - [基础数据结构](/common-datastructure/)
     - [排序](/common-datastructure/sort)
     - [并查集](/common-datastructure/union-find)
+- [CPP基础](/cpp/)
 - [LeetCode](/leetcode/)
     - [经典题解](/leetcode/problems)
 - [考研算法](/cskaoyan/)
