@@ -1,6 +1,40 @@
 # 图问题汇总
 图的问题涉及求最大面积、单词搜索等，可以使用dfs配合回溯来做，也可以使用DP，关键看题目特点。
 
+# [765. 情侣牵手](https://leetcode-cn.com/problems/couples-holding-hands/)
+[官方题解](https://leetcode-cn.com/problems/couples-holding-hands/solution/qing-lu-qian-shou-by-leetcode-gl1c/)首先进行理论分析，得到的结论是不管怎么还，最少交换次数以固定的，但是交换的方式可能是多样的。这里不需要求出所有的交换方式，而是要求最少交换次数。理解了这一点，问题就好处理了。
+
+最简单的方法是原地交换，这个解法真的是非常简洁，利用了异或运算，也提醒笔者要复习下逻辑运算。
+```cpp
+class Solution {
+public:
+    int minSwapsCouples(vector<int>& row) {
+        int cnt = 0;
+        int i, j, a, b;
+        for(i=0; i<row.size()-1; i+=2) {
+            a = row[i];
+            b = a^1; // 这里非常精妙
+            if(row[i+1] == b) continue;
+
+            for(j=i+1; j<row.size(); j++) {
+                if(row[j] == b) {
+                    swap(row[i+1], row[j]);
+                    cnt++;
+                    break;
+                }
+            }
+        }
+
+        return cnt;
+    }
+}
+```
+
+# [743. 网络延迟时间](https://leetcode-cn.com/problems/network-delay-time/)
+图的`单源最短路径问题`，深搜或者迪杰斯特拉算法。图中必须掌握的算法，非常基础的问题。
+
+参考[五种最短路径算法总结](https://leetcode-cn.com/problems/network-delay-time/solution/dirkdtra-by-happysnaker-vjii/)
+
 # [684. 冗余连接](https://leetcode-cn.com/problems/redundant-connection/) && [685. 冗余连接 II](https://leetcode-cn.com/problems/redundant-connection-ii/)
 一开始自己的思路是使用节点的度来计算，先根据边计算出每个节点的度，然后从后向前遍历边，判断边的两个端点对应的度，只要degree[u v]>1，则认为该边可以去掉。[实际案例运行过程中报错了](https://leetcode-cn.com/submissions/detail/169504601/)，看来我的方法不是等价的方法。
 

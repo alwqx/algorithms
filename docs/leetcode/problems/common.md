@@ -5,6 +5,10 @@
 - 32bit (-2^31~2^31-1)
 - 64bit (-2^63~2^63-1)
 
+2. 逻辑运算
+    - 异或
+    - 与或
+
 # 常用范式
 1. 快排（可以使用C++中的algorithm库代替）
 1. 判断素数，[参考](https://blog.csdn.net/huang_miao_xin/article/details/51331710)
