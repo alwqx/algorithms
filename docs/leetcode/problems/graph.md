@@ -1,6 +1,9 @@
 # 图问题汇总
 图的问题涉及求最大面积、单词搜索等，可以使用dfs配合回溯来做，也可以使用DP，关键看题目特点。
 
+# [785. 判断二分图](https://leetcode-cn.com/problems/is-graph-bipartite/)
+没有想到方法，看了题解的方法自己没有搞出来bfs的代码。
+
 # [765. 情侣牵手](https://leetcode-cn.com/problems/couples-holding-hands/)
 [官方题解](https://leetcode-cn.com/problems/couples-holding-hands/solution/qing-lu-qian-shou-by-leetcode-gl1c/)首先进行理论分析，得到的结论是不管怎么还，最少交换次数以固定的，但是交换的方式可能是多样的。这里不需要求出所有的交换方式，而是要求最少交换次数。理解了这一点，问题就好处理了。
 
