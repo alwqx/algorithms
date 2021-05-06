@@ -11,7 +11,7 @@
 
 # 常用范式
 1. 快排（可以使用C++中的algorithm库代替）
-1. 判断素数，[参考](https://blog.csdn.net/huang_miao_xin/article/details/51331710)
+2. 判断素数，[参考](https://blog.csdn.net/huang_miao_xin/article/details/51331710)
 ```c
 int prime(long int n) {
     int flag = 1;
@@ -28,13 +28,13 @@ int prime(long int n) {
     return flag;
 }
 ```
-2. 最大公约数，**欧几里德算法**
-3. 最小公倍数
-4. 打印四种蛇形数组，顺时针，逆时针，Z，倒Z。[参考](https://blog.csdn.net/Echo_Ana/article/details/53411476)
-5. 素数筛，算法需要好好看看 王道指南P96
-6. 素因数分解，多写几遍 P98
-7. 二分求幂 P103
-8. vector 如何清空
+1. 最大公约数，**欧几里德算法**
+2. 最小公倍数
+3. 打印四种蛇形数组，顺时针，逆时针，Z，倒Z。[参考](https://blog.csdn.net/Echo_Ana/article/details/53411476)
+4. 素数筛，算法需要好好看看 王道指南P96
+5. 素因数分解，多写几遍 P98
+6. 二分求幂 P103
+7. 图中的单源最短路径算法，参考[LeetCode 743. 网络延迟时间](https://leetcode-cn.com/problems/network-delay-time/)
 
 # 求x的平方根
 ## 循环

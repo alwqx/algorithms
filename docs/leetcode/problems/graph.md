@@ -6,6 +6,144 @@
 - 入度、出度
 - 遍历：DFS/BFS
 - 并查集
+- 最短路径算法
+  - 迪杰斯特拉
+  - flood
+  - ...
+
+# [1162. 地图分析](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)
+想清楚dp的表示和含义，自己考虑得没有题解细致：
+1. 我想的是一轮dp，同时计算四个方向
+2. 我考虑的对角线的值到dp中，看了题解发现不需要，因为上方的值在计算时考虑了两个方向，其中就包含当前值的左上方，0在计算a的时候，a计算了b，相当于0计算了b
+```shell
+b a 1
+1 0 1
+```
+
+# [959. 由斜杠划分区域](https://leetcode-cn.com/problems/regions-cut-by-slashes/)
+如何将问题抽象成并查集，以及索引的设置和计算是本题的关键。
+
+# [886. 可能的二分法](https://leetcode-cn.com/problems/possible-bipartition/)
+下面的代码注释中是我之前的提交，代码有问题所以无法通过，查看了官方题解中的代码，在图的构造上和我的不同，核心代码如下：
+```cpp
+for(i=0; i<dislikes.size(); i++) {
+    /*
+    下面的代码是错误的，在实际提交中无法通过
+    u = min(dislikes[i][0], dislikes[i][1]);
+    v = max(dislikes[i][0], dislikes[i][1]);
+    graph[u].push_back(v);
+    */
+
+    u = dislikes[i][0];
+    v = dislikes[i][1];
+    graph[u].push_back(v);
+    graph[v].push_back(u);
+}
+```
+
+上面注释中的代码构造的图不是双向的，比如`1-2`，得到的图如下，这样在dfs过程中容易出问题。
+```shell
+1: 2
+2
+```
+下面是自己找到的反例，`dislikes=[[1,4], [2,5], [4,5]]`，得到的图是：
+```shell
+1:4
+2:5
+3
+4:5
+5
+```
+这样从1开始dfs的路径是1-4-5，2-5，这里1-4-5中5的颜色是R，2-5中5的颜色是B，这就冲突了。应该构建双向图，这样从1开始dfs的路径是1-4-1-5-2-4，就不会有后面从2的dfs了。
+```shell
+1:4
+2:5
+3
+4:1-5
+5:2-4
+```
+
+源代码
+```cpp
+class Solution {
+private:
+    const int W = 0;
+    const int R = 1;
+    const int B = 2;
+    vector<vector<int>> graph;
+    vector<int> colors;
+    bool res;
+
+    void pp() {
+        // print graph
+        for(int i=0; i<graph.size(); i++) {
+            cout<<i<<":";
+            for(int v:graph[i]) {
+                cout<<"->"<<v;
+            }
+            cout<<endl;
+        }
+        cout<<endl;
+
+        // print colors
+        for(int i=0; i<colors.size(); i++) {
+            cout<<i<<": "<<colors[i]<<endl;
+        }
+        cout<<endl;
+    }
+
+    void dfs(int u, int c) {
+
+        if(colors[u]!=W) {
+            if(colors[u] != c) {
+                // pp();
+                cout<<"u: "<<u<<" colors[u]: "<<colors[u]<<" c: "<<c<<endl;
+                res = false;
+            }
+            return;
+        }
+
+        colors[u] = c;
+        int nc = c==R?B:R;
+        for(int v:graph[u]) {
+            dfs(v, nc);
+            if(!res) return;
+        }
+    }
+public:
+    bool possibleBipartition(int N, vector<vector<int>>& dislikes) {
+        res = true;
+        graph.resize(N+1);
+        colors.resize(N+1, W);
+
+        int i, u, v;
+        for(i=0; i<dislikes.size(); i++) {
+            /*
+            下面的代码是错误的，在实际提交中无法通过
+            u = min(dislikes[i][0], dislikes[i][1]);
+            v = max(dislikes[i][0], dislikes[i][1]);
+            graph[u].push_back(v);
+            */
+
+            u = dislikes[i][0];
+            v = dislikes[i][1];
+            graph[u].push_back(v);
+            graph[v].push_back(u);
+        }
+
+        for(i=1; i<=N; i++) {
+            if(colors[i] == W) {
+                dfs(i, R);
+                if(!res) {
+                    cout<<"i: "<<i<<endl;
+                    return res;
+                }
+            }
+        }
+        return res;
+    }
+};
+```
 
 # [802. 找到最终的安全状态](https://leetcode-cn.com/problems/find-eventual-safe-states/)
 看的官方题解，自己想思路的时候可以画图辅助理解。
