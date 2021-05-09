@@ -1,6 +1,11 @@
 # 数组
 TODO：**加上思路！**
 
+# [1482. 制作 m 束花所需的最少天数](https://leetcode-cn.com/problems/minimum-number-of-days-to-make-m-bouquets/)
+这个思路的关键在于**如何把问题抽象成二分查找**
+
+和之前的[959. 由斜杠划分区域](https://leetcode-cn.com/problems/regions-cut-by-slashes/)很相似。
+
 # [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)
 [官方题解]()是按行和列分别进行二分查找的，先找到对应行，然后对该行进行二分查找。
 ```cpp

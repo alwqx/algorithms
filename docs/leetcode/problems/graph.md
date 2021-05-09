@@ -11,6 +11,9 @@
   - flood
   - ...
 
+# [1267. 统计参与通信的服务器](https://leetcode-cn.com/problems/count-servers-that-communicate/)
+自己尝试使用并查集做，问题出在声明的数组长度m*n，但是计算索引i*m+j有时候会溢出，[我的题解](https://leetcode-cn.com/problems/count-servers-that-communicate/solution/bing-cha-ji-si-lu-zheng-que-dan-shi-dai-3792w/)
+
 # [1162. 地图分析](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)
 想清楚dp的表示和含义，自己考虑得没有题解细致：
 1. 我想的是一轮dp，同时计算四个方向
