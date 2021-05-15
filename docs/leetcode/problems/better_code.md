@@ -73,3 +73,6 @@ public:
     }
 };
 ```
+
+# [56. 合并区间](https://leetcode-cn.com/problems/merge-intervals/)
+官方的代码更`优`，精简且好理解。
