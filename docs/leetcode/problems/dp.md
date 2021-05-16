@@ -285,6 +285,37 @@ int numDecodings(string s) {
 }
 ```
 
+官方题解的方法更好理解：
+```cpp
+class Solution {
+public:
+    int numDecodings(string s) {
+        int n = s.size();
+        // a=dp[i-2], b=dp[i-1], c=dp[i]
+        int a=0, b=1, c=0;
+        for(int i=1; i<=n; i++) {
+            c = 0;
+            if(s[i-1] != '0') c += b;
+            if(i>1 && s[i-2]!='0' && ((s[i-2]-'0')*10 + s[i-1]-'0')<=26)
+                c += a;
+
+            a = b;
+            b = c;
+        }
+        return c;
+        vector<int> dp(n+1);
+        dp[0] = 1;
+        for(int i=1; i<=n; i++) {
+            if(s[i-1] != '0') dp[i] += dp[i-1];
+            if(i>1 && s[i-2]!='0' && ((s[i-2]-'0')*10 + s[i-1]-'0')<=26)
+                dp[i] += dp[i-2];
+        }
+
+        return dp[n];
+    }
+};
+```
+
 # [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/)
 >若某格子值为 1，则以此为右下角的正方形的、最大边长为：上面的正方形、左面的正方形或左上的正方形中，最小的那个，再加上此格。
 

@@ -1,5 +1,42 @@
 # 回溯
 
+# [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)
+注意可以选择跳过当前数或者不跳过。
+```cpp
+class Solution {
+private:
+    void dfs(vector<vector<int>>& ans, vector<int>& tmp, vector<int>& cand, int target, int pos) {
+        int size = cand.size();
+        if(pos>=size || cand[pos]>target) return;
+        int v = cand[pos];
+        if(target == v) {
+            tmp.push_back(v);
+            ans.push_back(tmp);
+            tmp.pop_back();
+            return;
+        }
+
+        // 跳过当前数
+        dfs(ans, tmp, cand, target, pos+1);
+
+        // for(int i=pos; i<size; i++) {
+            tmp.push_back(v);
+            dfs(ans, tmp, cand, target-v, pos);
+            tmp.pop_back();
+        // }
+    }
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        vector<int> tmp;
+        vector<vector<int>> ans;
+        // for(int i=0; i<candidates.size(); i++)
+        dfs(ans, tmp, candidates, target, 0);
+        return ans;
+    }
+};
+```
+
 # [95. 不同的二叉搜索树 II](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
 
 题解还会太抽象了，自己看不懂，多看看熟悉下。

@@ -1,5 +1,15 @@
 # 树系列
 
+# [662. 二叉树最大宽度](https://leetcode-cn.com/problems/maximum-width-of-binary-tree/)
+自己没有想到方法，首先有考虑到使用队列来层序遍历，**但是忽略了满二叉树的隐含条件，没有想到满二叉树根节点、左右子树之间的关系**，最后没有做出来。
+
+自己参考了[c++双百的广度优先优化解法](https://leetcode-cn.com/problems/maximum-width-of-binary-tree/solution/cshuang-bai-de-yan-du-you-xian-you-hua-j-hqgb/)，非常好理解，赞。
+
+# [543. 二叉树的直径](https://leetcode-cn.com/problems/diameter-of-binary-tree/)
+树的问题是要抽象成根节点、左子树和右子树的问题。这一层我有想到，但是如何将问题分解、理解，然后对应到树的这种解法，并求出最后的答案，我没有想到。
+
+官方题解的思路是，对于每一个节点，不是直接求它的最大直径，而是求该节点两个子节点的最大深度L R（从两个子节点向下遍历，经过的最多节点数），这样该节点的最大节点数就是`L+R+1`，然后递归过程中更新全局最大节点数ans，遍历结束ans-1即为最大直径（最大节点数-1）？
+
 # [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
 一开始没有想清楚递归的做法，dfs(node)，只判断根节点和左右子树的关系，没有充分利用二叉搜索树的性质，利用的信息不够，所以没法判断。
 
