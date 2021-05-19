@@ -1,3 +1,10 @@
+排序算法参考[LeetCode数组排序](https://leetcode-cn.com/problems/sort-an-array/)
+
+里面介绍了：
+- 快速排序
+- 堆排序
+- 归并排序
+
 # 快速排序
 
 快排的核心思路/方法是**分区**，每执行一次分区函数，排序数组就有一个元素被放在了正确的位置，返回该位置。
@@ -7,13 +14,13 @@
 ## 默认左端为枢纽
 ```cpp
 int partition(vector<int>& nums, int low, int high) {
-    int i, pivot=nums[left], pos=left;
+    int i, pivot=nums[low], pos=low;
     swap(nums[high], nums[low]);
 
     for(i=low; i<=high; i++)
         if(nums[i] < pivot)
             swap(nums[i], nums[pos++]);
-        
+
     swap(nums[pos], nums[high]);
     return pos;
 }
@@ -25,7 +32,7 @@ int partition(vector<int>& nums, int low, int high) {
 
 两端逼近，参考[最常用的排序——快速排序](https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html)中的图解
 ```cpp
-int partition(vector<int>& nums, int low, int right) {
+int partition(vector<int>& nums, int low, int high) {
     int i=low, j=high+1, pivot=nums[low];
     while(i < j) {
         while(i<high && nums[++i] <= pivot) {}
@@ -55,10 +62,10 @@ int partition(vector<int>& nums, int low, int high) {
     while(i<j) {
         while(i<high && nums[++i] <= pivot) {}
             // if(i == high) break;
-            
+
         while(j>low && nums[--j] >= pivot) {}
             // if(j == low) break;
-        
+
         if(i<j) swap(nums[i], nums[j]);
     }
 
@@ -146,7 +153,7 @@ public:
     void merge(vector<int>& nums, int low, int mid, int high) {
         int i, j, k;
         for(i=low; i<=high; i++) aux[i] = nums[i];
-        
+
         i=low, j=mid+1;
         for(k=low; k<=high; k++) {
             if(i>mid) nums[k] = aux[j++];

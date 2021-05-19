@@ -5,6 +5,8 @@
 - queue
 - stack
 - pair
+- list
+- map unordered_map
 
 # sort中的cmp函数
 1. 基本数据类型可以直接比较，也可以自定义cmp实现递增、递减排序。

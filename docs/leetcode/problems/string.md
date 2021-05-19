@@ -1,5 +1,7 @@
 # 字符串
 
+# [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
+
 # [459. 重复的子字符串](https://leetcode-cn.com/problems/repeated-substring-pattern/)
 感觉这道题目在PUA我，不算是`简单题`，如果以简单题目的心态去做，结果发现做不出来，再看题解，涉及到KMP了，可能会打击到自己。
 
