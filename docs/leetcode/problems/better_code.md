@@ -78,3 +78,23 @@ public:
 官方的代码更`优`，精简且好理解。
 
 # [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
+
+# LC contest 246 2
+[5789. 你完成的完整对局数](https://leetcode-cn.com/contest/weekly-contest-246/problems/the-number-of-full-rounds-you-have-played/)
+```cpp
+class Solution {
+public:
+    int numberOfRounds(string s, string t) {
+        int a, b, cnt=0;
+        a = stoi(s.substr(0, 2))*60 + stoi(s.substr(3));
+        b = stoi(t.substr(0, 2))*60 + stoi(t.substr(3));
+        if(b<a) b += 24*60;
+
+        for(int i=a/15*15; i<=b; i+=15) {
+            if(a<=i && i<=b && i+15<=b) cnt++;
+        }
+
+        return cnt;
+    }
+};
+```
