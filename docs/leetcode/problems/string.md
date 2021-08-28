@@ -1,5 +1,15 @@
 # 字符串
 
+# [1160. 拼写单词](https://leetcode-cn.com/problems/find-words-that-can-be-formed-by-characters/)
+
+自己被这道题目的`表面表述`牵着鼻子走了，一直在想办法如何判断字符如何组成单词。这种比较`直`的思路在这里很难行通，因为数据规模可能很大，导致时间复杂度巨高。
+
+## 法一(官方解答)
+通过字符数量的字典来表示单词的组成关系。统计chars和word中每个词的数量，如果word对应词的数量都小于等于chars的数量，就能够组成。
+
+# [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/)
+
+
 # [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 
 # [459. 重复的子字符串](https://leetcode-cn.com/problems/repeated-substring-pattern/)

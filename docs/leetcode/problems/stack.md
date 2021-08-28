@@ -1,5 +1,7 @@
 # 栈
 
+# [71. 简化路径](https://leetcode-cn.com/problems/simplify-path/)
+
 # [32. 最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/)
 自己理解错题意了，题目要求是求有效括号的最大长度，不是求有效括号的数量。
 

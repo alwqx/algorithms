@@ -8,8 +8,169 @@
 
 TODO：**加上思路！**
 
-1.  [162. 寻找峰值](/leetcode/problems/162)
+# [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/)
+自己采用暴力解法，结果超时。
 
+## 法一(参考)
+
+在暴力法的基础上进行删除操作。这个考虑的题目中的隐含信息，即`多米诺牌等价`具有传递性，遍历过程中不断删掉已经等价的牌，从而降低时间复杂度。
+
+还是超时
+
+## 法二(参考)
+```cpp
+class Solution {
+public:
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+        map<int, int> m;
+        int t;
+        for(auto e:dominoes) {
+            t = e[0]<e[1]?e[0]*10+e[1]:e[1]*10+e[0];
+            m[t]++;
+        }
+
+        int res = 0;
+        for(map<int, int>::iterator it=m.begin(); it!=m.end(); it++) {
+            res += it->second*(it->second-1)/2;
+        }
+
+        return res;
+    }
+};
+```
+
+等价关系只是题目的表面信息，要能够把它抽象成数学关系，抽象成数字，数字相等即等价。
+
+把两个数从小到大排列，构成两位数，统计两位数的个数，然后两两配对，结构累加。
+
+## 法三(参考)
+```cpp
+class Solution {
+public:
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+        map<int, int> m;
+        int t, res = 0;
+        for(auto e:dominoes) {
+            t = e[0]<e[1]?e[0]*10+e[1]:e[1]*10+e[0];
+            res += m[t];
+            m[t]++;
+        }
+
+        return res;
+    }
+};
+```
+
+思路跟法二一样，但是做了优化，根据排列的性质，把求个计算合并到一次循环中了。
+
+# [209. 长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
+
+自己用的暴力法O(n*n)：
+```cpp
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        if(nums.empty()) return 0;
+
+        int res=INT_MAX, n=nums.size();
+        int i, j, sum=0;
+        for(i=0; i<n; i++) {
+            sum = 0;
+            for(j=i; j<n; j++) {
+                sum += nums[j];
+                if(sum >= s) {
+                    res = min(res, j-i+1);
+                    break;
+                }
+            }
+        }
+
+        return res==INT_MAX?0:res;
+    }
+};
+```
+
+参考题解的双指针法O(n)：
+```cpp
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        if(nums.empty()) return 0;
+
+        int res=INT_MAX, n=nums.size();
+        int start=0, end=0, sum=0;
+        while(end < n) {
+            sum += nums[end];
+            while(sum >= s) {
+                res = min(res, end-start+1);
+                sum -= nums[start];
+                start++;
+            }
+
+            end++;
+        }
+
+        return res==INT_MAX?0:res;
+    }
+};
+```
+
+利用数据前缀和的O(n*log(n))自己没看懂思路...
+
+# [128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)
+# 128. 最长连续序列
+调试了半天，有很多特殊情况需要考虑，自己用的滑动窗口的思路。
+
+```cpp
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.size()<2) return nums.size();
+        sort(nums.begin(), nums.end());
+        if(nums.size()==2) return nums[0]+1==nums[1]?2:1;
+
+        int i, j, res=0;
+        vector<int> tmpn;
+        tmpn.push_back(nums[0]);
+        for(i=1; i<nums.size(); i++) {
+            if(nums[i-1]==nums[i]) continue;
+            tmpn.push_back(nums[i]);
+        }
+
+
+        for(i=j=0; j<tmpn.size()-1; j++) {
+            if(tmpn[j]==tmpn[j+1]-1) continue;
+            res = max(res, j-i+1);
+            i=j+1;
+        }
+        res = max(res, j-i+1);
+
+        return res;
+    }
+};
+```
+
+下面这个答案更精辟些，把滑动窗口的思路简化成一步循环。
+```cpp
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.size()<2) return nums.size();
+        sort(nums.begin(), nums.end());
+        // if(nums.size()==2) return nums[0]+1==nums[1]?2:1;
+
+        int i, res=1, count=1;
+        for(i=1; i<nums.size(); i++) {
+            if(nums[i-1]+1 == nums[i]) {
+                res = max(res, ++count);
+            } else if(nums[i-1] == nums[i]) continue;
+            else count=1;
+        }
+
+        return res;
+    }
+};
+```
 
 # [162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/)
 
