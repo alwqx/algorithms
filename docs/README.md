@@ -22,9 +22,9 @@
 
 ## Reference
 - [吴自华-我的CP笔记-强推！](https://cp-wiki.vercel.app/)
+- [visualgo](https://visualgo.net/zh)
+- [algorithm-visualizer](https://algorithm-visualizer.org/)
 - [Princeton University Algorithms](/courses/README.md)
 - [algs4 source code and api](http://algs4.cs.princeton.edu/code/index.php)
 - [Algs in C](https://github.com/TheAlgorithms/C)
 - [Algs in Python](https://github.com/keon/algorithms)
-- [visualgo](https://visualgo.net/zh)
-- [algorithm-visualizer](https://algorithm-visualizer.org/)

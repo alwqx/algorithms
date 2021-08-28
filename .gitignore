@@ -10,3 +10,4 @@ a.out
 .vscode/
 ecnutest
 main.cpp
+main.cc
