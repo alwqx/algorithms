@@ -98,3 +98,29 @@ public:
     }
 };
 ```
+
+# [209. 长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
+```cpp
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int size=nums.size();
+        int ans=INT_MAX;
+
+        int left=0, right=0, sum=0;
+        while(right<size) {
+            sum += nums[right];
+            while(sum >= target) {
+                ans = min(ans, right-left+1);
+                sum -= nums[left];
+                left++;
+            }
+            right++;
+        }
+
+        return ans==INT_MAX?0:ans;
+    }
+};
+```
+
+这是我看到的最优美的解法了。

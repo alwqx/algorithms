@@ -5,8 +5,7 @@
 1. 对数组排序后处理
 2. 双指针法
 3. 快慢指针
-
-TODO：**加上思路！**
+4. 结合额外的存储，使用map
 
 # [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/)
 自己采用暴力解法，结果超时。
@@ -61,7 +60,7 @@ public:
 };
 ```
 
-思路跟法二一样，但是做了优化，根据排列的性质，把求个计算合并到一次循环中了。
+思路跟法二一样，但是做了优化，根据排列的性质，把求和计算合并到一次循环中了。
 
 # [209. 长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
 
@@ -118,7 +117,6 @@ public:
 利用数据前缀和的O(n*log(n))自己没看懂思路...
 
 # [128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)
-# 128. 最长连续序列
 调试了半天，有很多特殊情况需要考虑，自己用的滑动窗口的思路。
 
 ```cpp
