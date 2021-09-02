@@ -1,9 +1,6 @@
 # 回溯
 
 # [93. 复原IP问题](https://leetcode-cn.com/problems/restore-ip-addresses/)
-# 93. 复原IP问题
-自己没有想到方法，参考题解。
-
 这个方法简洁、优雅，好理解。
 ```cpp
 class Solution {
