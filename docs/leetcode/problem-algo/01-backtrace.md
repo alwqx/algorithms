@@ -1,6 +1,34 @@
 # 回溯
 
-# [93. 复原IP问题](https://leetcode-cn.com/problems/restore-ip-addresses/)
+# 典型问题巩固
+通过一些典型问题，快速熟悉回溯的思路和常用解题模板
+
+```
+回溯模板
+
+1. 进入回溯，检查边界条件
+    - 位置越界、和大于给定值等
+
+2. 判断当前状态是否符合结果
+    - 如果符合，记录结果，返回
+    - 如果不符合，继续向下进行选择
+
+3. 根据题目条件，进行选择和下一步回溯
+```
+
+回溯问题的难点有：
+1. 题目本身复杂，需要进行转化、理解，并且构造合适的变量和数据结构，以便回溯
+2. 回溯过程中边界条件、满足条件的判断
+3. 下一步回溯
+
+题目列表
+1. [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)，非常典型的回溯问题和解题模板
+2. [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/)，理解清楚问题的含义，找打左括号<=右括号数这一关键点，剩下的就是基础的深搜模板
+
+
+## [93. 复原IP问题](https://leetcode-cn.com/problems/restore-ip-addresses/)
+这个问题不够经典，
+
 这个方法简洁、优雅，好理解。
 ```cpp
 class Solution {
@@ -83,9 +111,9 @@ vector<string> restoreIpAddresses(string s)
 */
 ```
 
-# [60. 排列序列](https://leetcode-cn.com/problems/permutation-sequence/)
+## [60. 排列序列](https://leetcode-cn.com/problems/permutation-sequence/)
 
-# [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)
+## [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)
 注意可以选择跳过当前数或者不跳过。
 ```cpp
 class Solution {
@@ -122,11 +150,11 @@ public:
 };
 ```
 
-# [95. 不同的二叉搜索树 II](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
+## [95. 不同的二叉搜索树 II](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
 
 题解还会太抽象了，自己看不懂，多看看熟悉下。
 
-# [78. 子集](https://leetcode-cn.com/problems/subsets/)
+## [78. 子集](https://leetcode-cn.com/problems/subsets/)
 自己将问题分割，分别求0-n个数的子集，然后push到最终结果中，做出来了，就是代码相对多些，没有官方题解中的简洁。
 
 代码越简洁，思维过程越复杂。
@@ -185,46 +213,7 @@ public:
 };
 ```
 
-# [77. 组合](https://leetcode-cn.com/problems/combinations/)
+## [77. 组合](https://leetcode-cn.com/problems/combinations/)
 自己试着用回溯的框架去做，但是提示一直不对，想了1个多小时没想出来，主要是在图书馆没预约到座位，换了几次，**做不到不受环境影响沉浸式思考**。
 
 感觉自己没有想清楚本问题的本质，dfs过程中各个参数的含义也不明确，这就导致dfs框架结构不明晰。**在dfs框架不明晰的情况下，怎么修改都是徒劳的，应该先想清楚框架和流程，再去做**。
-
-
-# [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/)
-这个题目我想复杂了，题目的意思是计算出**有效括号对**的数量，我的回溯中加入了判断括号是否有效的逻辑，增加了程序的复杂性。
-
-通过查看[官方题解](https://leetcode-cn.com/problems/generate-parentheses/solution/gua-hao-sheng-cheng-by-leetcode-solution/)了解到，可以利用题目的隐含信息，认为调整逻辑跳过非法的括号对，简化程序。**通过跟踪左括号、右括号的数量关系来做到这点**。
-
-**如果左括号数量不大于n，我们可以放一个左括号。如果右括号数量小于左括号的数量，我们可以放一个右括号**。
-
-```cpp
-class Solution {
-private:
-    void dfs(vector<string>& res, string str, int li, int ri, int n) {
-        if(str.size() == n*2) {
-            res.push_back(str);
-            return;
-        }
-
-        if(li < n) {
-            str.push_back('(');
-            dfs(res, str, li+1, ri, n);
-            str.pop_back();
-        }
-        if(ri < li) {
-            str.push_back(')');
-            dfs(res, str, li, ri+1, n);
-            str.pop_back();
-        }
-    }
-public:
-    vector<string> generateParenthesis(int n) {
-        vector<string> res;
-        string str;
-        dfs(res, str, 0, 0, n);
-
-        return res;
-    }
-};
-```
