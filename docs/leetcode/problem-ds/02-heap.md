@@ -1,6 +1,15 @@
 # 堆 Heap
+堆是优先队列的简称，根据堆顶元素和两个节点之间的大小关系，分为大顶堆和小顶堆。在<queue>模板中，默认声明一个**大顶堆**：
+```cpp
+priority_queue<int> q
+```
 
-# 复合元素的堆定义
+声明**小顶堆**：
+```cpp
+priority_queue<int, vector<int>, greater<int>> q;
+```
+
+元素为复合类型（结构体、pair）的堆声明相对复杂，参考[347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)中的代码：
 ```cpp
 class Solution {
 public:
@@ -15,6 +24,8 @@ public:
         // 注意下面的复合元素堆定义方法
         // 该方法定义的是小顶堆
         priority_queue<pair<int, int>, vector<pair<int, int>>, decltype (&cmp)> heap(cmp);
+
+        // ...
 
         return res;
     }
@@ -45,9 +56,6 @@ struct Node {
     }
 };
 ```
-
-# [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)
-使用堆做比较方便，就是堆元素是pair复合类型时比较不好定义，参考上面代码
 
 # [215 第K大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
 
