@@ -152,7 +152,7 @@ public:
 
 ## [95. 不同的二叉搜索树 II](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
 
-题解还会太抽象了，自己看不懂，多看看熟悉下。
+题解还是太抽象了，自己看不懂，多看看熟悉下。
 
 ## [78. 子集](https://leetcode-cn.com/problems/subsets/)
 自己将问题分割，分别求0-n个数的子集，然后push到最终结果中，做出来了，就是代码相对多些，没有官方题解中的简洁。
