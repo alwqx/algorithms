@@ -6,10 +6,11 @@
 - 入度、出度
 - 遍历：DFS/BFS
 - 并查集
-- 最短路径算法
+- 单源最短路径算法
   - 迪杰斯特拉
   - flood
   - ...
+- 多源最短路径
 
 # [547. 省份数量-原朋友圈](https://leetcode-cn.com/problems/number-of-provinces/)
 ## 图的连通性问题

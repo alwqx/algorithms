@@ -43,6 +43,7 @@ public:
 			if (s.empty()) res.push_back(ip);
 		}
 		else {
+            // 取数字，1-3个
 			for (int k = 1; k < 4; ++k) {
 				if (s.size() < k) break;
 				int val = stoi(s.substr(0, k));
@@ -112,6 +113,7 @@ vector<string> restoreIpAddresses(string s)
 ```
 
 ## [60. 排列序列](https://leetcode-cn.com/problems/permutation-sequence/)
+先弄清楚题目的含义，找到规律之后再设计算法和程序步骤。
 
 ## [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)
 注意可以选择跳过当前数或者不跳过。
