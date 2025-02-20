@@ -1,4 +1,5 @@
 # 基础算法思想
+
 - 枚举
 - 贪心
 - 分治
@@ -8,7 +9,9 @@
 - 压缩
 
 ## 如何分割字符串 C++
-1. 可以配合stringstream和getline
+
+1. 可以配合 stringstream 和 getline
+
 ```cpp
 vector<string> main() {
     string path  ="abc/adsfa/./../daf/";
@@ -24,12 +27,15 @@ vector<string> main() {
 ```
 
 ## 999. 可以被一步捕获的棋子数
-1. 两层for循环终止时不能只在内部for循环加break，外部也要加。
 
-## 巧用初始化减少循环次数
-这个思路是[1200. 最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference/)总结来的，很多题解中也用到了。
+1. 两层 for 循环终止时不能只在内部 for 循环加 break，外部也要加。
+
+## 1200. 巧用初始化减少循环次数
+
+这个思路是 [1200. 最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference/) 总结来的，很多题解中也用到了。
 
 思路就是先排序，第一遍循环找到最小差，第二次循环把最小差收集起来。下面是我的代码：
+
 ```cpp
 class Solution {
 public:
@@ -52,8 +58,9 @@ public:
 };
 ```
 
-看到别人的代码自己突然顿悟，可以**只用一次循环**，实时更新结果。在for循环中，如果发现更小的差，**就把之前收集的res丢弃掉**，换成新的值。
+看到别人的代码自己突然顿悟，可以**只用一次循环**，实时更新结果。在 for 循环中，如果发现更小的差，**就把之前收集的 res 丢弃掉**，换成新的值。
 优化的解法
+
 ```cpp
 class Solution {
 public:
@@ -66,7 +73,7 @@ public:
             tmp = arr[i]-arr[i-1];
             if(tmp < v) {
                 v = tmp;
-                // 这里对res进行了更新
+                // 这里对 res 进行了更新
                 res = {{arr[i-1], arr[i]}};
             } else if(tmp == v) res.push_back(vector<int>{arr[i-1], arr[i]});
         }
@@ -76,7 +83,8 @@ public:
 };
 ```
 
-上述思想还可以用在很多地方，比如一个数组中有多个最小值，请你都找出来...
+上述思想还可以用在很多地方，比如一个数组中有多个最小值，请你都找出来。..
+
 ```cpp
 class Solution {
     public:
@@ -95,12 +103,13 @@ class Solution {
 }
 ```
 
-## 合并K个数组
+## 23. 合并 K 个数组
+
 这道题目难度级别是`困难`，我第一次遇到时也是束手无策，找不到突破口。后来做了`合并两个链表`后再回来看题目，结合别人的题解做出来了。
 
 这道题目难的是思路，我们在没有思路的时候可以把问题划分成多个子问题，通过子问题的解决来处理整个问题。这就是分治的思想。
 
-即先写一个辅助函数，合并两个链表，返回合并后的链表头，然后遍历K的链表数组。关于如何遍历有多种方法，我用的是线性遍历，看到别人的代码有用Login遍历的。我把代码放出来就理解了。
+即先写一个辅助函数，合并两个链表，返回合并后的链表头，然后遍历 K 的链表数组。关于如何遍历有多种方法，我用的是线性遍历，看到别人的代码有用 Login 遍历的。我把代码放出来就理解了。
 
 ```cpp
 /**
@@ -144,7 +153,7 @@ public:
         queue<ListNode*> q;
         for(i=0; i<len; i++) q.push(lists[i]);
 
-        // 利用队列每次拿出来2个合并，降低复杂度
+        // 利用队列每次拿出来 2 个合并，降低复杂度
         while(q.size()>1) {
             p1 = q.front();q.pop();
             p2 = q.front();q.pop();
@@ -171,7 +180,8 @@ public:
 ```
 
 ## 71. 简化路径
-题目要求简化Unix中的路径，暴力法/常规法会比较繁琐，这里[看到一个大佬的解法](https://leetcode-cn.com/problems/simplify-path/solution/cli-yong-stringstreamhe-getlinefen-ge-zi-fu-chuan-/)，非常简洁优雅，整理出来一起学习。
+
+题目要求简化 Unix 中的路径，暴力法/常规法会比较繁琐，这里 [看到一个大佬的解法](https://leetcode-cn.com/problems/simplify-path/solution/cli-yong-stringstreamhe-getlinefen-ge-zi-fu-chuan-/)，非常简洁优雅，整理出来一起学习。
 
 ```cpp
 class Solution {
