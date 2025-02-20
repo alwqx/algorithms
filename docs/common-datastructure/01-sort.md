@@ -1,6 +1,7 @@
-排序算法参考[LeetCode数组排序](https://leetcode-cn.com/problems/sort-an-array/)
+排序算法参考 [LeetCode 数组排序](https://leetcode-cn.com/problems/sort-an-array/)
 
 里面介绍了：
+
 - 快速排序
 - 堆排序
 - 归并排序
@@ -12,6 +13,7 @@
 分区函数决定最终效果的好坏。下面介绍集中分区方法，自己只需**深入理解记忆其中一个，降低负担**。
 
 ## 默认左端为枢纽
+
 ```cpp
 int partition(vector<int>& nums, int low, int high) {
     int i, pivot=nums[low], pos=low;
@@ -25,12 +27,13 @@ int partition(vector<int>& nums, int low, int high) {
     return pos;
 }
 ```
-**这个方法有个缺陷，在数组是降序排列等特殊情况下，复杂度降为O(n^2)**，详细找下原因。我们引入舍伍德概率算法，使得排序的时间复杂度和输入无关。
 
-使用概率随机在[low, high]选择一个位置和low交换，然后再进行分区。
+**这个方法有个缺陷，在数组是降序排列等特殊情况下，复杂度降为 O(n^2)**，详细找下原因。我们引入`舍伍德概率算法`，使得排序的时间复杂度和输入无关。
 
+> 使用概率随机在 [low, high] 选择一个位置和 low 交换，然后再进行分区。
 
-两端逼近，参考[最常用的排序——快速排序](https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html)中的图解
+两端逼近，参考 [最常用的排序——快速排序](https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html) 中的图解
+
 ```cpp
 int partition(vector<int>& nums, int low, int high) {
     int i=low, j=high+1, pivot=nums[low];
@@ -46,8 +49,8 @@ int partition(vector<int>& nums, int low, int high) {
 }
 ```
 
-
 ## 完整代码
+
 ```cpp
 #include <vector>
 #include <stdio.h>
@@ -142,11 +145,14 @@ int main() {
 ```
 
 # 归并排序
+
 归并排序的采用**分-合**的思想，
+
 1. 分：先把数组从中间分成两部分，分别对左、右两部分递归进行归并排序然后合并到一起的时候进行排序。
 2. 合：假设左、右两部分已经排序好，然后把两部分合并在一起，此时左、右元素需要进行比较
 
 代码如下：
+
 ```cpp
 class Merge {
 private:
@@ -218,5 +224,6 @@ int main() {
 }
 ```
 
-## 参考
-- [快速排序的4种优化](https://blog.csdn.net/qq_38289815/article/details/82718428)
+# 参考
+
+- [快速排序的 4 种优化](https://blog.csdn.net/qq_38289815/article/details/82718428)
