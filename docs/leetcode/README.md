@@ -151,13 +151,13 @@
 
 最后还是决定在理解别人题解的基础上整理自己的思路，自己写出来的再不好也是自己的理解过程，有参考意义，而且也会慢慢内化成自己的。
 
-- [剑指 Offer 系列](/leetcode/problems-ds/offer_sword)
+- [剑指 Offer 系列](/leetcode/problem-ds/offer_sword)
 - [数组系列](/leetcode/problem-ds/00-array)
 - [树系列](/leetcode/problem-ds/02-tree)
 - [链表系列](/leetcode/problem-ds/00-linked_list)
 - [动态规划系列](/leetcode/problem-algo/dp)
 - [设计系列](/leetcode/problem-ds/design)
-- [图问题汇总：遍历和回溯、DFS 和 BFS](/leetcode/problems-ds/02-graph)
+- [图问题汇总：遍历和回溯、DFS 和 BFS](/leetcode/problem-ds/02-graph)
 - [序列问题](/leetcode/problem-algo/00-sequential)
 - [674 300 354. LIS 问题](/leetcode/problem-algo/00-lis)
 
