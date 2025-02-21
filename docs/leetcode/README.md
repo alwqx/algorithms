@@ -155,7 +155,7 @@
 - [数组系列](/leetcode/problem-ds/00-array)
 - [树系列](/leetcode/problem-ds/02-tree)
 - [链表系列](/leetcode/problem-ds/00-linked_list)
-- [动态规划系列](/leetcode/problem-algo/dp)
+- [动态规划系列](/leetcode/problem-algo/02-dp)
 - [设计系列](/leetcode/problem-ds/design)
 - [图问题汇总：遍历和回溯、DFS 和 BFS](/leetcode/problem-ds/02-graph)
 - [序列问题](/leetcode/problem-algo/00-sequential)
