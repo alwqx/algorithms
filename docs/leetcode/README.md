@@ -18,14 +18,14 @@
 
 ## 常用数据结构与算法思想
 
-- 数组 做了 3 道题
+- 数组
 - 链表
 - 栈
 - 队列
 - 排序
   - 快排
   - 归并排序
-- 并查集 UF 做了 3-5 道题
+- 并查集 UF
 - 树
 - 图
 - 字符串
@@ -52,8 +52,7 @@
 - [面试题 43. 1~n 整数中 1 出现的次数](/leetcode/problems/offer-43-calculate-one)
 - [面试题 33. 二叉搜索树的后序遍历序列](/leetcode/problems/offer-33)
 - [面试题 60. n 个骰子的点数](/leetcode/problems/offer-60)
-
-1. [海量数据中寻找中位数](https://zhuanlan.zhihu.com/p/75397875)
+- [海量数据中寻找中位数](https://zhuanlan.zhihu.com/p/75397875)
 
 ## 待提高
 
@@ -90,9 +89,13 @@
 
 **时间不够没必要面面俱到，可以先掌握高频知识点**。
 
+# 刷题轮次
+
+- [2021 年实习/校招](/leetcode/round/round-20210101)
+- [2025](/leetcode/round/round-20250218)
+
 # 参考
 
 - [labuladong-fucking-algorithm](https://github.com/labuladong/fucking-algorithm)
-- LeetCode 网站上的题解
 - [别再埋头刷 LeetCode 之：北美算法面试的题目分类，按类型和规律刷题，事半功倍](https://zhuanlan.zhihu.com/p/161204634)
 - [Grokking the System Design Interview](https://www.educative.io/courses/grokking-the-system-design-interview)
