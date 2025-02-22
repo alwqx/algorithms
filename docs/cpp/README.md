@@ -1,6 +1,7 @@
 # C++基础
 
 # 常用数据结构
+
 - vector
 - queue
 - stack
@@ -8,8 +9,12 @@
 - list
 - map unordered_map
 
-# sort中的cmp函数
-1. 基本数据类型可以直接比较，也可以自定义cmp实现递增、递减排序。
+可参考 [w3schools | Data Structures](https://www.w3schools.com/cpp/cpp_vectors.asp) 快速过一遍常用数据结构的操作。
+
+# sort 中的 cmp 函数
+
+1. 基本数据类型可以直接比较，也可以自定义 cmp 实现递增、递减排序。
+
 ```cpp
 class Solution {
 public:
@@ -25,6 +30,7 @@ public:
 ```
 
 2. 结构体数组的排序
+
 ```cpp
 struct node {
     int x, y;
@@ -38,7 +44,8 @@ void main() {
 ```
 
 3. 容器的排序
-只有vector、string和deque是可以排序的，像map、set这样底层使用红黑树实现，本身是有序的，是不允许排序的。vector的排序，里面的元素是int，所以用int
+   只有 vector、string 和 deque 是可以排序的，像 map、set 这样底层使用红黑树实现，本身是有序的，是不允许排序的。vector 的排序，里面的元素是 int，所以用 int
+
 ```cpp
 bool cmp(int a, int b) {
     return a>b;
@@ -50,7 +57,8 @@ void main() {
 }
 ```
 
-4. string的排序
+4. string 的排序
+
 ```cpp
 bool cmp(string a, string b) {
     return a.size() > b.size();
