@@ -7,6 +7,59 @@
 - 链表翻转
 - 链表取中点
 
+## [25. K 个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/description)
+
+考察细节与设计能力。
+
+自己最初的算法，只有一个模糊的思路，在实现上很多细节都没有考虑。
+
+阅读官方题解后，有以下几点做得好：
+
+1. 抽出来链表翻转实现，简化主过程的实现
+2. 翻转链表传入 (head, tail) 指针，比我自己想到的 （传递 head) 多了一个 tail 指针
+
+```cpp
+class Solution {
+public:
+    pair<ListNode*, ListNode*> helper(ListNode* head, ListNode* tail) {
+        ListNode *succ = tail->next;
+        ListNode *pre, *cur=head;
+        while(cur != succ) {
+            ListNode* t = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = t;
+        }
+        head->next = succ;
+        return {tail, head};
+    }
+
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(head==nullptr || head->next==nullptr || k==1) return head;
+        ListNode *dummy = new ListNode(0, head);
+
+        ListNode *pre=dummy, *h=head, *tail=head;
+        while(tail != nullptr) {
+            // 1. 找到尾部
+            for(int i=1; i<k; i++) {
+                if (tail == nullptr) break;
+                tail = tail->next;
+            }
+            if (tail ==nullptr) break;
+
+            pair<ListNode*, ListNode*> p = helper(h, tail);
+            ListNode *newHead=p.first, *newTail=p.second;
+            pre->next = newHead;
+            pre = newTail;
+            h = h->next;
+            tail = h;
+        }
+
+        return dummy->next;
+    }
+};
+```
+
 ## [430. 扁平化多级双向链表](https://leetcode-cn.com/problems/flatten-a-multilevel-doubly-linked-list/)
 
 自己想到可能要用递归或者栈来做，但是没有想出来具体方案。看了官方题解发现要把结构抽象成二叉树来做。厉害厉害，没想到（手动狗头）
