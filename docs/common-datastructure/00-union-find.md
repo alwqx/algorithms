@@ -1,11 +1,16 @@
 # 并查集
+
+[oi-witi-并查集](https://oi-wiki.org/ds/dsu/)
+
 是一种树型结构，用于处理不相交集的合并与查询问题，定义了两个接口：
-- find(x)，查询x所属子集
+
+- find(x)，查询 x 所属子集
 - union(x, y)，将两个子集合并成同一个集合
 
-UF有两个优化点：
-1. union操作中`按秩合并`，将更小的树连接到更大的树上
-2. find查询时路径压缩，是一种查找时`扁平化树结构`的方法
+UF 有两个优化点：
+
+1. union 操作中`按秩合并`，将更小的树连接到更大的树上
+2. find 查询时路径压缩，是一种查找时`扁平化树结构`的方法
 
 ```cpp
 class UF {
@@ -28,7 +33,7 @@ public:
         int rootq = find(q);
         if(rootp == rootq) return;
 
-        // p的节点比q多
+        // p 的节点数比 q 多
         if(rank[rootp] > rank[rootq]) {
             parent[rootq] = rootp;
             rank[rootp] += rank[rootq];
@@ -67,15 +72,14 @@ public:
 ```
 
 # 参考
+
 - [并查集](https://zh.wikipedia.org/wiki/%E5%B9%B6%E6%9F%A5%E9%9B%86)
 
-
-
-
 # [399. 除法求值](https://leetcode-cn.com/problems/evaluate-division/)
-我认为这个问题非常经典，而且特别实用，学会这个算法在生活中真的有用武之地。下面的代码参考自[C++ 带权值的并查集](https://leetcode-cn.com/problems/evaluate-division/solution/c-dai-quan-zhi-de-bing-cha-ji-by-wen-zhong-qiu-she/)，这里的代码是非常好理解的。关键是实际编写中还是要看一会儿才能理解。
 
-在myUnion(string a, string b)方法中，将a和b放在同一个树上。带路径压缩的方法参考[并查集+路径压缩](https://leetcode-cn.com/problems/evaluate-division/solution/bing-cha-ji-lu-jing-ya-suo-by-bueryt/)。
+我认为这个问题非常经典，而且特别实用，学会这个算法在生活中真的有用武之地。下面的代码参考自 [C++ 带权值的并查集](https://leetcode-cn.com/problems/evaluate-division/solution/c-dai-quan-zhi-de-bing-cha-ji-by-wen-zhong-qiu-she/)，这里的代码是非常好理解的。关键是实际编写中还是要看一会儿才能理解。
+
+在 myUnion(string a, string b) 方法中，将 a 和 b 放在同一个树上。带路径压缩的方法参考 [并查集+路径压缩](https://leetcode-cn.com/problems/evaluate-division/solution/bing-cha-ji-lu-jing-ya-suo-by-bueryt/)。
 
 ```cpp
 class Solution {
@@ -100,7 +104,7 @@ public:
                 weight[b] = 1.0;
             }
 
-            // 因为输入的equations暗含了a/b=x这个关系，所以函数中人为指定了a、b间的方向
+            // 因为输入的 equations 暗含了 a/b=x 这个关系，所以函数中人为指定了 a、b 间的方向
             myUnion(a, b, values[i]);
         }
 
@@ -124,7 +128,7 @@ public:
         return ans;
     }
 
-    // 返回root以及节点/root的值，
+    // 返回 root 以及节点/root 的值，
     // 带路径压缩
     pair<string, double> myFind(string a) {
         if(parent.find(a) == parent.end()) return {"", -1.0};
@@ -153,7 +157,7 @@ public:
     }
     */
 
-    // a_b表示a/b的结果
+    // a_b 表示 a/b 的结果
     void myUnion(string a, string b, double a_b) {
         pair<string, double> pa = myFind(a);
         pair<string, double> pb = myFind(b);
@@ -161,13 +165,13 @@ public:
         if(pa.first=="" || pb.first=="") return;
         if(pa.first == pb.first) return;
 
-        // 把a的父节点指向b的父节点
+        // 把 a 的父节点指向 b 的父节点
         parent[pa.first] = pb.first;
         // weight[a] = a_b * pb.second;
-        // 更新权值，没看懂...自己的理解是上面的方法
+        // 更新权值，没看懂。.. 自己的理解是上面的方法
         weight[pa.first] = 1.0 / pa.second * a_b * pb.second;
     }
 };
 ```
 
-[BaymaxHWY](https://leetcode-cn.com/problems/evaluate-division/solution/san-chong-jie-fa-by-baymaxhwy/)老哥的方法更多，适合拓展思路以及学习，笔者觉得需要消化下，慢慢来~
+[BaymaxHWY](https://leetcode-cn.com/problems/evaluate-division/solution/san-chong-jie-fa-by-baymaxhwy/) 老哥的方法更多，适合拓展思路以及学习，笔者觉得需要消化下，慢慢来~
