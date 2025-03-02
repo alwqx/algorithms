@@ -128,7 +128,7 @@ public:
         return ans;
     }
 
-    // 返回 root 以及节点/root 的值，
+    // 返回 a 的根节点 以及 a/根节点 的值
     // 带路径压缩
     pair<string, double> myFind(string a) {
         if(parent.find(a) == parent.end()) return {"", -1.0};
@@ -169,6 +169,10 @@ public:
         parent[pa.first] = pb.first;
         // weight[a] = a_b * pb.second;
         // 更新权值，没看懂。.. 自己的理解是上面的方法
+        // 初始状态下 w[a] = 1.0 表示 a 是自己的根，w[a] = a/a = 1.0
+        // 经过若干次根节点变换 pa = find(a), w[a] = a/pa
+        // 现在知道 w[b]=b/pb a/b=a_b w[a]=a/pa，然后将 a 的根节点 pa 重新指向 pb，就需要更新/计算 w[pa] 的值
+        // w[pa] = pa/pb，通过上面一行的条件进行变换，就能得到 w[pa] = 1/w[a]*a_b*w[b]
         weight[pa.first] = 1.0 / pa.second * a_b * pb.second;
     }
 };
