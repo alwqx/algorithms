@@ -1,4 +1,4 @@
-排序算法参考 [LeetCode 数组排序](https://leetcode-cn.com/problems/sort-an-array/)
+排序算法参考 [LeetCode 912. 数组排序](https://leetcode-cn.com/problems/sort-an-array/)
 
 里面介绍了：
 
