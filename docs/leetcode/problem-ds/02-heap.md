@@ -1,6 +1,11 @@
 # 堆 Heap
 
-堆是优先队列的简称，根据堆顶元素和两个节点之间的大小关系，分为大顶堆和小顶堆。在<queue>模板中，默认声明一个**大顶堆**：
+堆是优先队列的简称，根据堆顶元素和两个节点之间的大小关系，分为大顶堆和小顶堆。
+
+小顶堆：每个节点的值 >= 父节点
+大顶堆：每个节点的值 <= 父节点
+
+在<queue>模板中，默认声明一个**大顶堆**：
 
 ```cpp
 priority_queue<int> q
@@ -52,7 +57,7 @@ bool operator< (item a, item b) {
 }
 ```
 
-或者在结构体里面重载<，参考`算法笔记 6.6 节-priority_queue 常见用法详解`：
+或者在结构体里面重载<，[算法笔记（晴神宝典）- 读书笔记（完结）](https://www.cnblogs.com/ymjun/p/12171132.html)，参考`算法笔记 6.6 节-priority_queue 常见用法详解`：
 
 ```cpp
 struct Node {
@@ -199,4 +204,4 @@ public:
 ## 参考
 
 - [215. Leetcode 题解-数组中的第 K 个最大元素 c++实现三种解法 暴力法、使用小顶堆和选择算法 图示讲解](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/shu-zu-zhong-de-di-kge-zui-da-yuan-su-cshi-xian-sa/)
-- [215Leetcode 题解-快速排序思想，数组划分](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/kuai-su-pai-xu-si-xiang-shu-zu-hua-fen-by-liushang/)
+- [215 Leetcode 题解-快速排序思想，数组划分](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/kuai-su-pai-xu-si-xiang-shu-zu-hua-fen-by-liushang/)

@@ -32,7 +32,9 @@ int partition(vector<int>& nums, int low, int high) {
 
 > 使用概率随机在 [low, high] 选择一个位置和 low 交换，然后再进行分区。
 
-两端逼近，参考 [最常用的排序——快速排序](https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html) 中的图解
+两端逼近，参考 ~~[最常用的排序——快速排序](https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html)~~ 中的图解
+
+上述连接已经失效，使用类似的 [快速排序的深刻理解](https://www.liuvv.com/p/ff8068c0.html)
 
 ```cpp
 int partition(vector<int>& nums, int low, int high) {
