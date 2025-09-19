@@ -115,6 +115,7 @@ func shiftDown(arr []int, n, i int) {
 		r := i*2 + 2 // 右节点
 		ma := i
 
+		// 这里的判断要用 ma，不能用 i
 		if l < n && arr[l] > arr[ma] {
 			ma = l
 		}
