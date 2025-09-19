@@ -39,3 +39,48 @@ func partition(arr []int, low, high int) int {
 
 	return pos
 }
+
+func MergeSort(arr []int) {
+	num := len(arr)
+	if num <= 1 {
+		return
+	}
+
+	holder := make([]int, num)
+	mergeSortHelper(arr, holder, 0, num-1)
+}
+
+func mergeSortHelper(arr, holder []int, low, high int) {
+	if low >= high {
+		return
+	}
+
+	mid := (low + high) / 2
+	mergeSortHelper(arr, holder, low, mid)
+	mergeSortHelper(arr, holder, mid+1, high)
+	merge(arr, holder, low, mid, high)
+}
+
+func merge(arr, holder []int, low, mid, high int) {
+	for i := low; i <= high; i++ {
+		holder[i] = arr[i]
+	}
+
+	i := low
+	j := mid + 1
+	for k := low; k <= high; k++ {
+		if i > mid {
+			arr[k] = holder[j]
+			j++
+		} else if j > high {
+			arr[k] = holder[i]
+			i++
+		} else if holder[i] < holder[j] {
+			arr[k] = holder[i]
+			i++
+		} else {
+			arr[k] = holder[j]
+			j++
+		}
+	}
+}
