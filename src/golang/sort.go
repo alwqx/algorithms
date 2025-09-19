@@ -84,3 +84,50 @@ func merge(arr, holder []int, low, mid, high int) {
 		}
 	}
 }
+
+func HeapSort(arr []int) {
+	// 先堆化，数组原地构建大顶堆
+	n := len(arr)
+	// 左子树的根节点 (n-1)/2   left=i*2+1
+	// 右子树的根节点 n/2 - 1	right=i*2+2
+	// 默认 n 是右子树的节点序号？
+	for i := n/2 - 1; i >= 0; i-- {
+		shiftDown(arr, n, i)
+	}
+
+	// 从堆中取最大元素，循环 n-1 轮
+	// n-1 是下标
+	for i := n - 1; i > 0; i-- {
+		// 交换根节点与叶子节点元素
+		t := arr[0]
+		arr[0] = arr[i]
+		arr[i] = t
+
+		shiftDown(arr, i, 0)
+	}
+}
+
+// shiftDown 数组从根节点 i 开始堆化
+// n 是数组的长度，i是根节点索引
+func shiftDown(arr []int, n, i int) {
+	for {
+		l := i*2 + 1 // 左节点
+		r := i*2 + 2 // 右节点
+		ma := i
+
+		if l < n && arr[l] > arr[ma] {
+			ma = l
+		}
+		if r < n && arr[r] > arr[ma] {
+			ma = r
+		}
+		if ma == i {
+			break
+		}
+
+		tmp := arr[i]
+		arr[i] = arr[ma]
+		arr[ma] = tmp
+		i = ma
+	}
+}
