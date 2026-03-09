@@ -11,7 +11,7 @@
 
 # 有效复习方法
 
-1. 熟悉基础的 CPP 数据结构和操作，思想方法，按照室友帆洋的做法，就是整理模板
+1. 熟悉基础的 CPP 数据结构和操作，思想方法，按照室友帆洋的做法，整理模板问题和代码
 2. 根据 1 中的数据结构和模板刷 LeetCode
 3. 根据 20/80 原则，整理算法中的常用基础、重要的知识
 4. 做一些重要的算法应用
@@ -55,21 +55,34 @@
 
 > 只列出自己没有思路或者很重要的问题
 
-- [剑指 Offer 系列](/leetcode/problem-ds/offer_sword)
+### 数据结构
+
 - [数组系列](/leetcode/problem-ds/00-array)
-- [树系列](/leetcode/problem-ds/02-tree)
 - [链表系列](/leetcode/problem-ds/00-linked_list)
-- [动态规划系列](/leetcode/problem-algo/02-dp)
+- [栈系列](/leetcode/problem-ds/01-stack)
+- [队列系列](/leetcode/problem-ds/01-queue)
+- [堆系列](/leetcode/problem-ds/02-heap)
+- [树系列](/leetcode/problem-ds/02-tree)
+- [图系列：遍历和回溯、DFS 和 BFS](/leetcode/problem-ds/02-graph)
+- [排序系列](/leetcode/problem-ds/03-sort)
+- [字符串系列](/leetcode/problem-ds/03-string)
 - [设计系列](/leetcode/problem-ds/design)
-- [图问题汇总：遍历和回溯、DFS 和 BFS](/leetcode/problem-ds/02-graph)
-- [序列问题](/leetcode/problem-algo/00-sequential)
+- [剑指 Offer 系列](/leetcode/problem-ds/offer_sword)
+
+### 算法思想
+
 - [674 300 354. LIS 问题](/leetcode/problem-algo/00-lis)
+- [序列问题](/leetcode/problem-algo/00-sequential)
+- [动态规划系列](/leetcode/problem-algo/02-dp)
+
+### 常见问题
+
+- [海量数据中寻找中位数](https://zhuanlan.zhihu.com/p/75397875)
 - [215. 数组中的第 K 个最大元素](/leetcode/problems/215-kth-largest-element)
 - [547. 朋友圈](/leetcode/problems/547-friend-circles)
 - [面试题 43. 1~n 整数中 1 出现的次数](/leetcode/problems/offer-43-calculate-one)
 - [面试题 33. 二叉搜索树的后序遍历序列](/leetcode/problems/offer-33)
 - [面试题 60. n 个骰子的点数](/leetcode/problems/offer-60)
-- [海量数据中寻找中位数](https://zhuanlan.zhihu.com/p/75397875)
 
 ## 待提高
 

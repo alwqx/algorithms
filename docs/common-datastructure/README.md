@@ -14,5 +14,8 @@
   - 拓扑排序
 - 哈希表
 - [并查集](/common-datastructure/00-union-find)
+
+# 算法思想
+
 - [快排、归并排序](/common-datastructure/01-sort)
 - [二分查找](/common-datastructure/02-binary-search)
