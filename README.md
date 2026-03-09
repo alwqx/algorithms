@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/adolphlwq/algorithms.svg?branch=master)](https://travis-ci.org/adolphlwq/algorithms)
 
 <p align="center">
-  <a href="https://alwq.xyz/algorithms" target="_blank">
+  <a href="https://alwqx.github.io/algorithms" target="_blank">
     <img src="https://i.loli.net/2019/02/09/5c5e25acd3469.png" width="700px">
     <br>
     Online Website
@@ -29,7 +29,7 @@
 
 ## Getting Involved
 
-- [Document](https://alwq.xyz/algorithms): Dive into details.
+- [Document](https://alwqx.github.io/algorithms): Dive into details.
 - [GitHub Issues](https://github.com/adolphlwq/algorithms/issues): For reporting bugs and feature algorithms.
 - [Pull Requests](https://github.com/adolphlwq/algorithms/pulls): For submitting code contributions.
 
