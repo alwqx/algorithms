@@ -23,7 +23,7 @@ Hint:
 4. All the integers in the expression are non-negative integers in the range [0, 2^(31) - 1].
 5. The answer is guaranteed to fit in a 32-bit integer.
 
-类似题目 https://leetcode.cn/problems/basic-calculator/
+leetcode 227. 基本计算器2 https://leetcode.cn/problems/basic-calculator-ii/description/
 */
 
 #include <string>
