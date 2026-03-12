@@ -77,6 +77,8 @@
 
 ### 常见问题
 
+- [224. 基本计算器](https://leetcode.cn/problems/basic-calculator/description/)
+- [150. 逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/)
 - [海量数据中寻找中位数](https://zhuanlan.zhihu.com/p/75397875)
 - [215. 数组中的第 K 个最大元素](/leetcode/problems/215-kth-largest-element)
 - [547. 朋友圈](/leetcode/problems/547-friend-circles)
