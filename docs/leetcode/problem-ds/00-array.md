@@ -1,22 +1,24 @@
 # 数组
 
-
 # 常用思想
+
 1. 对数组排序后处理
 2. 双指针法
 3. 快慢指针
-4. 结合额外的存储，使用map
+4. 结合额外的存储，使用 map
 
 # [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/)
+
 自己采用暴力解法，结果超时。
 
-## 法一(参考)
+## 法一（参考）
 
 在暴力法的基础上进行删除操作。这个考虑的题目中的隐含信息，即`多米诺牌等价`具有传递性，遍历过程中不断删掉已经等价的牌，从而降低时间复杂度。
 
 还是超时
 
-## 法二(参考)
+## 法二（参考）
+
 ```cpp
 class Solution {
 public:
@@ -42,7 +44,8 @@ public:
 
 把两个数从小到大排列，构成两位数，统计两位数的个数，然后两两配对，结构累加。
 
-## 法三(参考)
+## 法三（参考）
+
 ```cpp
 class Solution {
 public:
@@ -51,6 +54,11 @@ public:
         int t, res = 0;
         for(auto e:dominoes) {
             t = e[0]<e[1]?e[0]*10+e[1]:e[1]*10+e[0];
+            // 这里 res += m[t]; 和 m[t]++; 的执行顺序
+            // 决定了计算结果是 n*(n-1)/2 还是 n*(n+1)/2
+            // 这点是计算机思维的处理方法，和人脑的思路不同
+            // 所以可以写成这种方式，从而避免后面使用 map 遍历求和
+            // 从而减少一次遍历，同时避免使用 map
             res += m[t];
             m[t]++;
         }
@@ -64,7 +72,8 @@ public:
 
 # [209. 长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
 
-自己用的暴力法O(n*n)：
+自己用的暴力法 O(n\*n)：
+
 ```cpp
 class Solution {
 public:
@@ -89,7 +98,8 @@ public:
 };
 ```
 
-参考题解的双指针法O(n)：
+参考题解的双指针法 O(n)：
+
 ```cpp
 class Solution {
 public:
@@ -114,9 +124,10 @@ public:
 };
 ```
 
-利用数据前缀和的O(n*log(n))自己没看懂思路...
+利用数组前缀和的 O(n\*log(n)) 自己没看懂思路。..
 
 # [128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)
+
 调试了半天，有很多特殊情况需要考虑，自己用的滑动窗口的思路。
 
 ```cpp
@@ -135,7 +146,6 @@ public:
             tmpn.push_back(nums[i]);
         }
 
-
         for(i=j=0; j<tmpn.size()-1; j++) {
             if(tmpn[j]==tmpn[j+1]-1) continue;
             res = max(res, j-i+1);
@@ -149,6 +159,7 @@ public:
 ```
 
 下面这个答案更精辟些，把滑动窗口的思路简化成一步循环。
+
 ```cpp
 class Solution {
 public:
@@ -172,7 +183,8 @@ public:
 
 # [162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/)
 
-自己想到的是遍历法，时间复杂度是O(n)，而且代码不简炼，但是把一些特出情况单独拿出来处理，方便理解：
+自己想到的是遍历法，时间复杂度是 O(n)，而且代码不简炼，但是把一些特出情况单独拿出来处理，方便理解：
+
 ```cpp
 class Solution {
 public:
@@ -194,6 +206,7 @@ public:
 ```
 
 官方参考中的遍历思路非常简单，但是隐含了很多情况，需要自己去理解：
+
 ```cpp
 class Solution {
 public:
@@ -208,9 +221,11 @@ public:
 ```
 
 ## 二分法
+
 这个思路是对二分法的理解和灵活应用。
 
 递归版本：
+
 ```cpp
 class Solution {
 public:
@@ -228,6 +243,7 @@ public:
 ```
 
 迭代版本：
+
 ```cpp
 class Solution {
 public:
@@ -244,7 +260,7 @@ public:
 };
 ```
 
-迭代版中，`while(left < right)`中为什么不取`=`？因为我们是要逼近一个元素，如果取等号，left会最终越过我们需要的结果。
+迭代版中，`while(left < right)`中为什么不取`=`？因为我们是要逼近一个元素，如果取等号，left 会最终越过我们需要的结果。
 
 递归版本函数调用需要时间，递归栈也占用一定的存储，所以迭代法是效率最高的。
 
@@ -253,6 +269,7 @@ public:
 自己没有想到二分搜索的思路，这个题目本质上是考察二分搜索思想的应用。
 
 参考官方后的代码：
+
 ```cpp
 class Solution {
 public:
@@ -278,7 +295,8 @@ public:
 ```
 
 # [152. 乘积最大子数组](https://leetcode-cn.com/problems/maximum-product-subarray/)
-思路是dp，但是没有弄清楚当前的最大值如何求，看了[官方题解](https://leetcode-cn.com/problems/maximum-product-subarray/solution/cheng-ji-zui-da-zi-shu-zu-by-leetcode-solution/)，知道要维护两个dp变量...本质还是要理解这个最优子结构的求解过程。
+
+思路是 dp，但是没有弄清楚当前的最大值如何求，看了 [官方题解](https://leetcode-cn.com/problems/maximum-product-subarray/solution/cheng-ji-zui-da-zi-shu-zu-by-leetcode-solution/)，知道要维护两个 dp 变量。.. 本质还是要理解这个最优子结构的求解过程。
 
 ```cpp
 class Solution {
@@ -289,8 +307,8 @@ public:
 
         for(i=1; i<nums.size(); i++) {
             t = nums[i];
-            // 下面这行很重要，不用临时变量保存mindp
-            // 和maxdp，两个值在下面的计算中会变化，导致结果有问题
+            // 下面这行很重要，不用临时变量保存 mindp
+            // 和 maxdp，两个值在下面的计算中会变化，导致结果有问题
             mx = maxdp, mn = mindp;
             maxdp = max(t*mx, max(t, t*mn));
             mindp = min(t*mn, min(t, t*mx));
@@ -303,9 +321,10 @@ public:
 ```
 
 # [90. 子集 II](https://leetcode-cn.com/problems/subsets-ii/)
-看到题目完全没有思路...
 
-看了[别人的思路](https://leetcode-cn.com/problems/subsets-ii/solution/c-shuang-100si-lu-by-lygin/)，是决策树或回溯的模板。
+看到题目完全没有思路。..
+
+看了 [别人的思路](https://leetcode-cn.com/problems/subsets-ii/solution/c-shuang-100si-lu-by-lygin/)，是决策树或回溯的模板。
 
 ```cpp
 class Solution {
@@ -351,7 +370,8 @@ public:
 
 # [81. 搜索旋转排序数组 II]()
 
-自己的思路是先找到旋转点，然后判断target在哪个区间中，接着在对应的区间进行二分查找。
+自己的思路是先找到旋转点，然后判断 target 在哪个区间中，接着在对应的区间进行二分查找。
+
 ```cpp
 class Solution {
 public:
@@ -389,7 +409,8 @@ public:
 };
 ```
 
-在题解中看到[别人的思路](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/solution/zai-javazhong-ji-bai-liao-100de-yong-hu-by-reedfan/441802)，是直接二分判断，在循环中判断是否存在。
+在题解中看到 [别人的思路](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/solution/zai-javazhong-ji-bai-liao-100de-yong-hu-by-reedfan/441802)，是直接二分判断，在循环中判断是否存在。
+
 ```cpp
 class Solution {
 public:
@@ -409,8 +430,8 @@ public:
                 if(target >= nums[left] && target < t) right = mid-1;
                 else left = mid+1;
             } else if(t < nums[right]) {
-                // 因为nums[mid] == target在循环开始就判断过了，所以这里和上面相等的判断是
-                // 取非mid位置的边界
+                // 因为 nums[mid] == target 在循环开始就判断过了，所以这里和上面相等的判断是
+                // 取非 mid 位置的边界
                 if(target>t && target<=nums[right]) left = mid+1;
                 else right = mid-1;
             }
@@ -423,7 +444,8 @@ public:
 
 # [80. 删除排序数组中的重复项 II](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
 
-自己的方法是O(n)存储空间，没有想到O(1)的方法。
+自己的方法是 O(n) 存储空间，没有想到 O(1) 的方法。
+
 ```cpp
 class Solution {
 public:
@@ -448,7 +470,8 @@ public:
 };
 ```
 
-下面是参考[官方题解](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/solution/shan-chu-pai-xu-shu-zu-zhong-de-zhong-fu-xiang-i-7/)的方法：
+下面是参考 [官方题解](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/solution/shan-chu-pai-xu-shu-zu-zhong-de-zhong-fu-xiang-i-7/) 的方法：
+
 ```cpp
 class Solution {
 public:
@@ -469,9 +492,11 @@ public:
 思路上是双指针的思路。
 
 # [75. 颜色分类](https://leetcode-cn.com/problems/sort-colors/)
-自己有思路，但是有一段时间没有用C++刷题了，有些疏忽，代码没撸出来...
 
-利用计数排序，注意不是一定要用map的，向量就可以。
+自己有思路，但是有一段时间没有用 C++刷题了，有些疏忽，代码没撸出来。..
+
+利用计数排序，注意不是一定要用 map 的，向量就可以。
+
 ```cpp
 class Solution {
 public:
@@ -488,6 +513,7 @@ public:
 ```
 
 一趟排序
+
 ```cpp
 class Solution {
 public:
@@ -503,22 +529,22 @@ public:
 };
 ```
 
-为什么cur==2的情况没有cur++，因为交换后的cur值需要参与判断。
+为什么 cur==2 的情况没有 cur++，因为交换后的 cur 值需要参与判断。
 
 # [74. 搜索二维矩阵](/leetcode/problems/74)
 
-
 # [73 矩阵置零](https://leetcode-cn.com/problems/set-matrix-zeroes/)
 
-题目的难点在于将空间复杂度降至O(1)。自己编写出O(m*n)和O(m+n)的代码。
+题目的难点在于将空间复杂度降至 O(1)。自己编写出 O(m\*n) 和 O(m+n) 的代码。
 
-O(1)的思路参考官方题解，但是在实现上有些corner case需要处理。
+O(1) 的思路参考官方题解，但是在实现上有些 corner case 需要处理。
 
-官方的思路是如果某个位置值为0，将该位置对应的行首、列首置位0作为标记。然后重新遍历matrix，当行首、列首为0则遍历的点置为0。**这里的第一行和第一列需要专门判断**。
-
+官方的思路是如果某个位置值为 0，将该位置对应的行首、列首置位 0 作为标记。然后重新遍历 matrix，当行首、列首为 0 则遍历的点置为 0。**这里的第一行和第一列需要专门判断**。
 
 # [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
 二分查找中确定重复元素的左右边界，有多种解法，**非常考验思维能力**
+
 # [16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/)
 
 [15. 三数之和](https://leetcode-cn.com/problems/3sum/)
@@ -536,13 +562,12 @@ public:
 
         for(i=0; i<size; i++) {
             /*
-            这里的i去重操作加上更加严谨，不加上也不影响提交结果。下面分析为什么要去重，重复的情况分为三种
-            1. 两个重复，比如[1, 2, 2, ...]，i取第一个2时，后面的j会取到第二个2，当i+1后不需要计算后面第二个2的情况
-            2. 三个重复，比如[1,2,3,3,3,...]，和1中的情况相同，后面的j会算上i过滤掉的重复
-            3. 大于3个重复，比如[1,2,4,4,4,4,4,4,...]，同1， 2
+            这里的 i 去重操作加上更加严谨，不加上也不影响提交结果。下面分析为什么要去重，重复的情况分为三种
+            1. 两个重复，比如 [1, 2, 2, ...]，i 取第一个 2 时，后面的 j 会取到第二个 2，当 i+1 后不需要计算后面第二个 2 的情况
+            2. 三个重复，比如 [1,2,3,3,3,...]，和 1 中的情况相同，后面的 j 会算上 i 过滤掉的重复
+            3. 大于 3 个重复，比如 [1,2,4,4,4,4,4,4,...]，同 1， 2
             */
             if(i>0 && nums[i]==nums[i-1]) continue;
-
 
             j = i+1;
             k = size-1;
@@ -564,12 +589,15 @@ public:
 ```
 
 # [1482. 制作 m 束花所需的最少天数](https://leetcode-cn.com/problems/minimum-number-of-days-to-make-m-bouquets/)
+
 这个思路的关键在于**如何把问题抽象成二分查找**
 
-和之前的[959. 由斜杠划分区域](https://leetcode-cn.com/problems/regions-cut-by-slashes/)很相似。
+和之前的 [959. 由斜杠划分区域](https://leetcode-cn.com/problems/regions-cut-by-slashes/) 很相似。
 
 # [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)
-[官方题解]()是按行和列分别进行二分查找的，先找到对应行，然后对该行进行二分查找。
+
+[官方题解]() 是按行和列分别进行二分查找的，先找到对应行，然后对该行进行二分查找。
+
 ```cpp
 class Solution {
 public:
@@ -598,6 +626,7 @@ public:
 ```
 
 从右上角到左下角查找，O(m+n):
+
 ```cpp
 class Solution {
 public:
@@ -618,6 +647,7 @@ public:
 ```
 
 将整个数据看成一维数组，这个思路自己很难想到了。
+
 ```cpp
 class Solution {
 public:
@@ -640,17 +670,20 @@ public:
 ```
 
 # 前缀和专题
+
 ## [974. 和可被 K 整除的子数组](https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/)
-1. 首先定义P[i]=a[0] + ... + a[i]
-2. 前缀和sum(i, j)=P[j] - P[i-1] (j>i>0)
-3. 使用map存储前缀和余数为mod时对应的出现次数，因为是从左到右遍历数组，所以到第i个前缀和时，i前面的子数组都已经统计好
 
-**这里的问题是，为么初始化m[0]=1**
+1. 首先定义 P[i]=a[0] + ... + a[i]
+2. 前缀和 sum(i, j)=P[j] - P[i-1] (j>i>0)
+3. 使用 map 存储前缀和余数为 mod 时对应的出现次数，因为是从左到右遍历数组，所以到第 i 个前缀和时，i 前面的子数组都已经统计好
 
-## [560. 和为K的子数组](https://leetcode-cn.com/problems/subarray-sum-equals-k/)
-和974一样的思路，**这里还是不明白，为么初始化m[0]=1**
+**这里的问题是，为么初始化 m[0]=1**
 
-字典中`key=0`并不是指下标为0的情况，而是指连续子数组和为k的情况，这样才会导致差为0，这种情况未必会出现，但是对应的值应该为1，因为此时子数组的和为k。---感觉这样解释也不是很对...
+## [560. 和为 K 的子数组](https://leetcode-cn.com/problems/subarray-sum-equals-k/)
+
+和 974 一样的思路，**这里还是不明白，为么初始化 m[0]=1**
+
+字典中`key=0`并不是指下标为 0 的情况，而是指连续子数组和为 k 的情况，这样才会导致差为 0，这种情况未必会出现，但是对应的值应该为 1，因为此时子数组的和为 k。---感觉这样解释也不是很对。..
 
 # [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
 
@@ -682,7 +715,7 @@ public:
 
 脑袋要灵活，不要陷入**找到最佳解决方法中**，可以先找到简单粗暴的解法，然后慢慢优化。
 
-比如[C++简洁代码（四种方法）](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/solution/cjian-ji-dai-ma-by-orangeman-18/)题解用了4个方法，暴力、排序、二分等。
+比如 [C++简洁代码（四种方法）](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/solution/cjian-ji-dai-ma-by-orangeman-18/) 题解用了 4 个方法，暴力、排序、二分等。
 
 ```cpp
 class Solution {
@@ -704,22 +737,25 @@ public:
 为什么这种解法是对的？还有没有其它方法？**不能局限于把问题解决出来，而是要弄明白原理，是否还有其它优化的方法？**
 
 # [31. 下一个排列](https://leetcode-cn.com/problems/next-permutation/)
+
 起初被题目难倒了，不知道如何入手。
 
-后来看解析发现可以用`分割法`。把问题分成两部分，首先是全降序的，重新排序返回即可；然后非降序里面，从后往前找第一个不递增的元素a，和后面的比a大的最小数b交换，然后从a后面反转数组。
+后来看解析发现可以用`分割法`。把问题分成两部分，首先是全降序的，重新排序返回即可；然后非降序里面，从后往前找第一个不递增的元素 a，和后面的比 a 大的最小数 b 交换，然后从 a 后面反转数组。
 
 # [剑指 Offer 66. 构建乘积数组](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/)
-自己的方法O(n^2)，超时。
 
-之前的代码自己没看懂，看了[Krahets的题解](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/solution/mian-shi-ti-66-gou-jian-cheng-ji-shu-zu-biao-ge-fe/)迷迷糊糊弄明白了。
+自己的方法 O(n^2)，超时。
 
-后面有个大佬的解释很清晰，就是使用动态规划来做，维护两个数组left[i]和right[i]，分别表示ans[i]左侧和右侧的乘积，最后ans[i]=left[i]*right[i]。
+之前的代码自己没看懂，看了 [Krahets 的题解](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/solution/mian-shi-ti-66-gou-jian-cheng-ji-shu-zu-biao-ge-fe/) 迷迷糊糊弄明白了。
 
+后面有个大佬的解释很清晰，就是使用动态规划来做，维护两个数组 left[i] 和 right[i]，分别表示 ans[i] 左侧和右侧的乘积，最后 ans[i]=left[i]\*right[i]。
 
 # [45. 跳跃游戏 II](https://leetcode-cn.com/problems/jump-game-ii/)
-这道题目我没有思考清楚解题思路，自己采用dfs的方式，但是时间复杂度太高了，一直超时。
+
+这道题目我没有思考清楚解题思路，自己采用 dfs 的方式，但是时间复杂度太高了，一直超时。
 
 **看了题解，~~核心思路是确保下一步跳的位置的值最大~~**，核心思路理解错了，导致做不出来题目。真正的核心思路是**确保下一步到的位置和下一步的潜在步长加起来最大，这样才能保证未来跳的最远**。新的思路下代码如下：
+
 ```cpp
 /*
 这段代码相对较长，和官方题解中的代码相比多很多，但是思路很直接，比较好理解。
@@ -754,7 +790,8 @@ public:
 };
 ```
 
-另外，自己起初没有想到贪心的思路，想到的是深搜，写出来的代码超时了，即使使用一些条件剪枝，依然超时...
+另外，自己起初没有想到贪心的思路，想到的是深搜，写出来的代码超时了，即使使用一些条件剪枝，依然超时。..
+
 ```cpp
 class Solution {
 public:
@@ -797,18 +834,20 @@ public:
 ```
 
 # [341. 扁平化嵌套列表迭代器](https://leetcode-cn.com/problems/flatten-nested-list-iterator/)
+
 抽象能力不行，想到了递归和栈的思路，但是比较模糊，没有具体明确的实现方案，一直在试探如何写出代码，最后还是没有写出来，参考了题解。
 
 # [1524. 和为奇数的子数组数目](https://leetcode-cn.com/problems/number-of-sub-arrays-with-odd-sum/)
+
 需要一定的数学基础，`前缀和`的套路。
 
-常规思路超时了，需要使用数学方法减少计算过程，化繁为简。[官方题解](https://leetcode-cn.com/problems/number-of-sub-arrays-with-odd-sum/solution/he-wei-qi-shu-de-zi-shu-zu-shu-mu-by-leetcode-solu/)该如何理解呢？
+常规思路超时了，需要使用数学方法减少计算过程，化繁为简。[官方题解](https://leetcode-cn.com/problems/number-of-sub-arrays-with-odd-sum/solution/he-wei-qi-shu-de-zi-shu-zu-shu-mu-by-leetcode-solu/) 该如何理解呢？
 
 首先，前缀和只有两种可能，要么是奇数，要么是偶数。我们这里是要统计前缀和为奇数的个数。
 
-其次，题解的代码是遍历数组中的元素求前缀和，分别统计前缀和为奇数和偶数的个数，用odd和even存储。
+其次，题解的代码是遍历数组中的元素求前缀和，分别统计前缀和为奇数和偶数的个数，用 odd 和 even 存储。
 
-最后，我们统计的方法是**以元素i结尾的，[0, i], [1, i],...,[i-1, i]中和为奇数的子数组的个数，这不就是i前面和为偶数的前缀和的数量么。**
+最后，我们统计的方法是**以元素 i 结尾的，[0, i], [1, i],...,[i-1, i] 中和为奇数的子数组的个数，这不就是 i 前面和为偶数的前缀和的数量么。**
 
 ```cpp
 class Solution {
@@ -836,14 +875,15 @@ public:
 };
 ```
 
-最后的问题是，为什么even是从1开始？
+最后的问题是，为什么 even 是从 1 开始？
 
-从1开始要和整体的解题思路相一致，当i=0时，sum=arr[0]，此时odd和even的初始值要和题设一致，i=0的情况下：
-- 如果sum是奇数，cnt应该为1，`cnt = (cnt + (sum%2==0?odd:even)) % MODULO`取even的值，所以even初始值应该为1
-- 如果sum是偶数，cnt应该为0，`cnt = (cnt + (sum%2==0?odd:even)) % MODULO`取odd的值，所以odd初始值应该为0
+从 1 开始要和整体的解题思路相一致，当 i=0 时，sum=arr[0]，此时 odd 和 even 的初始值要和题设一致，i=0 的情况下：
 
+- 如果 sum 是奇数，cnt 应该为 1，`cnt = (cnt + (sum%2==0?odd:even)) % MODULO`取 even 的值，所以 even 初始值应该为 1
+- 如果 sum 是偶数，cnt 应该为 0，`cnt = (cnt + (sum%2==0?odd:even)) % MODULO`取 odd 的值，所以 odd 初始值应该为 0
 
 # [456. 132 模式](https://leetcode-cn.com/problems/132-pattern/)
-只想到了O(n^3)的方法，连提示中的O(n^2)的方法都没有想到，二次方的解法我很容易看懂，但是题解中的其它方法我理解起来需要些时间。`总体感觉这个题目有点抽象，比较新，没见过`。
 
-[官方题解](https://leetcode-cn.com/problems/132-pattern/solution/132mo-shi-by-leetcode-solution-ye89/)中的`枚举1`方法还需要好好理解。
+只想到了 O(n^3) 的方法，连提示中的 O(n^2) 的方法都没有想到，二次方的解法我很容易看懂，但是题解中的其它方法我理解起来需要些时间。`总体感觉这个题目有点抽象，比较新，没见过`。
+
+[官方题解](https://leetcode-cn.com/problems/132-pattern/solution/132mo-shi-by-leetcode-solution-ye89/) 中的`枚举 1`方法还需要好好理解。
