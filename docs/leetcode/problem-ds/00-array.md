@@ -3,9 +3,11 @@
 # 常用思想
 
 1. 对数组排序后处理
-2. 双指针法
+2. 双指针-滑动窗口
 3. 快慢指针
-4. 结合额外的存储，使用 map
+4. 前缀和
+5. 二分查找
+6. 结合额外的存储，使用 map
 
 # [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/)
 
@@ -70,7 +72,7 @@ public:
 
 思路跟法二一样，但是做了优化，根据排列的性质，把求和计算合并到一次循环中了。
 
-# [209. 长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
+# [209. 长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)
 
 自己用的暴力法 O(n\*n)：
 
@@ -98,7 +100,7 @@ public:
 };
 ```
 
-参考题解的双指针法 O(n)：
+参考题解的双指针法，时间复杂度 O(n)，代码能这么写的前提是数组中的元素没有负数，否则这个方法失效。
 
 ```cpp
 class Solution {
