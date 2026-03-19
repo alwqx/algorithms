@@ -1,6 +1,6 @@
-# 剑指Offer
+# 剑指 Offer
 
-# 面试题33. 二叉搜索树的后序遍历序列
+# 面试题 33. 二叉搜索树的后序遍历序列
 
 根据二叉搜索树的性质，找到左子树、右子树的区间，然后递归判断。
 
@@ -29,8 +29,10 @@ public:
 }
 ```
 
-# 剑指Offer-面试题38. 字符串的排列
-**非常经典的回溯算法题目**，参考[OOofer](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/hui-su-fa-by-luo-jing-yu-yu/)的思路，代码框架如下：
+# 剑指 Offer-面试题 38. 字符串的排列
+
+**非常经典的回溯算法题目**，参考 [OOofer](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/hui-su-fa-by-luo-jing-yu-yu/) 的思路，代码框架如下：
+
 ```cpp
 /*
  * 回溯法
@@ -44,16 +46,16 @@ public:
  *
  * 伪代码：
  * result = []
- * def backtrack(路径，选择列表):
+ * def backtrack（路径，选择列表）:
  *     if 满足结束条件：
- *         result.add(路径)
+ *         result.add（路径）
  *         return
- *     for 选择 in 选择列表:
+ *     for 选择 in 选择列表：
  *         做选择
- *         backtrack(路径，选择列表)
+ *         backtrack（路径，选择列表）
  *         撤销选择
  *
- * 核心是for循环中的递归，在递归调用之前“做选择”，
+ * 核心是 for 循环中的递归，在递归调用之前“做选择”，
  * 在递归调用之后“撤销选择”。
  *
  * 字符串的排列可以抽象为一棵决策树：
@@ -68,27 +70,26 @@ public:
  *      [aa]   [ac]  [ac]   [aa]  [ca]  [ca]
  *     [aac]  [aca] [aca]  [aac]  [caa] [caa]
  *
- * 字符串在做排列时，等于从a字符开始，对决策树进行遍历，
+ * 字符串在做排列时，等于从 a 字符开始，对决策树进行遍历，
  * "a"就是路径，"b""c"是"a"的选择列表，"ab"和"ac"就是做出的选择，
  * “结束条件”是遍历到树的底层，此处为选择列表为空。
  *
- * 本题定义backtrack函数像一个指针，在树上遍历，
+ * 本题定义 backtrack 函数像一个指针，在树上遍历，
  * 同时维护每个点的属性，每当走到树的底层，其“路径”就是一个全排列。
  * 当字符出现重复，且重复位置不一定时，需要先对字符串进行排序，
  * 再对字符串进行“去重”处理，之后按照回溯框架即可。
  * */
 ```
 
+感觉对这种题型还不是很熟练，按照 ACM 学弟的建议，要多写几遍，在理解的基础上，把思路固化成记录。
 
-感觉对这种题型还不是很熟练，按照ACM学弟的建议，要多写几遍，在理解的基础上，把思路固化成记录。
+题目主要有两种思路，一种是交换、dfs 的思路，一种是决策树回溯的思路。
 
-题目主要有两种思路，一种是交换、dfs的思路，一种是决策树回溯的思路。
+交换+dfs 是参考 [Krahets](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/) 的思路和代码，使用 set 来去重。
 
-交换+dfs是参考[Krahets](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/)的思路和代码，使用set来去重。
+这个解法把所有的情况都考虑了，然后使用 set 自身的性质自动帮我们去重，从计算量的角度来讲，没有做到`计算量上的剪枝`。
 
-这个解法把所有的情况都考虑了，然后使用set自身的性质自动帮我们去重，从计算量的角度来讲，没有做到`计算量上的剪枝`。
-
-笔者试了下也可以使用map来做标记去重，但是这样占用的空间变多了，而且时间也增加了，map和set底层用的都是红黑树，这里综合来讲，用set更合适些，避免了map带来的额外空间。
+笔者试了下也可以使用 map 来做标记去重，但是这样占用的空间变多了，而且时间也增加了，map 和 set 底层用的都是红黑树，这里综合来讲，用 set 更合适些，避免了 map 带来的额外空间。
 
 ```cpp
 class Solution {
@@ -116,7 +117,7 @@ public:
 }
 ```
 
-基于决策树的思路，参考[落鲸与鱼](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/hui-su-fa-by-luo-jing-yu-yu/)的思路。通过排序和判断来避免重复(剪枝)。
+基于决策树的思路，参考 [落鲸与鱼](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/hui-su-fa-by-luo-jing-yu-yu/) 的思路。通过排序和判断来避免重复（剪枝）。
 
 ```cpp
 class Solution {
@@ -144,13 +145,13 @@ public:
             if(vis[i]) continue;
             // 下面这行代码至关重要！要好好理解
             /*
-            @Sonnig 这里可以这么理解, 对于 aab, 记为 "a1a2b", 为了保证不出现重复，我们可以规定一个顺序，当我们需要使用字符 a 的时候，必须先用字符 a1, 后再用字符 a2； 或者当我们需要使用字符a时，必须先用字符a2, 后用字符 a1. 这样就是要保证在生成的字符串排列中不会因为 a1 和 a2 的位置发生对换，而产生新的重复的字符串。
+            @Sonnig 这里可以这么理解，对于 aab, 记为 "a1a2b", 为了保证不出现重复，我们可以规定一个顺序，当我们需要使用字符 a 的时候，必须先用字符 a1, 后再用字符 a2； 或者当我们需要使用字符 a 时，必须先用字符 a2, 后用字符 a1. 这样就是要保证在生成的字符串排列中不会因为 a1 和 a2 的位置发生对换，而产生新的重复的字符串。
 
             我们可以有以下两种方式：
 
             a1a2b, a1ba2, ba1a2 # 对应 !visit[i-1]
             a2a1b, a2ba1, ba2a1 # 对应 visit[i-1]
-            当使用 visit[i-1]时，若第一个字符就取了 a1, 那么 a2 不会被取，最终循环会被终结终结在 a1b, 不会进入更深的 dfs, 也不会生成解 a1ba2. 对使用 !visit[i-1] 也是同理。
+            当使用 visit[i-1] 时，若第一个字符就取了 a1, 那么 a2 不会被取，最终循环会被终结终结在 a1b, 不会进入更深的 dfs, 也不会生成解 a1ba2. 对使用 !visit[i-1] 也是同理。
 
             这里对于三重复 aaab, 也是成立的。
             */
@@ -166,16 +167,17 @@ public:
 }
 ```
 
-# 面试题43. 1~n整数中1出现的次数
-这个题目自己没有思路，参考的[Krahets](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/)大佬的解法。
+# 面试题 43. 1~n 整数中 1 出现的次数
 
-Krahets的思路一开始没有理解，后来自己的草稿纸上画了20多分钟，渐渐理解了。其思路是`逐位计算`，根据该位数字的不同，来判断有多少个1，然后累加到结果上。
+这个题目自己没有思路，参考的 [Krahets](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/) 大佬的解法。
+
+Krahets 的思路一开始没有理解，后来自己的草稿纸上画了 20 多分钟，渐渐理解了。其思路是`逐位计算`，根据该位数字的不同，来判断有多少个 1，然后累加到结果上。
 
 ![](https://pic.leetcode-cn.com/78e60b6c2ada7434ba69643047758e113fa732815f7c53791271c5e0f123687c-Picture1.png)
 
-下面以当前数字cur为0讨论，设数字是`2304`，那么0位为1的数字有`0010~2219`中把0位1去掉，即000~229，一共230个。
+下面以当前数字 cur 为 0 讨论，设数字是`2304`，那么 0 位为 1 的数字有`0010~2219`中把 0 位 1 去掉，即 000~229，一共 230 个。
 
-然后找规律，判断cur为1，为2-9时的情况。
+然后找规律，判断 cur 为 1，为 2-9 时的情况。
 
 ```cpp
 class Solution {
@@ -204,16 +206,19 @@ public:
 
 **记住这个思路，遇到了现推理**
 
-# 面试题46. 把数字翻译成字符串
+# 面试题 46. 把数字翻译成字符串
+
 这个题目的思路不是很好想，参考了别人的思路，这里自己模拟下。
 
-首先把数字表示成x1x2x3,...,xn的形式，
-1. x1,x2,...,x_i-1的方案数为f(i-1)
-1. x1,x2,...,x_i-2的方案数为f(i-2)
+首先把数字表示成 x1x2x3,...,xn 的形式，
+
+1. x1,x2,...,x_i-1 的方案数为 f(i-1)
+1. x1,x2,...,x_i-2 的方案数为 f(i-2)
 
 那么结果为
-1. 如果x_i-1x_i这两个数可以翻译，结果为f(i-1)+f(i-2)
-2. 如果x_i-1x_i这两个数不可以翻译，结果为f(i-1)
+
+1. 如果 x_i-1x_i 这两个数可以翻译，结果为 f(i-1)+f(i-2)
+2. 如果 x_i-1x_i 这两个数不可以翻译，结果为 f(i-1)
 
 这样整个过程就是一个动态的过程，从一个初始点开始，慢慢动态到最终结果。
 
@@ -238,6 +243,7 @@ public:
 ```
 
 下面是递归解法：
+
 ```cpp
 class Solution {
 public:
@@ -251,16 +257,17 @@ public:
 }
 ```
 
-# 面试题60. n个骰子的点数
-题目没有想到解题思路，或者说没有想到如何用dp做。
+# 面试题 60. n 个骰子的点数
 
-**用dp[i][j]表示投完i枚色子后，点数和j出现的次数。**
+题目没有想到解题思路，或者说没有想到如何用 dp 做。
 
-dp[n][j]表示投完n枚色子后，点数和j出现的次数。它等于投n-1枚色子，和为j-1,j-2,...,j-6的次数，这里的1...6表示第n次出现的1-6。
+**用 dp[i][j] 表示投完 i 枚色子后，点数和 j 出现的次数。**
+
+dp[n][j] 表示投完 n 枚色子后，点数和 j 出现的次数。它等于投 n-1 枚色子，和为 j-1,j-2,...,j-6 的次数，这里的 1...6 表示第 n 次出现的 1-6。
 
 按照上面的思路，从最终状态回溯到初始状态，然后迭代求和，得到最终状态。
 
-初始状态表示投1枚色子，点数1-6的次数，都为1
+初始状态表示投 1 枚色子，点数 1-6 的次数，都为 1
 
 ```cpp
 class Solution {
@@ -292,7 +299,8 @@ public:
 };
 ```
 
-上述代码的时间复杂度是O(n^2)，最里面的循环次数为6是常量。
+上述代码的时间复杂度是 O(n^2)，最里面的循环次数为 6 是常量。
 
 ## Reference
-- [【n个骰子的点数】：详解动态规划及其优化方式](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/solution/nge-tou-zi-de-dian-shu-dong-tai-gui-hua-ji-qi-yo-3/)
+
+- [【n 个骰子的点数】：详解动态规划及其优化方式](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/solution/nge-tou-zi-de-dian-shu-dong-tai-gui-hua-ji-qi-yo-3/)

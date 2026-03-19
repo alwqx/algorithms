@@ -1,7 +1,9 @@
 # 图问题汇总
-图的问题涉及求最大面积、单词搜索等，可以使用dfs配合回溯来做，也可以使用DP，关键看题目特点。
+
+图的问题涉及求最大面积、单词搜索等，可以使用 dfs 配合回溯来做，也可以使用 DP，关键看题目特点。
 
 图问题常用思考框架：
+
 - 拓扑排序
 - 入度、出度
 - 遍历：DFS/BFS
@@ -13,10 +15,13 @@
 - 多源最短路径
 
 # [547. 省份数量-原朋友圈](https://leetcode-cn.com/problems/number-of-provinces/)
+
 ## 图的连通性问题
-为什么visited数组是一维的？因为朋友关系具有对称性，A和B互为朋友，只需要一个维度记录就可以了。
+
+为什么 visited 数组是一维的？因为朋友关系具有对称性，A 和 B 互为朋友，只需要一个维度记录就可以了。
 
 DFS
+
 ```cpp
 class Solution {
 public:
@@ -48,6 +53,7 @@ public:
 ```
 
 BFS
+
 ```cpp
 class Solution {
 public:
@@ -82,6 +88,7 @@ public:
 ```
 
 ## 并查集
+
 ```cpp
 class Solution {
 public:
@@ -114,7 +121,8 @@ public:
 }
 ```
 
-UF放在类中专门实现
+UF 放在类中专门实现
+
 ```cpp
 class UF {
 private:
@@ -180,30 +188,38 @@ public:
 ```
 
 ## 参考
-- [LeetCode官方题解](https://leetcode-cn.com/problems/friend-circles/solution/peng-you-quan-by-leetcode/)
-- [LeetCode labuladong题解](https://leetcode-cn.com/problems/friend-circles/solution/union-find-suan-fa-xiang-jie-by-labuladong/)
 
+- [LeetCode 官方题解](https://leetcode-cn.com/problems/friend-circles/solution/peng-you-quan-by-leetcode/)
+- [LeetCode labuladong 题解](https://leetcode-cn.com/problems/friend-circles/solution/union-find-suan-fa-xiang-jie-by-labuladong/)
 
 # [787. K 站中转内最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/)
-DP的思路自己没想到，迪杰斯特拉算法要熟悉！
+
+DP 的思路自己没想到，迪杰斯特拉算法要熟悉！
 
 # [1267. 统计参与通信的服务器](https://leetcode-cn.com/problems/count-servers-that-communicate/)
-自己尝试使用并查集做，问题出在声明的数组长度m*n，但是计算索引i*m+j有时候会溢出，[我的题解](https://leetcode-cn.com/problems/count-servers-that-communicate/solution/bing-cha-ji-si-lu-zheng-que-dan-shi-dai-3792w/)
+
+自己尝试使用并查集做，问题出在声明的数组长度 m*n，但是计算索引 i*m+j 有时候会溢出，[我的题解](https://leetcode-cn.com/problems/count-servers-that-communicate/solution/bing-cha-ji-si-lu-zheng-que-dan-shi-dai-3792w/)
 
 # [1162. 地图分析](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)
-想清楚dp的表示和含义，自己考虑得没有题解细致：
-1. 我想的是一轮dp，同时计算四个方向
-2. 我考虑的对角线的值到dp中，看了题解发现不需要，因为上方的值在计算时考虑了两个方向，其中就包含当前值的左上方，0在计算a的时候，a计算了b，相当于0计算了b
+
+想清楚 dp 的表示和含义，自己考虑得没有题解细致：
+
+1. 我想的是一轮 dp，同时计算四个方向
+2. 我考虑的对角线的值到 dp 中，看了题解发现不需要，因为上方的值在计算时考虑了两个方向，其中就包含当前值的左上方，0 在计算 a 的时候，a 计算了 b，相当于 0 计算了 b
+
 ```shell
 b a 1
 1 0 1
 ```
 
 # [959. 由斜杠划分区域](https://leetcode-cn.com/problems/regions-cut-by-slashes/)
+
 如何将问题抽象成并查集，以及索引的设置和计算是本题的关键。
 
 # [886. 可能的二分法](https://leetcode-cn.com/problems/possible-bipartition/)
+
 下面的代码注释中是我之前的提交，代码有问题所以无法通过，查看了官方题解中的代码，在图的构造上和我的不同，核心代码如下：
+
 ```cpp
 for(i=0; i<dislikes.size(); i++) {
     /*
@@ -220,12 +236,15 @@ for(i=0; i<dislikes.size(); i++) {
 }
 ```
 
-上面注释中的代码构造的图不是双向的，比如`1-2`，得到的图如下，这样在dfs过程中容易出问题。
+上面注释中的代码构造的图不是双向的，比如`1-2`，得到的图如下，这样在 dfs 过程中容易出问题。
+
 ```shell
 1: 2
 2
 ```
+
 下面是自己找到的反例，`dislikes=[[1,4], [2,5], [4,5]]`，得到的图是：
+
 ```shell
 1:4
 2:5
@@ -233,7 +252,9 @@ for(i=0; i<dislikes.size(); i++) {
 4:5
 5
 ```
-这样从1开始dfs的路径是1-4-5，2-5，这里1-4-5中5的颜色是R，2-5中5的颜色是B，这就冲突了。应该构建双向图，这样从1开始dfs的路径是1-4-1-5-2-4，就不会有后面从2的dfs了。
+
+这样从 1 开始 dfs 的路径是 1-4-5，2-5，这里 1-4-5 中 5 的颜色是 R，2-5 中 5 的颜色是 B，这就冲突了。应该构建双向图，这样从 1 开始 dfs 的路径是 1-4-1-5-2-4，就不会有后面从 2 的 dfs 了。
+
 ```shell
 1:4
 2:5
@@ -243,6 +264,7 @@ for(i=0; i<dislikes.size(); i++) {
 ```
 
 源代码
+
 ```cpp
 class Solution {
 private:
@@ -325,20 +347,23 @@ public:
 ```
 
 # [802. 找到最终的安全状态](https://leetcode-cn.com/problems/find-eventual-safe-states/)
+
 看的官方题解，自己想思路的时候可以画图辅助理解。
 
-拓扑排序使用队列来做这个方法忘记了，自己用for循环做的，最后一个样例显示超时。
+拓扑排序使用队列来做这个方法忘记了，自己用 for 循环做的，最后一个样例显示超时。
 
 如果题目不理解、没有想到方法的话很难做出来。
 
-
 # [785. 判断二分图](https://leetcode-cn.com/problems/is-graph-bipartite/)
-没有想到方法，看了题解的方法自己没有搞出来bfs的代码。
+
+没有想到方法，看了题解的方法自己没有搞出来 bfs 的代码。
 
 # [765. 情侣牵手](https://leetcode-cn.com/problems/couples-holding-hands/)
-[官方题解](https://leetcode-cn.com/problems/couples-holding-hands/solution/qing-lu-qian-shou-by-leetcode-gl1c/)首先进行理论分析，得到的结论是不管怎么还，最少交换次数以固定的，但是交换的方式可能是多样的。这里不需要求出所有的交换方式，而是要求最少交换次数。理解了这一点，问题就好处理了。
+
+[官方题解](https://leetcode-cn.com/problems/couples-holding-hands/solution/qing-lu-qian-shou-by-leetcode-gl1c/) 首先进行理论分析，得到的结论是不管怎么还，最少交换次数以固定的，但是交换的方式可能是多样的。这里不需要求出所有的交换方式，而是要求最少交换次数。理解了这一点，问题就好处理了。
 
 最简单的方法是原地交换，这个解法真的是非常简洁，利用了异或运算，也提醒笔者要复习下逻辑运算。
+
 ```cpp
 class Solution {
 public:
@@ -365,48 +390,55 @@ public:
 ```
 
 # [743. 网络延迟时间](https://leetcode-cn.com/problems/network-delay-time/)
+
 图的`单源最短路径问题`，深搜或者迪杰斯特拉算法。图中必须掌握的算法，非常基础的问题。
 
-参考[五种最短路径算法总结](https://leetcode-cn.com/problems/network-delay-time/solution/dirkdtra-by-happysnaker-vjii/)
+参考 [五种最短路径算法总结](https://leetcode-cn.com/problems/network-delay-time/solution/dirkdtra-by-happysnaker-vjii/)
 
 # [684. 冗余连接](https://leetcode-cn.com/problems/redundant-connection/) && [685. 冗余连接 II](https://leetcode-cn.com/problems/redundant-connection-ii/)
-一开始自己的思路是使用节点的度来计算，先根据边计算出每个节点的度，然后从后向前遍历边，判断边的两个端点对应的度，只要degree[u v]>1，则认为该边可以去掉。[实际案例运行过程中报错了](https://leetcode-cn.com/submissions/detail/169504601/)，看来我的方法不是等价的方法。
+
+一开始自己的思路是使用节点的度来计算，先根据边计算出每个节点的度，然后从后向前遍历边，判断边的两个端点对应的度，只要 degree[u v]>1，则认为该边可以去掉。[实际案例运行过程中报错了](https://leetcode-cn.com/submissions/detail/169504601/)，看来我的方法不是等价的方法。
 
 题解用的方法是并查集，相对来说比较方便好理解，但是不是完整的并查集，而是根据题目要求简化了。
 
-685 是升级版，hard难度，无论冲代码量、数据结构、思维量这三个角度来思考，都是很不错的考察题目。
+685 是升级版，hard 难度，无论冲代码量、数据结构、思维量这三个角度来思考，都是很不错的考察题目。
 
 # [332. 重新安排行程](https://leetcode-cn.com/problems/reconstruct-itinerary/)
+
 看题目完全没思路，看题解是欧拉通路，需要好好理解官方题解。
 
 # [310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/)
+
 自己的思路是遍历所有节点，一次算出每个节点为根节点得到的树的高度，然后求出最小高度，将最小高度的根节点加入到返回数组中。
 
-这个思路通过了65/68个样例，后面超时了。然后看了题解的思路，是利用bfs的思路，从外围向里逼近，树的高度最小，对应的根节点越可能在整个图的中心位置。
+这个思路通过了 65/68 个样例，后面超时了。然后看了题解的思路，是利用 bfs 的思路，从外围向里逼近，树的高度最小，对应的根节点越可能在整个图的中心位置。
 
-[这个题解C++】循序渐进的思路，BFS/DFS/拓扑排序](https://leetcode-cn.com/problems/minimum-height-trees/solution/c-xun-xu-jian-jin-de-si-lu-bfsdfstuo-bu-hmk2y/)给出了三种方法，**并且有dfs记忆化剪枝**，多看看。
+[这个题解 C++】循序渐进的思路，BFS/DFS/拓扑排序](https://leetcode-cn.com/problems/minimum-height-trees/solution/c-xun-xu-jian-jin-de-si-lu-bfsdfstuo-bu-hmk2y/) 给出了三种方法，**并且有 dfs 记忆化剪枝**，多看看。
 
 # [207. 课程表](https://leetcode-cn.com/problems/course-schedule/) && [210. 课程表 II](https://leetcode-cn.com/problems/course-schedule-ii/)
-非常经典的题目，判断图中是否有环，自己一开始想用并查集做的，但是没有想出来并查集怎么做。看了题解发现可以使用拓扑排序的方法，通过dfs或者bfs来做。
+
+非常经典的题目，判断图中是否有环，自己一开始想用并查集做的，但是没有想出来并查集怎么做。看了题解发现可以使用拓扑排序的方法，通过 dfs 或者 bfs 来做。
 
 问题中并没有包含完整的图结构，所以需要自己根据需要来选择图的表示方法，题解使用的是邻接数组的表示方法。
 
-
-210的思路和207是一样的。
+210 的思路和 207 是一样的。
 
 # [133. 克隆图](https://leetcode-cn.com/problems/clone-graph/)
-自己的做法相对复杂些，使用三个map存储节点和邻接节点之间的关系，没有官方题解简单（只用了一个map），但是理解起来相对复杂些。
+
+自己的做法相对复杂些，使用三个 map 存储节点和邻接节点之间的关系，没有官方题解简单（只用了一个 map），但是理解起来相对复杂些。
 
 应对了那句话，用思维换代码复杂度，思考的多一些，编写的代码就简洁些，但是理解起来要花费更多脑力。
 
 # [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/)
+
 第一次做看完题目有点懵，没有思路，看了别人的题解通过的。
 
-第二次看这道题目，大概知道要用dfs，但是具体dfs怎么处理？是否要用visited数组？dfs是否有返回值等自己还不明确，`只知道大致思路，却不清楚如何实现`。
+第二次看这道题目，大概知道要用 dfs，但是具体 dfs 怎么处理？是否要用 visited 数组？dfs 是否有返回值等自己还不明确，`只知道大致思路，却不清楚如何实现`。
 
-看了第一次的提交记录后，发现dfs返回的是**发现1的数量**，而且通过**将访问过的grid[i][j]置为0**，巧妙地避免引入visited数组，减少了存储空间。
+看了第一次的提交记录后，发现 dfs 返回的是**发现 1 的数量**，而且通过**将访问过的 grid[i][j] 置为 0**，巧妙地避免引入 visited 数组，减少了存储空间。
 
-dfs代码
+dfs 代码
+
 ```cpp
 class Solution {
     int dfs(vector<vector<int>>& grid, int curi, int curj) {
@@ -437,7 +469,8 @@ class Solution {
 };
 ```
 
-bfs，bfs的特点是使用队列，遇到一个grid[i][j]=1就加入到队列中，然后进行bfs。
+bfs，bfs 的特点是使用队列，遇到一个 grid[i][j]=1 就加入到队列中，然后进行 bfs。
+
 ```cpp
 class Solution {
 public:
@@ -479,9 +512,11 @@ public:
 ```
 
 # 200. 岛屿数量
-有了695的铺垫，这个题目dfs和bfs思路就相对简单些了。
+
+有了 695 的铺垫，这个题目 dfs 和 bfs 思路就相对简单些了。
 
 dfs
+
 ```cpp
 class Solution {
 public:
@@ -516,6 +551,7 @@ public:
 ```
 
 bfs
+
 ```cpp
 class Solution {
 public:
@@ -558,7 +594,8 @@ public:
 };
 ```
 
-并查集，**用并查集的关键是把二维的grid映射到一维的数组中**。
+并查集，**用并查集的关键是把二维的 grid 映射到一维的数组中**。
+
 ```cpp
 class UnionFind {
 public:
@@ -641,11 +678,13 @@ public:
 ```
 
 # 463. 岛屿的周长
-一开始没有透彻理解，`找规律的思路`，假设岛屿数量为n，则周长为n*2+2，其实这个思路是错误的，只能通过50%的案例。
 
-后来发现思路不对，就以dfs入手，当前节点为1(岛屿)，总边长是否增加取决于四周的情况：
-1. 四周有越界，则加1
-2. 四周没越界，且为0，则加1
+一开始没有透彻理解，`找规律的思路`，假设岛屿数量为 n，则周长为 n\*2+2，其实这个思路是错误的，只能通过 50%的案例。
+
+后来发现思路不对，就以 dfs 入手，当前节点为 1（岛屿），总边长是否增加取决于四周的情况：
+
+1. 四周有越界，则加 1
+2. 四周没越界，且为 0，则加 1
 3. 然后递归四周，核心代码如下
 
 ```cpp
@@ -673,6 +712,7 @@ void dfs(vector<vector<int>>& grid, vector<vector<bool>>& visited, int x, int y)
 ```
 
 然后递归。
+
 ```cpp
 class Solution {
 private:
