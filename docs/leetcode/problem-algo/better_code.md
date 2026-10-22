@@ -2,7 +2,7 @@
 
 之前面试了微软亚研的岗位，面试官提出了代码要简洁、尽量包含较少的变量，逻辑设计要合理，以便后期维护和扩展。
 
-这里列举一些LeetCode上的题目，我自己的解法`有很大的优化空间`，并列出找到的相对更好的解法。
+这里列举一些 LeetCode 上的题目，我自己的解法`有很大的优化空间`，并列出找到的相对更好的解法。
 
 - [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
 - [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
@@ -10,10 +10,13 @@
 - [80. 删除有序数组中的重复项 II](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
 - [209. 长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
 - [5789. 你完成的完整对局数](https://leetcode-cn.com/contest/weekly-contest-246/problems/the-number-of-full-rounds-you-have-played/)
-# [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
-这里面需要注意的是map在遍历过程中的容量是逐渐递增的，找到了就停下来。
 
-另一种做法是遍历完数组后再判断，这样map的容量可能大一些。
+# [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
+
+这里面需要注意的是 map 在遍历过程中的容量是逐渐递增的，找到了就停下来。
+
+另一种做法是遍历完数组后再判断，这样 map 的容量可能大一些。
+
 ```cpp
 class Solution {
 public:
@@ -38,11 +41,13 @@ public:
 # [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
 
 # [56. 合并区间](https://leetcode-cn.com/problems/merge-intervals/)
+
 官方的代码更`优`，精简且好理解。
 
 # [80. 删除有序数组中的重复项 II](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
 
 我的解法：
+
 ```cpp
 class Solution {
 public:
@@ -68,6 +73,7 @@ public:
 ```
 
 相对较好的解法：
+
 ```cpp
 class Solution {
 public:
@@ -86,6 +92,7 @@ public:
 ```
 
 # [128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)
+
 ```cpp
 class Solution {
 public:
@@ -108,7 +115,9 @@ public:
 ```
 
 # LC contest 246 2
+
 [5789. 你完成的完整对局数](https://leetcode-cn.com/contest/weekly-contest-246/problems/the-number-of-full-rounds-you-have-played/)
+
 ```cpp
 class Solution {
 public:
@@ -128,6 +137,7 @@ public:
 ```
 
 # [209. 长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
+
 ```cpp
 class Solution {
 public:
